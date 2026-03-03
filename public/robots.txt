@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Bloquear rutas sin contenido útil para el indexado
+Disallow: /trabaja-con-nosotros$
+Disallow: /en/trabaja-con-nosotros$
+Disallow: /cat/trabaja-con-nosotros$
+
+Sitemap: https://www.xarcuterialosmolina.com/sitemap.xml

@@ -1,9 +1,10 @@
-import { Component, signal, OnInit } from '@angular/core';
+import { Component, signal, OnInit, inject, effect } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TitleComponent } from '../../components/title/title';
 import { LogoComponent } from '../../components/logo/logo';
 import { IdiomaService } from '../../idiomas/idioma.service';
+import { SeoService } from '../../core/seo.service';
 import emailjs from '@emailjs/browser';
 
 interface TrabajaForm {
@@ -40,7 +41,14 @@ export class TrabajaConNosotrosComponent implements OnInit {
   readonly enviando = signal(false);
   readonly error = signal<string>('');
 
-  constructor(readonly idioma: IdiomaService) {}
+  private readonly seo = inject(SeoService);
+
+  constructor(readonly idioma: IdiomaService) {
+    // Actualizar SEO cuando cambia el idioma
+    effect(() => {
+      this.seo.setPageSeo(this.idioma.currentLang(), 'trabaja');
+    });
+  }
 
   ngOnInit(): void {
     // Inicializar EmailJS

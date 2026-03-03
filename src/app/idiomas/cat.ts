@@ -6,7 +6,7 @@ export const CAT = {
 
   // General
   general: {
-    logoTagline: 'Xarcuteria & Degustació',
+    logoTagline: 'Xarcuteria · Charcutería · Degustació',
     logoAlt: 'Xarcuteria Los Molina',
     openMenu: 'Obrir menú',
     scroll: 'Desplaçar',
@@ -24,21 +24,21 @@ export const CAT = {
     title: 'Sobre Nosaltres',
     subtitle: 'Una família, una tradició',
     text1:
-      '<strong>Xarcuteria Los Molina</strong> va néixer d\'una cosa molt senzilla: el desig d\'una família de mantenir viva una tradició xarcutera i apropar-la al barri del Prat de Llobregat.',
+      '<strong>Xarcuteria Los Molina</strong> va néixer d\'una cosa molt senzilla: el desig d\'una família de mantenir viva la tradició del pernil ibèric i la xarcuteria artesana, i apropar-la al barri del Prat de Llobregat.',
     text2:
-      'Som un local petit i de tota la vida. Aquí els clients de sempre es converteixen en part de la família. Els nostres entrepans de pernil són la nostra senyal d\'identitat: tallats al moment, amb el millor gènere, sense complicacions.',
+      'Som un local petit i de tota la vida al Prat. Aquí els clients de sempre es converteixen en part de la família. Els nostres entrepans de pernil ibèric i d\'embotit de gla són la nostra senyal d\'identitat: tallats al moment, amb el millor gènere, sense complicacions.',
     text3:
-      'Menjar bé no hauria de ser un privilegi. Per això seleccionem productes de primera qualitat i els oferim a un preu just — com sempre ha fet la nostra família.',
+      'Menjar bé no hauria de ser un privilegi. Per això seleccionem pernils ibèrics, embotits de gla, formatge manchego, formatge curat i semicurat de primera qualitat, i els oferim a un preu just — com sempre ha fet la nostra família.',
   },
 
   // Què Oferim
   offer: {
     title: 'Què oferim?',
-    subtitle: 'Xarcuteria de qualitat i degustació al local',
+    subtitle: 'Pernil ibèric, embotit de gla i degustació al local — El Prat de Llobregat',
     tabCharcuteria: 'Som Xarcuteria',
     tabDegustacion: 'Degustació de productes',
     charcuteriaDescription:
-      "A la Xarcuteria Los Molina seleccionem a mà cada producte que arriba al nostre mostrador. Treballem amb les millors marques d'embutits, formatges i conserves per oferir-te sempre el millor de la terra.",
+      "A la Xarcuteria Los Molina seleccionem a mà cada producte que arriba al nostre mostrador. Treballem amb les millors marques: pernil ibèric Joselito, Cinco Jotas, embotits de gla, formatge manchego, formatge curat i semicurat per oferir-te sempre el millor de la terra.",
     brandsTitle: 'Marques amb les que treballem',
     degustacionDescription:
       "Sabies que també pots venir a degustar els nostres productes al local? Preparem tot al moment amb els mateixos ingredients de primera qualitat que oferim al nostre mostrador. Seu, relaxa't i gaudeix.",
@@ -74,7 +74,7 @@ export const CAT = {
         name: 'Menús i Taules',
         icon: '🧀',
         items: [
-          { name: 'Taula de pernil', desc: 'Tall a mà o màquina. Pernil ibèric, pernil 50% gla, pernil 100% gla, 5 Jotas o Joselito' },
+          { name: 'Taula de pernil', desc: 'Tall a mà o màquina. Pernil ibèric, pernil 50% gla, pernil 100% gla, Cinco Jotas (5J) o Joselito' },
           { name: 'Taula ibèrica', desc: 'Assortiment complet amb xoriço, llom i salxitxó' },
           { name: "Taula d'embutit de gla", desc: 'Assortiment complet amb xoriço, llom i salxitxó' },
           { name: 'Taula de Formatges', desc: 'Selecció de formatges variats. Curats, semicurats o taula mixta' },

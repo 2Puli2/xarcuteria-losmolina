@@ -6,7 +6,7 @@ export const ES = {
 
   // General
   general: {
-    logoTagline: 'Charcutería & Degustación',
+    logoTagline: 'Charcutería · Xarcuteria · Degustación',
     logoAlt: 'Charcutería Los Molina',
     openMenu: 'Abrir menú',
     scroll: 'Scroll',
@@ -24,21 +24,21 @@ export const ES = {
     title: 'Sobre Nosotros',
     subtitle: 'Una familia, una tradición',
     text1:
-      '<strong>Charcutería Los Molina</strong> nació de algo muy sencillo: el deseo de una familia de mantener viva una tradición charcutera y acercarla al barrio de El Prat de Llobregat.',
+      '<strong>Charcutería Los Molina</strong> nació de algo muy sencillo: el deseo de una familia de mantener viva la tradición del jamón ibérico y la charcutería artesana, y acercarla al barrio de El Prat de Llobregat.',
     text2:
-      'Somos un local pequeño y de toda la vida. Aquí los clientes de siempre se convierten en parte de la familia. Nuestros bocadillos de jamón son nuestra seña de identidad: cortados en el momento, con el mejor género, sin más vuelta de hoja.',
+      'Somos un local pequeño y de toda la vida en El Prat. Aquí los clientes de siempre se convierten en parte de la familia. Nuestros bocadillos de jamón ibérico y de embutido de bellota son nuestra seña de identidad: cortados en el momento, con el mejor género, sin más vuelta de hoja.',
     text3:
-      'Comer bien no debería ser un privilegio. Por eso seleccionamos productos de primera calidad y los ofrecemos a un precio justo — como siempre ha hecho nuestra familia.',
+      'Comer bien no debería ser un privilegio. Por eso seleccionamos jamones ibéricos, embutidos de bellota, queso manchego, queso curado y semicurado de primera calidad, y los ofrecemos a un precio justo — como siempre ha hecho nuestra familia.',
   },
 
   // Qué Ofrecemos
   offer: {
     title: '¿Qué ofrecemos?',
-    subtitle: 'Charcutería de calidad y degustación en local',
+    subtitle: 'Jamón ibérico, embutido de bellota y degustación en El Prat de Llobregat',
     tabCharcuteria: 'Somos Charcutería',
     tabDegustacion: 'Degustación de productos',
     charcuteriaDescription:
-      'En Charcutería Los Molina seleccionamos a mano cada producto que llega a nuestro mostrador. Trabajamos con las mejores marcas de embutidos, quesos y conservas para ofrecerte siempre lo mejor de la tierra.',
+      'En Charcutería Los Molina seleccionamos a mano cada producto que llega a nuestro mostrador. Trabajamos con las mejores marcas: jamón ibérico Joselito, Cinco Jotas, embutidos de bellota, queso manchego, queso curado y semicurado para ofrecerte siempre lo mejor de la tierra.',
     brandsTitle: 'Marcas con las que trabajamos',
     degustacionDescription:
       '¿Sabías que también puedes venir a degustar nuestros productos en el local? Preparamos todo al momento con los mismos ingredientes de primera calidad que ofrecemos en nuestro mostrador. Siéntate, relájate y disfruta.',
@@ -74,7 +74,7 @@ export const ES = {
         name: 'Menús y Tablas',
         icon: '🧀',
         items: [
-          { name: 'Tabla de jamón', desc: 'Corte a mano o maquina. Jamón ibérico, jamón 50% bellota, jamón 100% bellota, 5 Jotas o Joselito' },
+          { name: 'Tabla de jamón', desc: 'Corte a mano o a máquina. Jamón ibérico, jamón 50% bellota, jamón 100% bellota, jamón Cinco Jotas (5J) o Joselito' },
           { name: 'Tabla ibéricos', desc: 'Surtido completo con chorizo, lomo y salchichón' },
           { name: 'Tabla embutido de bellota', desc: 'Surtido completo con chorizo, lomo y salchichón' },
           { name: 'Tabla de Quesos', desc: 'Selección de quesos variados. Curados, semicurados o tabla mixta' },
@@ -119,7 +119,7 @@ export const ES = {
   footer: {
     address: 'Frederic Soler, 17 — El Prat de Llobregat, Barcelona',
     work: 'Trabaja con nosotros',
-    copyright: 'Charcutería Los Molina — Todos los derechos reservados',
+    copyright: 'Xarcuteria Los Molina — Todos los derechos reservados',
   },
 
   // Reviews
