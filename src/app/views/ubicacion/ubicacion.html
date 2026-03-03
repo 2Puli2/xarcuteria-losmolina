@@ -9,15 +9,21 @@
 
     <!-- Contenido -->
     <div class="ubicacion__content">
-      <!-- Info de contacto -->
-      <div class="ubicacion__info">
+      <!-- Info de contacto con microformato address -->
+      <address class="ubicacion__info" itemscope itemtype="https://schema.org/LocalBusiness">
+        <meta itemprop="name" content="Xarcuteria Los Molina">
+        <meta itemprop="url" content="https://www.xarcuterialosmolina.com">
+
         <div class="ubicacion__info-item">
           <span class="ubicacion__info-icon">📍</span>
-          <div>
+          <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
             <h3>{{ idioma.t().location.addressTitle }}</h3>
-            <p>{{ idioma.t().location.address1 }}</p>
-            <p>{{ idioma.t().location.address2 }}</p>
-            <p>{{ idioma.t().location.address3 }}</p>
+            <p itemprop="streetAddress">{{ idioma.t().location.address1 }}</p>
+            <p>
+              <span itemprop="postalCode">08820</span>
+              <span itemprop="addressLocality"> El Prat de Llobregat</span>
+            </p>
+            <p itemprop="addressCountry">{{ idioma.t().location.address3 }}</p>
           </div>
         </div>
 
@@ -35,17 +41,23 @@
           <span class="ubicacion__info-icon">📞</span>
           <div>
             <h3>{{ idioma.t().location.contactTitle }}</h3>
-            <p><strong>{{ idioma.t().location.phoneLabel }}</strong><br/>{{ idioma.t().location.phone }}</p>
-            <p><strong>{{ idioma.t().location.emailLabel }}</strong><br/><a href="mailto:xarcuterialosmolina@gmail.com">xarcuterialosmolina@gmail.com</a></p>
+            <p>
+              <strong>{{ idioma.t().location.phoneLabel }}</strong><br/>
+              <a href="tel:+34937827085" itemprop="telephone">{{ idioma.t().location.phone }}</a>
+            </p>
+            <p>
+              <strong>{{ idioma.t().location.emailLabel }}</strong><br/>
+              <a href="mailto:xarcuterialosmolina@gmail.com" itemprop="email">xarcuterialosmolina@gmail.com</a>
+            </p>
           </div>
         </div>
-      </div>
+      </address>
 
       <!-- Mapa de Google Maps -->
       <div class="ubicacion__map-wrapper">
         <app-map
           [address]="'Frederic Soler, 17, El Prat de Llobregat'"
-          [locationName]="'Charcutería Los Molina'"
+          [locationName]="'Xarcuteria Los Molina — Charcutería El Prat de Llobregat'"
         />
       </div>
     </div>

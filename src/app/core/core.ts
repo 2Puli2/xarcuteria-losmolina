@@ -1,4 +1,4 @@
-import { Component, ElementRef, viewChild } from '@angular/core';
+import { Component, ElementRef, viewChild, inject, effect } from '@angular/core';
 import { HeaderComponent } from '../components/header/header';
 import { FooterComponent } from '../components/footer/footer';
 import { HomeComponent } from '../views/home/home';
@@ -7,10 +7,12 @@ import { QueOfrecemosComponent } from '../views/que-ofrecemos/que-ofrecemos';
 import { UbicacionComponent } from '../views/ubicacion/ubicacion';
 import { NgxScrollTopComponent } from 'ngx-scrolltop';
 import { SidebarComponent } from '../components/sidebar/sidebar';
+import { SeoService } from './seo.service';
+import { IdiomaService } from '../idiomas/idioma.service';
 
 /**
  * Componente Core — Agrupa todas las secciones de la web.
- * Gestiona el scroll suave entre secciones.
+ * Gestiona el scroll suave entre secciones y actualiza el SEO dinámicamente.
  */
 @Component({
   selector: 'app-core',
@@ -28,8 +30,18 @@ import { SidebarComponent } from '../components/sidebar/sidebar';
   styleUrl: './core.scss',
 })
 export class CoreComponent {
+  private readonly seo = inject(SeoService);
+  private readonly idioma = inject(IdiomaService);
+
   /** Referencia al contenedor principal para detectar scroll */
   readonly mainContent = viewChild<ElementRef>('mainContent');
+
+  constructor() {
+    // Actualizar SEO cada vez que cambia el idioma
+    effect(() => {
+      this.seo.setPageSeo(this.idioma.currentLang(), 'home');
+    });
+  }
 
   /** Controla la visibilidad del header */
   showHeader = false;
