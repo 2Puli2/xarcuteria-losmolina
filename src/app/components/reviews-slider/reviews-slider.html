@@ -1,32 +1,19 @@
 @if (getCurrentReview(); as review) {
   <div class="reviews-slider">
-    <div class="reviews-slider__header">
-      <h3 class="reviews-slider__title">{{ idioma.t().reviews.title }}</h3>
-    </div>
+    <!-- Título eliminado -->
 
     <!-- Contenido de la reseña -->
+    <!-- Divider dorado -->
+    <div class="reviews-slider__divider"></div>
     <div class="reviews-slider__content">
       <div class="reviews-slider__review">
-        <!-- Texto de la reseña -->
         <p class="reviews-slider__text">{{ review.text }}</p>
-
-        <!-- Autor -->
-        <div class="reviews-slider__meta">
-          <p class="reviews-slider__author">— {{ review.author }}</p>
-        </div>
+        <p class="reviews-slider__author">— {{ review.author }}</p>
       </div>
     </div>
 
     <!-- Navegación -->
     <div class="reviews-slider__navigation">
-      <button
-        class="reviews-slider__button reviews-slider__button--prev"
-        (click)="previousReview()"
-        [attr.aria-label]="idioma.t().reviews.prevLabel"
-      >
-        &#8249;
-      </button>
-
       <div class="reviews-slider__dots">
         @for (item of reviews(); let i = $index; track i) {
           <button
@@ -37,20 +24,9 @@
           ></button>
         }
       </div>
-
-      <button
-        class="reviews-slider__button reviews-slider__button--next"
-        (click)="nextReview()"
-        [attr.aria-label]="idioma.t().reviews.nextLabel"
-      >
-        &#8250;
-      </button>
     </div>
 
-    <!-- Pie de componente -->
-    <div class="reviews-slider__footer">
-      <p class="reviews-slider__source">{{ idioma.t().reviews.source }}</p>
-    </div>
+    <p class="reviews-slider__source">{{ idioma.t().reviews.source }}</p>
   </div>
 } @else {
   <div class="reviews-slider reviews-slider--empty">

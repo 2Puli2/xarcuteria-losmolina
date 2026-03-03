@@ -28,6 +28,12 @@ export class ReviewsSliderComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadReviews();
+    setInterval(() => {
+      const len = this.reviews().length;
+      if (len > 0) {
+        this.currentReviewIndex.set((this.currentReviewIndex() + 1) % len);
+      }
+    }, 25000);
   }
 
   private loadReviews(): void {
@@ -38,18 +44,6 @@ export class ReviewsSliderComponent implements OnInit {
     return this.reviews()[this.currentReviewIndex()];
   }
 
-  nextReview(): void {
-    const len = this.reviews().length;
-    if (len > 0) {
-      this.currentReviewIndex.set((this.currentReviewIndex() + 1) % len);
-    }
-  }
-
-  previousReview(): void {
-    const len = this.reviews().length;
-    if (len > 0) {
-      this.currentReviewIndex.set((this.currentReviewIndex() - 1 + len) % len);
-    }
-  }
+  // ...existing code...
 }
 
