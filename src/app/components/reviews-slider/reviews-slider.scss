@@ -13,7 +13,7 @@
   }
 
   &__label {
-    font-size: $font-size-xs;
+    font-size: $font-size-base;
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -30,6 +30,12 @@
     margin-bottom: $spacing-md;
     border-right: 3px solid rgba($color-accent, 0.3);
     padding-right: $spacing-lg;
+    cursor: grab;
+    user-select: none;
+
+    &.dragging {
+      cursor: grabbing;
+    }
   }
 
   &__review {
@@ -47,10 +53,11 @@
       background-color: rgba($color-accent, 0.3);
       align-self: flex-start;
       margin-left: calc($spacing-lg + 3px);
-  }
+      margin-bottom: 85px;
+    }
 
   &__text {
-    font-size: calc(#{$font-size-sm} - 2px);
+    font-size: calc(#{$font-size-sm} );
     color: #000;
     line-height: 1.8;
     font-style: italic;
