@@ -132,22 +132,18 @@ export const ES = {
     items: [
       {
         author: 'Juan',
-        rating: 5,
         text: 'Los viejos amigos del instituto nos reunimos alli para almorzar los bocatas estan bien y hay una variedad de embutidos y quesos de mucha calidad. El personal esta muy atento el otro dia me ofrecieron uns oferta de jamon de bellota excelente .muy recomendable.',
       },
       {
         author: 'Antonio',
-        rating: 5,
         text: 'Un sitio fantástico para degustar unos buenos embutidos. Las olivas de la casa nos encantan y el servicio de los empleados de 10 siempre!!!!',
       },
       {
         author: 'Max',
-        rating: 5,
         text: 'Muy rico y servicio atento, Gabi nos trata como reyes. El bikini es para llorar de gusto, está riquísimo. El parmesano que venden es increïble, le pones eso a cualquier pasta y ya tienes cena. Siempre amables y detallistas',
       },
       {
         author: 'Augusto',
-        rating: 5,
         text: 'Sencillo y acogedor café en El Prat donde encontré el mejor Jamón Ibérico de la zona que servido en pan crujiente con tomate y aceite de Oliva se convierte en un delicioso manjar. Lo acompañe con un café fresco e intenso. La atención es buena y los precios razonables. Bueno, Bonito y Barato como decimos en Perú.',
       },
     ],

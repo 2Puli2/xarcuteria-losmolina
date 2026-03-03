@@ -3,7 +3,6 @@ import { IdiomaService } from '../../idiomas/idioma.service';
 
 export interface Review {
   author: string;
-  rating: number;
   text: string;
 }
 
@@ -51,10 +50,6 @@ export class ReviewsSliderComponent implements OnInit {
     if (len > 0) {
       this.currentReviewIndex.set((this.currentReviewIndex() - 1 + len) % len);
     }
-  }
-
-  getStars(rating: number): number[] {
-    return Array.from({ length: 5 }, (_, i) => (i < rating ? 1 : 0));
   }
 }
 

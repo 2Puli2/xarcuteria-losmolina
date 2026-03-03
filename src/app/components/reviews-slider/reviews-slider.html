@@ -7,15 +7,6 @@
     <!-- Contenido de la reseña -->
     <div class="reviews-slider__content">
       <div class="reviews-slider__review">
-        <!-- Estrellas -->
-        <div class="reviews-slider__stars">
-          @for (star of getStars(review.rating); track $index) {
-            <span class="reviews-slider__star" [class.reviews-slider__star--filled]="star === 1">
-              ★
-            </span>
-          }
-        </div>
-
         <!-- Texto de la reseña -->
         <p class="reviews-slider__text">{{ review.text }}</p>
 

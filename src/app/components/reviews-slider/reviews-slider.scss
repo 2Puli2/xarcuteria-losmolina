@@ -37,23 +37,6 @@
     animation: fadeIn 0.3s ease-in-out;
   }
 
-  &__stars {
-    display: flex;
-    justify-content: center;
-    gap: 4px;
-    margin-bottom: $spacing-sm;
-  }
-
-  &__star {
-    font-size: 20px;
-    color: #ddd;
-    transition: color $transition-fast;
-
-    &--filled {
-      color: #ffc107;
-    }
-  }
-
   &__text {
     font-size: $font-size-base;
     color: #222;
