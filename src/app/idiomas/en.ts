@@ -129,30 +129,51 @@ export const EN = {
     prevLabel: 'Previous review',
     nextLabel: 'Next review',
     reviewLabel: 'Review',
+    source: 'Reviews from our Google Business listings',
     items: [
       {
-        author: 'Juan Lopez Bugallo',
-        rating: 5,
+        author: 'Juan',
         text: 'Old friends from high school gathered there for lunch, the sandwiches are good and there is a variety of high-quality cold cuts and cheeses. The staff is very attentive, the other day they offered us an excellent bellota ham deal. Highly recommended.',
-        date: '1 week ago',
       },
       {
-        author: 'Antonio Muñoz',
-        rating: 5,
+        author: 'Antonio',
         text: 'A fantastic place to taste good cold cuts. We love the house olives and the employee service is top-notch always!!!!',
-        date: '2 weeks ago',
       },
       {
-        author: 'Max Figueras',
-        rating: 5,
+        author: 'Max',
         text: "Very delicious and attentive service, Gabi treats us like royalty. The bikini sandwich is to cry for joy, it's delicious. The parmesan they sell is incredible, you put that on any pasta and you already have dinner. Always friendly and detail-oriented.",
-        date: '3 weeks ago',
       },
       {
-        author: 'Augusto Galvan B.',
-        rating: 5,
+        author: 'Augusto',
         text: 'Simple and cozy café in El Prat where I found the best Iberian Ham in the area, served on crispy bread with tomato and olive oil it becomes a delicious delicacy. I accompanied it with fresh and intense coffee. The service is good and the prices reasonable. Good, Nice and Cheap as we say in Peru.',
-        date: '1 month ago',
+      },
+      {
+        author: 'Eduardo',
+        text: 'Excellent place, very good pork products and cheeses, both to buy and to taste there, washed down with quality beer, wine, or cavas.',
+      },
+      {
+        author: 'Jazmín',
+        text: 'The times we had gone were for breakfast. This time we decided to go for dinner, and honestly, wonderful!! tables of cheeses and ham with a spectacular flavor, the attention of the waiters excellent, they explain the variety of things. We were on the terrace, very nice, little noise, clean atmosphere. Definitely we will return.',
+      },
+      {
+        author: 'Julia',
+        text: 'I loved it!! A coworker recommended it to me and it was a hit!! The delicious ham and the attention of the waitress excellent. I always want to come back. Hard to park, to keep in mind.',
+      },
+      {
+        author: 'Adrian',
+        text: 'First-rate products and always very friendly team. Very correct prices. A must stop, alone or with company.',
+      },
+      {
+        author: 'Carles',
+        text: 'Good place to have lunch or a snack and first-class cold cuts and not to mention the hams from the good to the excellent.',
+      },
+      {
+        author: 'Jalena',
+        text: 'Simply great everything fresh and good quality. Very friendly, correct prices. They have a terrace.',
+      },
+      {
+        author: 'C. G.',
+        text: '100% Recommended! Excellent treatment! Extremely friendly staff, especially one of the main waitresses! Excellent quality in all cold cuts, the presentation of the cold cut boards is very elegant and the sandwiches with crispy bread and extremely good. And coffees with taste, without being watered down and they serve it as you ask. Very attentive staff. If you are in El Prat it is a must stop.',
       },
     ],
   },

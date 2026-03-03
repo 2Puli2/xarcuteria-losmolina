@@ -129,6 +129,7 @@ export const ES = {
     prevLabel: 'Reseña anterior',
     nextLabel: 'Siguiente reseña',
     reviewLabel: 'Reseña',
+    source: 'Comentarios extraídos de nuestras reseñas de Google',
     items: [
       {
         author: 'Juan',
@@ -145,6 +146,34 @@ export const ES = {
       {
         author: 'Augusto',
         text: 'Sencillo y acogedor café en El Prat donde encontré el mejor Jamón Ibérico de la zona que servido en pan crujiente con tomate y aceite de Oliva se convierte en un delicioso manjar. Lo acompañe con un café fresco e intenso. La atención es buena y los precios razonables. Bueno, Bonito y Barato como decimos en Perú.',
+      },
+      {
+        author: 'Eduardo',
+        text: 'Excelente sitio, muy buenos productos del cerdo y quesos, tanto para comprar como para degustar alli mismo, regados con cerveza, vino, o cavas de calidad.',
+      },
+      {
+        author: 'Jazmín',
+        text: 'Las veces que hemos ido habían sido para desayunar. Esta vez decidimos ir a cenar, y la verdad, estupendo!!, tablas de quesos y jamón con un sabor espectacular, la atención de los camareros excelente, te explican la variedad de cosas. Estuvimos en la terraza, muy bien, poco ruido, ambiente limpio. Sin duda repetiremos.',
+      },
+      {
+        author: 'Julia',
+        text: 'Me encantó!! Me lo recomendó un compañero del trabajo y es un acierto!! El jamón riquísimo y la atención de la camarera excelente. Siempre tengo ganas de volver. Difícil aparcar, para tenerlo en cuenta.',
+      },
+      {
+        author: 'Adrian',
+        text: 'Producto de primerísima calidad y un equipo siempre amabilísimo. Precios correctisimos. Parada obligatoria, sólo o en compañía.',
+      },
+      {
+        author: 'Carles',
+        text: 'Buen local para almorzar o merendar y embutidos de primera y no hablar de los jamones del más bueno al más excelente.',
+      },
+      {
+        author: 'Jalena',
+        text: 'Simplemente genial todo fresco y de buena calidad. Muy amables, precios correctos. Tienen terraza.',
+      },
+       {
+        author: 'C. G.',
+        text: 'Recomendado 100%! Un trato excelente! El Personal extremadamente amable, sobretodo una de las camareras principales! Una Calidad excelente en todos los embutidos, la presentación de las tablas de embutido muy elegante y los bocadillos con un pan crujiente y extremadamente bueno. Y unos cafés con gusto, sin ser aguado y te lo sirven tal y como lo pides.Un personal muy atento. Si estas en el Prat es un lugar obligado para parar.',
       },
     ],
   },

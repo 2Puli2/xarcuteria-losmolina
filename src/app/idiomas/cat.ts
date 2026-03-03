@@ -129,30 +129,51 @@ export const CAT = {
     prevLabel: 'Ressenya anterior',
     nextLabel: 'Ressenya següent',
     reviewLabel: 'Ressenya',
+    source: 'Ressenyes dels nostres perfils de Google',
     items: [
       {
-        author: 'Juan Lopez Bugallo',
-        rating: 5,
+        author: 'Juan',
         text: "Els vells amics de l'institut ens vam reunir allà per dinar, els entrepans estan bé i hi ha una varietat d'embutits i formatges de molta qualitat. El personal està molt atent l'altre dia ens van oferir una oferta de pernil de gla excel·lent. Molt recomanable.",
-        date: 'Fa 1 setmana',
       },
       {
-        author: 'Antonio Muñoz',
-        rating: 5,
+        author: 'Antonio',
         text: 'Un lloc fantàstic per degustar bons embutits. Les olives de la casa ens encanten i el servei dels empleats és de 10 sempre!!!!',
-        date: 'Fa 2 setmanes',
       },
       {
-        author: 'Max Figueras',
-        rating: 5,
+        author: 'Max',
         text: 'Molt ric i servei atent, en Gabi ens tracta com a reis. El bikini és per plorar de gust, està deliciós. El parmesà que venen és increïble, li poses això a qualsevol pasta i ja tens sopar. Sempre amables i detallistes.',
-        date: 'Fa 3 setmanes',
       },
       {
-        author: 'Augusto Galvan B.',
-        rating: 5,
+        author: 'Augusto',
         text: "Cafè senzill i acollidor al Prat on vaig trobar el millor Pernil Ibèric de la zona que servit en pa cruixent amb tomàquet i oli d'oliva es converteix en un manjar deliciós. L'acompanyava amb un cafè fresc i intens. L'atenció és bona i els preus raonables. Bo, Bonic i Barat com diem al Perú.",
-        date: 'Fa 1 mes',
+      },
+      {
+        author: 'Eduardo',
+        text: "Lloc excel·lent, molt bons productes de porc i formatges, tant per comprar com per degustar allà mateix, regats amb cervesa, vi, o caves de qualitat.",
+      },
+      {
+        author: 'Jazmín',
+        text: "Les vegades que hem anat havien estat per desayunar. Aquesta vegada vam decidir anar a sopar, i la veritat, estupend!!, taules de formatges i pernil amb un sabor espectacular, l'atenció dels cambrers excel·lent, et expliquen la varietat de coses. Vam estar a la terrassa, molt bé, poc soroll, ambient net. Sense dubte repetirem.",
+      },
+      {
+        author: 'Julia',
+        text: "M'encantà!! Un company de feina me l'va recomanar i va ser un encert!! El pernil deliciós i l'atenció de la cambrera excel·lent. Sempre tinc ganes de tornar. Difícil aparcar, per tenir-ho en compte.",
+      },
+      {
+        author: 'Adrian',
+        text: "Producte de primerísima qualitat i un equip sempre amabilíssim. Preus correctíssims. Parada obligatòria, sol o acompanyat.",
+      },
+      {
+        author: 'Carles',
+        text: "Bon lloc per dinar o merendra i embutits de primera i no parlar dels pernils del més bo al més excel·lent.",
+      },
+      {
+        author: 'Jalena',
+        text: "Simplement genial tot fresc i de bona qualitat. Molt amables, preus correctes. Tenen terrassa.",
+      },
+      {
+        author: 'C. G.',
+        text: "Recomanat 100%! Un tracte excel·lent! El Personal extremadament amable, sobretot una de les cambreres principals! Una Qualitat excel·lent en tots els embutits, la presentació de les taules d'embutit molt elegant i els entrepans amb un pa cruixent i extremadament bo. I uns cafès amb gust, sense ser aigualit i te l'ho serveixen tal i com ho deus. Personal molt atent. Si estas al Prat és un lloc obligat per parar.",
       },
     ],
   },

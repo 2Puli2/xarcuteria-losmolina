@@ -12,7 +12,7 @@
 
         <!-- Autor -->
         <div class="reviews-slider__meta">
-          <p class="reviews-slider__author">{{ review.author }}</p>
+          <p class="reviews-slider__author">— {{ review.author }}</p>
         </div>
       </div>
     </div>
@@ -45,6 +45,11 @@
       >
         &#8250;
       </button>
+    </div>
+
+    <!-- Pie de componente -->
+    <div class="reviews-slider__footer">
+      <p class="reviews-slider__source">{{ idioma.t().reviews.source }}</p>
     </div>
   </div>
 } @else {
