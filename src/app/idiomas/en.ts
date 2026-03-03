@@ -24,7 +24,7 @@ export const EN = {
     title: 'About Us',
     subtitle: 'A family, a tradition',
     text1:
-      '<strong>Charcutería Los Molina</strong> was born from something very simple: a family\'s desire to keep the tradition of Iberian ham and artisan charcuterie alive, and bring it to the neighbourhood of El Prat de Llobregat.',
+      '<strong>Charcutería Los Molina</strong> was born from something very simple: a family\'s desire to keep the charcuterie tradition alive and bring it to the neighbourhood of El Prat de Llobregat.',
     text2:
       'We are a small, old-school local in El Prat where regular customers become part of the family. Our Iberian ham sandwiches and bellota cured meat bocadillos are our trademark — sliced fresh to order, with the finest cuts, no fuss.',
     text3:

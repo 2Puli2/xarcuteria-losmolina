@@ -20,7 +20,7 @@ const SEO_BY_LANG: Record<Lang, SeoData> = {
     title:
       'Xarcuteria Los Molina — Charcutería en El Prat de Llobregat | Jamón Ibérico y Bocadillos',
     description:
-      'Charcutería Los Molina: jamón ibérico, jamón de bellota, embutido ibérico, queso manchego y bocadillos artesanales en El Prat de Llobregat. Marcas Joselito y Cinco Jotas. Frederic Soler, 17.',
+      'Charcutería Los Molina: jamón ibérico, jamón de bellota, embutido ibérico, queso manchego y bocadillos hechos al momento en El Prat de Llobregat. Marcas Joselito y Cinco Jotas. Frederic Soler, 17.',
     htmlLang: 'es',
     canonical: DOMAIN + '/',
     ogLocale: 'es_ES',
@@ -29,7 +29,7 @@ const SEO_BY_LANG: Record<Lang, SeoData> = {
     title:
       'Xarcuteria Los Molina — Charcuterie in El Prat de Llobregat | Iberian Ham & Sandwiches',
     description:
-      'Xarcuteria Los Molina: Iberian ham, bellota ham, Iberian cold cuts, manchego cheese and artisan sandwiches in El Prat de Llobregat (Barcelona). Joselito & Cinco Jotas. Frederic Soler, 17.',
+      'Xarcuteria Los Molina: Iberian ham, bellota ham, Iberian cold cuts, manchego cheese and fresh bocadillos made to order in El Prat de Llobregat (Barcelona). Joselito & Cinco Jotas. Frederic Soler, 17.',
     htmlLang: 'en',
     canonical: DOMAIN + '/en',
     ogLocale: 'en_GB',
@@ -38,7 +38,7 @@ const SEO_BY_LANG: Record<Lang, SeoData> = {
     title:
       'Xarcuteria Los Molina — Xarcuteria al Prat de Llobregat | Pernil Ibèric i Entrepans',
     description:
-      "Xarcuteria Los Molina: pernil ibèric, pernil de gla, embotit ibèric, formatge manchego i entrepans artesans al Prat de Llobregat. Joselito i Cinco Jotas. Frederic Soler, 17.",
+      "Xarcuteria Los Molina: pernil ibèric, pernil de gla, embotit ibèric, formatge manchego i entrepans fet al moment al Prat de Llobregat. Joselito i Cinco Jotas. Frederic Soler, 17.",
     htmlLang: 'ca',
     canonical: DOMAIN + '/cat',
     ogLocale: 'ca_ES',
@@ -52,9 +52,9 @@ const TRABAJA_TITLE: Record<Lang, string> = {
 };
 
 const TRABAJA_DESC: Record<Lang, string> = {
-  es: '¿Te apasiona la charcutería ibérica y el trato con el cliente? Únete al equipo de Xarcuteria Los Molina en El Prat de Llobregat.',
+  es: '¿Te apasiona la charcutería y el trato con el cliente? Únete al equipo de Xarcuteria Los Molina en El Prat de Llobregat.',
   en: 'Passionate about Iberian charcuterie and customer care? Join the Xarcuteria Los Molina team in El Prat de Llobregat.',
-  cat: "T'apassiona la xarcuteria ibèrica i el tracte amb els clients? Uneix-te a l'equip de Xarcuteria Los Molina al Prat de Llobregat.",
+  cat: "T'apassiona la xarcuteria i el tracte amb els clients? Uneix-te a l'equip de Xarcuteria Los Molina al Prat de Llobregat.",
 };
 
 /**
