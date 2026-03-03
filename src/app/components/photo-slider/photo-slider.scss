@@ -1,31 +1,23 @@
 @use '../../../variables' as *;
 
 .photo-slider {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: $spacing-lg 0;
 
   &__swiper {
-    width: 85vw;
-    max-width: 1100px;
+    width: 100%;
     aspect-ratio: 16 / 9;
-    border-radius: $border-radius-lg;
     overflow: hidden;
     box-shadow: $shadow-lg;
 
-    // Estilo de los botones de navegación
-    --swiper-navigation-color: #{$color-secondary};
-    --swiper-navigation-size: 28px;
-
-    // Estilo de la paginación
-    --swiper-pagination-color: #{$color-primary};
-    --swiper-pagination-bullet-inactive-color: rgba(255, 255, 255, 0.5);
+    // Variables nativas de Swiper para que los bullets aparezcan
+    --swiper-pagination-color: #{rgba($color-dark, 0.8)};
+    --swiper-pagination-bullet-inactive-color: rgba(26, 54, 64, 0.3);
     --swiper-pagination-bullet-inactive-opacity: 1;
-    --swiper-pagination-bullet-size: 10px;
-    --swiper-pagination-bullet-horizontal-gap: 5px;
+    --swiper-pagination-bullet-size: 5px;
+    --swiper-pagination-bullet-horizontal-gap: 3px;
   }
 
   &__slide {
@@ -41,35 +33,17 @@
   }
 }
 
-// Personalizar botones de navegación (prev / next) — discretos, solo visibles en hover
-.photo-slider__swiper {
-  &::part(button-prev),
-  &::part(button-next) {
-    background-color: rgba(0, 0, 0, 0.25);
-    border-radius: $border-radius-full;
-    width: 24px;
-    height: 24px;
-    opacity: 0;
-    transition: opacity $transition-fast, background-color $transition-fast;
-  }
-
-  &:hover::part(button-prev),
-  &:hover::part(button-next) {
-    opacity: 1;
-  }
-
-  &::part(button-prev):hover,
-  &::part(button-next):hover {
-    background-color: rgba(0, 0, 0, 0.5);
-  }
+// Pill para el bullet activo — mismo estilo que reviews-slider
+.photo-slider__swiper::part(bullet-active) {
+  width: 16px;
+  border-radius: 3px;
 }
 
 // ─── Responsive tablet ───
 @media (max-width: $breakpoint-md) {
   .photo-slider {
     &__swiper {
-      width: 92vw;
-      --swiper-navigation-size: 20px;
+      --swiper-pagination-bullet-size: 5px;
     }
   }
 }
@@ -78,18 +52,7 @@
 @media (max-width: $breakpoint-sm) {
   .photo-slider {
     &__swiper {
-      width: 95vw;
-      border-radius: $border-radius-md;
-      --swiper-navigation-size: 16px;
-      --swiper-pagination-bullet-size: 8px;
-    }
-  }
-
-  // Ocultar flechas en móvil, solo swipe
-  .photo-slider__swiper {
-    &::part(button-prev),
-    &::part(button-next) {
-      display: none;
+      --swiper-pagination-bullet-size: 5px;
     }
   }
 }

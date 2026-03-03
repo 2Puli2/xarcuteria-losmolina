@@ -1,18 +1,14 @@
 import { Component, signal, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { GooglePlacesService, GoogleReview } from '../../shared/services/google-places.service';
 import { IdiomaService } from '../../idiomas/idioma.service';
 
 export interface Review {
   author: string;
-  rating: number;
   text: string;
-  date: string;
 }
 
 /**
- * Componente slider de reseñas positivas.
- * Carga reseñas reales desde Google Places API (con fallback a traducciones locales).
+ * Componente slider de reseñas.
+ * Carga reseñas desde datos mockeados.
  */
 @Component({
   selector: 'app-reviews-slider',
@@ -27,36 +23,20 @@ export class ReviewsSliderComponent implements OnInit {
   readonly currentReviewIndex = signal(0);
 
   constructor(
-    private http: HttpClient,
-    private googlePlacesService: GooglePlacesService,
     readonly idioma: IdiomaService,
   ) {}
 
   ngOnInit(): void {
     this.loadReviews();
+    setInterval(() => {
+      const len = this.reviews().length;
+      if (len > 0) {
+        this.currentReviewIndex.set((this.currentReviewIndex() + 1) % len);
+      }
+    }, 25000);
   }
 
   private loadReviews(): void {
-    this.googlePlacesService.getBusinessReviews().subscribe({
-      next: (googleReviews: GoogleReview[]) => {
-        if (googleReviews.length > 0) {
-          const reviews: Review[] = googleReviews.map((gr) => ({
-            author: gr.author_name,
-            rating: gr.rating,
-            text: gr.text,
-            date: gr.relative_time_description,
-          }));
-          this.reviews.set(reviews);
-        } else {
-          this.useLocalReviews();
-        }
-      },
-      error: () => this.useLocalReviews(),
-    });
-  }
-
-  /** Usa las reseñas del archivo de traducciones como fallback */
-  private useLocalReviews(): void {
     this.reviews.set(this.idioma.t().reviews.items as Review[]);
   }
 
@@ -64,21 +44,6 @@ export class ReviewsSliderComponent implements OnInit {
     return this.reviews()[this.currentReviewIndex()];
   }
 
-  nextReview(): void {
-    const len = this.reviews().length;
-    if (len > 0) {
-      this.currentReviewIndex.set((this.currentReviewIndex() + 1) % len);
-    }
-  }
-
-  previousReview(): void {
-    const len = this.reviews().length;
-    if (len > 0) {
-      this.currentReviewIndex.set((this.currentReviewIndex() - 1 + len) % len);
-    }
-  }
-
-  getStars(rating: number): number[] {
-    return Array.from({ length: 5 }, (_, i) => (i < rating ? 1 : 0));
-  }
+  // ...existing code...
 }
+

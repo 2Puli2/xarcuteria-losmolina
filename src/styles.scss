@@ -20,13 +20,6 @@ html, body {
   font-family: $font-family-base;
   color: $color-dark;
   background-color: $color-dark;
-  cursor: url('/images/gallery/iberian-ham-cursor.png') 16 16, auto;
-}
-
-// Cursor pointer personalizado para elementos interactivos
-a, button, [role="button"], input[type="submit"],
-.app-button, .que-ofrecemos__tab, .sidebar__link {
-  cursor: url('/images/gallery/iberian-ham-cursor.png') 16 16, pointer;
 }
 
 body {
