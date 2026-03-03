@@ -1,1 +1,97 @@
-/* You can add global styles to this file, and also import other style files */
+/* ============================
+   Estilos globales — LA CHARCU
+   ============================ */
+@use 'sass:color';
+@use 'variables' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: $font-family-base;
+  color: $color-dark;
+  background-color: $color-dark;
+  cursor: url('/images/gallery/iberian-ham-cursor.png') 16 16, auto;
+}
+
+// Cursor pointer personalizado para elementos interactivos
+a, button, [role="button"], input[type="submit"],
+.app-button, .que-ofrecemos__tab, .sidebar__link {
+  cursor: url('/images/gallery/iberian-ham-cursor.png') 16 16, pointer;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reset de enlaces */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Reset de listas */
+ul, ol {
+  list-style: none;
+}
+
+/* Imágenes responsive */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Scroll suave para toda la página */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $color-accent;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: color.adjust($color-accent, $lightness: 10%);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Selección de texto */
+::selection {
+  background-color: $color-primary;
+  color: $color-secondary;
+}
+
+/* Media queries globales para asegurar consistencia */
+@media (max-width: $breakpoint-md) {
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  body {
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,10 @@
+<div
+  class="app-logo"
+  [class.app-logo--sm]="size() === 'sm'"
+  [class.app-logo--md]="size() === 'md'"
+  [class.app-logo--lg]="size() === 'lg'"
+>
+  <img src="/Screenshot_11-2-2026_14541_www.google.es.jpeg" [alt]="idioma.t().general.logoAlt" class="app-logo__image" />
+  <h1 class="app-logo__name">Los Molina</h1>
+  <p class="app-logo__tagline">{{ idioma.t().general.logoTagline }}</p>
+</div>

@@ -1,0 +1,9 @@
+<button
+  class="app-button"
+  [class.app-button--primary]="variant() === 'primary'"
+  [class.app-button--secondary]="variant() === 'secondary'"
+  [class.app-button--outline]="variant() === 'outline'"
+  (click)="onClick()"
+>
+  {{ label() }}
+</button>

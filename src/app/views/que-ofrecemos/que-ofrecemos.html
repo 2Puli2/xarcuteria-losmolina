@@ -1,0 +1,38 @@
+<section class="que-ofrecemos" id="que-ofrecemos">
+  <div class="que-ofrecemos__container">
+    <!-- Título de sección -->
+    <app-title
+      [text]="idioma.t().offer.title"
+      [subtitle]="idioma.t().offer.subtitle"
+      variant="light"
+    />
+
+    <!-- Pestañas -->
+    <div class="que-ofrecemos__tabs">
+      <button
+        class="que-ofrecemos__tab"
+        [class.que-ofrecemos__tab--active]="activeTab() === 'charcuteria'"
+        (click)="setTab('charcuteria')"
+      >
+        {{ idioma.t().offer.tabCharcuteria }}
+      </button>
+      <button
+        class="que-ofrecemos__tab"
+        [class.que-ofrecemos__tab--active]="activeTab() === 'degustacion'"
+        (click)="setTab('degustacion')"
+      >
+        {{ idioma.t().offer.tabDegustacion }}
+      </button>
+    </div>
+
+    <!-- Contenido: Somos Charcutería -->
+    @if (activeTab() === 'charcuteria') {
+      <app-somos-charcuteria />
+    }
+
+    <!-- Contenido: Degustación de productos -->
+    @if (activeTab() === 'degustacion') {
+      <app-degustacion />
+    }
+  </div>
+</section>

@@ -1,0 +1,109 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+.app-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xs;
+  padding: 14px 40px;
+  font-family: $font-family-heading;
+  font-size: $font-size-base;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all $transition-base;
+  min-width: 220px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity $transition-fast;
+    background: linear-gradient(
+      135deg,
+      rgba(white, 0.15) 0%,
+      rgba(white, 0) 60%
+    );
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  // Variante primaria
+  &--primary {
+    background: linear-gradient(135deg, $color-primary 0%, color.adjust($color-primary, $lightness: -10%) 100%);
+    color: $color-secondary;
+    box-shadow: 0 4px 15px rgba($color-primary, 0.4);
+
+    &:hover {
+      box-shadow: 0 8px 30px rgba($color-primary, 0.5);
+    }
+  }
+
+  // Variante secundaria
+  &--secondary {
+    background: linear-gradient(135deg, $color-accent 0%, color.adjust($color-accent, $lightness: -10%) 100%);
+    color: $color-dark;
+    box-shadow: 0 4px 15px rgba($color-accent, 0.3);
+
+    &:hover {
+      box-shadow: 0 8px 30px rgba($color-accent, 0.4);
+    }
+  }
+
+  // Variante outline
+  &--outline {
+    background: transparent;
+    color: $color-secondary;
+    box-shadow: inset 0 0 0 2px rgba($color-secondary, 0.3);
+
+    &:hover {
+      background: rgba($color-secondary, 0.1);
+      box-shadow: inset 0 0 0 2px rgba($color-secondary, 0.6),
+                  0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+}
+
+// Responsive tablet
+@media (max-width: $breakpoint-md) {
+  .app-button {
+    min-width: 200px;
+    padding: 12px 32px;
+    font-size: $font-size-sm;
+  }
+}
+
+// Responsive móvil
+@media (max-width: $breakpoint-sm) {
+  .app-button {
+    min-width: 100%;
+    padding: 12px $spacing-md;
+    font-size: $font-size-sm;
+    letter-spacing: 1px;
+  }
+}

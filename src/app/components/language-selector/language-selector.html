@@ -1,0 +1,25 @@
+<div class="lang-selector">
+  <button
+    class="lang-selector__toggle"
+    (click)="toggle()"
+    [attr.aria-expanded]="isOpen()"
+    aria-label="Cambiar idioma"
+  >
+    <span class="lang-selector__code">{{ idioma.currentLang() }}</span>
+    <span class="lang-selector__arrow" [class.lang-selector__arrow--open]="isOpen()">▾</span>
+  </button>
+
+  @if (isOpen()) {
+    <div class="lang-selector__dropdown">
+      @for (lang of idioma.languages; track lang.code) {
+        <button
+          class="lang-selector__option"
+          [class.lang-selector__option--active]="lang.code === idioma.currentLang()"
+          (click)="selectLang(lang.code)"
+        >
+          <span class="lang-selector__option-code">{{ lang.label }}</span>
+        </button>
+      }
+    </div>
+  }
+</div>

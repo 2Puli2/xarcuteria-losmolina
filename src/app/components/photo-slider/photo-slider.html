@@ -1,0 +1,27 @@
+<div class="photo-slider">
+  <swiper-container
+    class="photo-slider__swiper"
+    slides-per-view="1"
+    loop="true"
+    autoplay-delay="4000"
+    autoplay-disable-on-interaction="false"
+    pagination="true"
+    pagination-clickable="true"
+    navigation="true"
+    grab-cursor="true"
+    effect="fade"
+    fade-cross-fade="true"
+    speed="600"
+  >
+    @for (photo of photos; track photo.src) {
+      <swiper-slide class="photo-slider__slide">
+        <img
+          class="photo-slider__image"
+          [src]="photo.src"
+          [alt]="photo.alt"
+          loading="lazy"
+        />
+      </swiper-slide>
+    }
+  </swiper-container>
+</div>

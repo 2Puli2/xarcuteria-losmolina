@@ -1,0 +1,53 @@
+<section class="ubicacion" id="ubicacion">
+  <div class="ubicacion__container">
+    <!-- Título de sección -->
+    <app-title
+      [text]="idioma.t().location.title"
+      [subtitle]="idioma.t().location.subtitle"
+      variant="dark"
+    />
+
+    <!-- Contenido -->
+    <div class="ubicacion__content">
+      <!-- Info de contacto -->
+      <div class="ubicacion__info">
+        <div class="ubicacion__info-item">
+          <span class="ubicacion__info-icon">📍</span>
+          <div>
+            <h3>{{ idioma.t().location.addressTitle }}</h3>
+            <p>{{ idioma.t().location.address1 }}</p>
+            <p>{{ idioma.t().location.address2 }}</p>
+            <p>{{ idioma.t().location.address3 }}</p>
+          </div>
+        </div>
+
+        <div class="ubicacion__info-item">
+          <span class="ubicacion__info-icon">🕐</span>
+          <div>
+            <h3>{{ idioma.t().location.scheduleTitle }}</h3>
+            <p>{{ idioma.t().location.schedule1 }}</p>
+            <p>{{ idioma.t().location.schedule2 }}</p>
+            <p>{{ idioma.t().location.schedule3 }}</p>
+          </div>
+        </div>
+
+        <div class="ubicacion__info-item">
+          <span class="ubicacion__info-icon">📞</span>
+          <div>
+            <h3>{{ idioma.t().location.contactTitle }}</h3>
+            <p><strong>{{ idioma.t().location.phoneLabel }}</strong><br/>{{ idioma.t().location.phone }}</p>
+            <p><strong>{{ idioma.t().location.emailLabel }}</strong><br/><a href="mailto:xarcuterialosmolina@gmail.com">xarcuterialosmolina@gmail.com</a></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mapa de Google Maps -->
+      <div class="ubicacion__map-wrapper">
+        <app-map
+          [address]="'Frederic Soler, 17, El Prat de Llobregat'"
+          [locationName]="'Charcutería Los Molina'"
+        />
+      </div>
+    </div>
+  </div>
+</section>

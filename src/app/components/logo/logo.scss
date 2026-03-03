@@ -1,0 +1,132 @@
+@use '../../../variables' as *;
+
+.app-logo {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-xs;
+
+  &__image {
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+    display: block;
+  }
+
+  &__name {
+    font-family: $font-family-heading;
+    font-weight: 700;
+    color: $color-primary;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  &__tagline {
+    font-family: $font-family-base;
+    color: $color-light;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  // Tamaño pequeño
+  &--sm {
+    .app-logo__image {
+      width: 50px;
+      height: auto;
+    }
+
+    .app-logo__name {
+      font-size: $font-size-md;
+    }
+
+    .app-logo__tagline {
+      font-size: $font-size-xs;
+    }
+  }
+
+  // Tamaño mediano
+  &--md {
+    .app-logo__image {
+      width: 150px;
+      height: auto;
+    }
+
+    .app-logo__name {
+      font-size: $font-size-xl;
+    }
+
+    .app-logo__tagline {
+      font-size: $font-size-sm;
+    }
+  }
+
+  // Tamaño grande
+  &--lg {
+    .app-logo__image {
+      width: 300px;
+      height: auto;
+    }
+
+    .app-logo__name {
+      font-size: $font-size-xxl;
+    }
+
+    .app-logo__tagline {
+      font-size: $font-size-base;
+    }
+  }
+}
+
+// Responsive tablet
+@media (max-width: $breakpoint-md) {
+  .app-logo {
+    &--lg {
+      .app-logo__image {
+        width: 250px;
+        height: auto;
+      }
+
+      .app-logo__name {
+        font-size: $font-size-xl;
+      }
+
+      .app-logo__tagline {
+        font-size: $font-size-sm;
+      }
+    }
+  }
+}
+
+// Responsive móvil
+@media (max-width: $breakpoint-sm) {
+  .app-logo {
+    &--lg {
+      .app-logo__image {
+        width: 200px;
+        height: auto;
+      }
+
+      .app-logo__name {
+        font-size: $font-size-lg;
+      }
+
+      .app-logo__tagline {
+        font-size: $font-size-xs;
+      }
+    }
+
+    &--md {
+      .app-logo__image {
+        width: 100px;
+        height: auto;
+      }
+
+      .app-logo__name {
+        font-size: $font-size-md;
+      }
+    }
+  }
+}

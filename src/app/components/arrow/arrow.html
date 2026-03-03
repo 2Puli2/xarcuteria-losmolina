@@ -1,0 +1,9 @@
+<button
+  class="app-arrow"
+  [class.app-arrow--down]="direction() === 'down'"
+  [class.app-arrow--up]="direction() === 'up'"
+  (click)="onClick()"
+  [attr.aria-label]="idioma.t().general.scroll"
+>
+  <span class="app-arrow__icon">&#8250;</span>
+</button>

@@ -1,0 +1,64 @@
+@use '../../../variables' as *;
+
+.quienes-somos {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-secondary;
+  padding: $spacing-xxl $spacing-md;
+
+  &__container {
+    max-width: 900px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-xl;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-xl;
+  }
+
+  &__text {
+    text-align: center;
+    color: $color-dark;
+    line-height: 1.8;
+    font-size: $font-size-base;
+
+    p {
+      margin-bottom: $spacing-sm;
+    }
+
+    strong {
+      color: $color-primary;
+    }
+  }
+}
+
+// Responsive tablet
+@media (max-width: $breakpoint-md) {
+  .quienes-somos {
+    padding: $spacing-xl $spacing-sm;
+  }
+}
+
+// Responsive móvil
+@media (max-width: $breakpoint-sm) {
+  .quienes-somos {
+    padding: $spacing-lg $spacing-xs;
+
+    &__container {
+      gap: $spacing-lg;
+    }
+
+    &__text {
+      font-size: $font-size-sm;
+      line-height: 1.6;
+    }
+  }
+}

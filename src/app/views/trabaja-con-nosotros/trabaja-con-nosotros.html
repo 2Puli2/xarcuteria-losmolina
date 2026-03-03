@@ -1,0 +1,100 @@
+<div class="trabaja">
+  <div class="trabaja__container">
+    <!-- Cabecera -->
+    <div class="trabaja__header">
+      <a [routerLink]="idioma.localizeRoute('/')" class="trabaja__logo-link">
+        <app-logo size="md" />
+      </a>
+      <app-title
+        [text]="idioma.t().work.title"
+        [subtitle]="idioma.t().work.subtitle"
+        variant="light"
+      />
+    </div>
+
+    @if (enviado()) {
+      <!-- Confirmación -->
+      <div class="trabaja__success">
+        <span class="trabaja__success-icon">✅</span>
+        <h3 class="trabaja__success-title">{{ idioma.t().work.successTitle }}</h3>
+        <p class="trabaja__success-text">
+          {{ idioma.t().work.successText }}
+        </p>
+        <a [routerLink]="idioma.localizeRoute('/')" class="trabaja__back-link">{{ idioma.t().work.backLink }}</a>
+      </div>
+    } @else {
+      <!-- Formulario -->
+      @if (error()) {
+        <div class="trabaja__error">
+          ⚠️ {{ error() }}
+        </div>
+      }
+      <form class="trabaja__form" (ngSubmit)="onSubmit()">
+        <div class="trabaja__field">
+          <label class="trabaja__label" for="nombre">{{ idioma.t().work.nameLabel }}</label>
+          <input
+            class="trabaja__input"
+            id="nombre"
+            type="text"
+            [placeholder]="idioma.t().work.namePlaceholder"
+            [ngModel]="form().nombre"
+            (ngModelChange)="updateField('nombre', $event)"
+            name="nombre"
+            required
+          />
+        </div>
+
+        <div class="trabaja__field">
+          <label class="trabaja__label" for="email">{{ idioma.t().work.emailLabel }}</label>
+          <input
+            class="trabaja__input"
+            id="email"
+            type="email"
+            [placeholder]="idioma.t().work.emailPlaceholder"
+            [ngModel]="form().email"
+            (ngModelChange)="updateField('email', $event)"
+            name="email"
+            required
+          />
+        </div>
+
+        <div class="trabaja__field">
+          <label class="trabaja__label" for="telefono">{{ idioma.t().work.phoneLabel }}</label>
+          <input
+            class="trabaja__input"
+            id="telefono"
+            type="tel"
+            [placeholder]="idioma.t().work.phonePlaceholder"
+            [ngModel]="form().telefono"
+            (ngModelChange)="updateField('telefono', $event)"
+            name="telefono"
+          />
+        </div>
+
+        <div class="trabaja__field">
+          <label class="trabaja__label" for="mensaje">{{ idioma.t().work.messageLabel }}</label>
+          <textarea
+            class="trabaja__textarea"
+            id="mensaje"
+            [placeholder]="idioma.t().work.messagePlaceholder"
+            rows="5"
+            [ngModel]="form().mensaje"
+            (ngModelChange)="updateField('mensaje', $event)"
+            name="mensaje"
+            required
+          ></textarea>
+        </div>
+
+        <button
+          class="trabaja__submit"
+          type="submit"
+          [disabled]="enviando()"
+        >
+          {{ enviando() ? idioma.t().work.submitting : idioma.t().work.submitButton }}
+        </button>
+      </form>
+
+      <a [routerLink]="idioma.localizeRoute('/')" class="trabaja__back-link">{{ idioma.t().work.backLink }}</a>
+    }
+  </div>
+</div>

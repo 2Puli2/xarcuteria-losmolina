@@ -1,0 +1,12 @@
+<div
+  class="app-title"
+  [class.app-title--dark]="variant() === 'dark'"
+  [class.app-title--light]="variant() === 'light'"
+  [class.app-title--primary]="variant() === 'primary'"
+>
+  <h2 class="app-title__heading">{{ text() }}</h2>
+  @if (subtitle()) {
+    <p class="app-title__subtitle">{{ subtitle() }}</p>
+  }
+  <div class="app-title__divider"></div>
+</div>

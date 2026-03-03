@@ -1,0 +1,105 @@
+@use '../../../variables' as *;
+
+.app-title {
+  text-align: center;
+  margin-top: 37px;
+  margin-bottom: $spacing-lg;
+
+  &__heading {
+    font-family: $font-family-heading;
+    font-size: $font-size-xxl;
+    font-weight: 700;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__subtitle {
+    font-family: $font-family-base;
+    font-size: $font-size-md;
+    margin-bottom: $spacing-sm;
+    opacity: 0.8;
+  }
+
+  &__divider {
+    width: 60px;
+    height: 3px;
+    margin: $spacing-sm auto 0;
+    border-radius: $border-radius-sm;
+  }
+
+  // Variante oscura
+  &--dark {
+    .app-title__heading {
+      color: $color-dark;
+    }
+
+    .app-title__subtitle {
+      color: $color-light;
+    }
+
+    .app-title__divider {
+      background-color: $color-primary;
+    }
+  }
+
+  // Variante clara
+  &--light {
+    .app-title__heading {
+      color: $color-accent;
+    }
+
+    .app-title__subtitle {
+      color: rgba($color-secondary, 0.8);
+    }
+
+    .app-title__divider {
+      background-color: $color-accent;
+    }
+  }
+
+  // Variante primaria
+  &--primary {
+    .app-title__heading {
+      color: $color-primary;
+    }
+
+    .app-title__subtitle {
+      color: $color-dark;
+    }
+
+    .app-title__divider {
+      background-color: $color-accent;
+    }
+  }
+}
+
+// Responsive tablet
+@media (max-width: $breakpoint-md) {
+  .app-title {
+    &__heading {
+      font-size: $font-size-xl;
+    }
+
+    &__subtitle {
+      font-size: $font-size-base;
+    }
+  }
+}
+
+// Responsive móvil
+@media (max-width: $breakpoint-sm) {
+  .app-title {
+    margin-bottom: $spacing-sm;
+
+    &__heading {
+      font-size: $font-size-lg;
+    }
+
+    &__subtitle {
+      font-size: $font-size-sm;
+    }
+
+    &__divider {
+      width: 40px;
+    }
+  }
+}

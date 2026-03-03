@@ -1,0 +1,28 @@
+<section class="home" id="home">
+  <app-language-selector class="home__language-selector" />
+  <div class="home__container">
+    <!-- Logo del restaurante -->
+    <app-logo size="lg" />
+
+    <!-- CTA principal -->
+    <app-button
+      [label]="idioma.t().home.cta"
+      variant="primary"
+      (clicked)="navigateTo('que-ofrecemos')"
+    />
+
+    <!-- Enlaces secundarios -->
+    <nav class="home__nav">
+      <button class="home__nav-link" (click)="navigateTo('quienes-somos')">
+        {{ idioma.t().home.navAbout }}
+      </button>
+      <span class="home__nav-separator">·</span>
+      <button class="home__nav-link" (click)="navigateTo('ubicacion')">
+        {{ idioma.t().home.navFind }}
+      </button>
+    </nav>
+
+    <!-- Flecha de scroll -->
+    <app-arrow direction="down" (clicked)="navigateTo('quienes-somos')" />
+  </div>
+</section>

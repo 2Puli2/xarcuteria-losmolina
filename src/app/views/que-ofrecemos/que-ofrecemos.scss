@@ -1,0 +1,92 @@
+@use '../../../variables' as *;
+
+.que-ofrecemos {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-dark;
+  padding: $spacing-xxl $spacing-md;
+
+  &__container {
+    max-width: 900px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-xl;
+  }
+
+  // ─── Pestañas ───
+  &__tabs {
+    display: flex;
+    gap: $spacing-sm;
+    width: 100%;
+    justify-content: center;
+  }
+
+  &__tab {
+    flex: 1;
+    max-width: 320px;
+    padding: $spacing-sm $spacing-md;
+    font-family: $font-family-heading;
+    font-size: $font-size-base;
+    font-weight: 600;
+    color: $color-light;
+    background-color: rgba(white, 0.05);
+    border: 2px solid transparent;
+    border-radius: $border-radius-md;
+    cursor: pointer;
+    transition: all $transition-fast;
+    text-align: center;
+
+    &:hover {
+      background-color: rgba(white, 0.1);
+      border-color: $color-primary;
+    }
+
+    &--active {
+      background-color: $color-primary;
+      color: $color-secondary;
+      border-color: $color-primary;
+
+      &:hover {
+        background-color: $color-primary;
+        border-color: $color-primary;
+      }
+    }
+  }
+}
+
+// ─── Responsive tablet ───
+@media (max-width: $breakpoint-md) {
+  .que-ofrecemos {
+    padding: $spacing-xl $spacing-sm;
+
+    &__tabs {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__tab {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+}
+
+// ─── Responsive móvil ───
+@media (max-width: $breakpoint-sm) {
+  .que-ofrecemos {
+    padding: $spacing-lg $spacing-xs;
+
+    &__container {
+      gap: $spacing-lg;
+    }
+
+    &__tab {
+      font-size: $font-size-sm;
+      padding: $spacing-xs $spacing-sm;
+    }
+  }
+}

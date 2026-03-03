@@ -1,0 +1,10 @@
+<header class="app-header" [class.app-header--hiding]="hiding()">
+  <div class="app-header__content">
+    <app-logo size="sm" />
+    <button class="app-header__hamburger" (click)="openSidebar.emit()" [attr.aria-label]="idioma.t().general.openMenu">
+      <span class="app-header__hamburger-line"></span>
+      <span class="app-header__hamburger-line"></span>
+      <span class="app-header__hamburger-line"></span>
+    </button>
+  </div>
+</header>

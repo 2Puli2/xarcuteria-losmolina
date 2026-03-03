@@ -1,0 +1,20 @@
+{
+  "/google-places-api": {
+    "target": "https://places.googleapis.com",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/google-places-api": ""
+    },
+    "logLevel": "debug"
+  },
+  "/google-maps-api": {
+    "target": "https://maps.googleapis.com",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/google-maps-api": ""
+    },
+    "logLevel": "debug"
+  }
+}

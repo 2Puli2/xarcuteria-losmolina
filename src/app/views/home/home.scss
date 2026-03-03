@@ -1,0 +1,99 @@
+@use '../../../variables' as *;
+
+.home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-dark;
+  position: relative;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-xl;
+    padding: $spacing-xxl $spacing-md;
+    padding-top: 120px;
+    text-align: center;
+  }
+
+  &__description {
+    font-family: $font-family-base;
+    font-size: $font-size-md;
+    color: $color-light;
+    max-width: 500px;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+
+  &__nav-link {
+    background: none;
+    border: none;
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    color: $color-accent;
+    cursor: pointer;
+    padding: $spacing-xs 0;
+    transition: color $transition-fast;
+    letter-spacing: 0.5px;
+
+    &:hover {
+      color: $color-secondary;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+  }
+
+  &__nav-separator {
+    color: $color-accent;
+    font-size: $font-size-md;
+    opacity: 0.5;
+    user-select: none;
+  }
+
+  &__language-selector {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1.5rem;
+    z-index: 10;
+  }
+}
+
+// Responsive tablet
+@media (max-width: $breakpoint-md) {
+  .home {
+    &__description {
+      font-size: $font-size-base;
+      padding: 0 $spacing-sm;
+    }
+  }
+}
+
+// Responsive móvil
+@media (max-width: $breakpoint-sm) {
+  .home {
+    &__container {
+      gap: $spacing-lg;
+      padding: $spacing-xl $spacing-sm;
+    }
+
+    &__description {
+      font-size: $font-size-sm;
+      max-width: 100%;
+      padding: 0 $spacing-xs;
+    }
+
+    &__nav-link {
+      font-size: $font-size-sm;
+    }
+  }
+}
