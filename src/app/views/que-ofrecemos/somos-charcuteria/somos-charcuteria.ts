@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { IdiomaService } from '../../../idiomas/idioma.service';
 
 export interface Brand {
@@ -23,15 +23,50 @@ export const BRANDS: Brand[] = [
   { name: 'Payoyo', image: '/images/brands/PAYOYO.jpg', url: 'https://www.payoyo.com' },
 ];
 
+const SLIDE_INTERVAL_MS = 3000;
+const FADE_DURATION_MS  = 500;
+
 /**
- * Sub-componente "Somos Charcutería" — Descripción y marcas.
+ * Sub-componente "Somos Charcutería" — Descripción y carrusel de marcas.
  */
 @Component({
   selector: 'app-somos-charcuteria',
   templateUrl: './somos-charcuteria.html',
   styleUrl: './somos-charcuteria.scss',
 })
-export class SomosCharcuteriaComponent {
+export class SomosCharcuteriaComponent implements OnInit, OnDestroy {
   readonly brands = BRANDS;
+
+  /** Índice de la marca visible actualmente */
+  readonly activeIndex = signal(0);
+
+  /** Controla la visibilidad para el fade CSS */
+  readonly visible = signal(true);
+
+  private intervalId: ReturnType<typeof setInterval> | null = null;
+
   constructor(readonly idioma: IdiomaService) {}
+
+  ngOnInit(): void {
+    this.intervalId = setInterval(() => {
+      // Fade out
+      this.visible.set(false);
+
+      // Swap brand mid-fade, then fade back in
+      setTimeout(() => {
+        this.activeIndex.set((this.activeIndex() + 1) % this.brands.length);
+        this.visible.set(true);
+      }, FADE_DURATION_MS);
+    }, SLIDE_INTERVAL_MS);
+  }
+
+  ngOnDestroy(): void {
+    if (this.intervalId !== null) {
+      clearInterval(this.intervalId);
+    }
+  }
+
+  get currentBrand(): Brand {
+    return this.brands[this.activeIndex()];
+  }
 }

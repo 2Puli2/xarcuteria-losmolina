@@ -35,11 +35,11 @@ export const ES = {
   offer: {
     title: '¿Qué ofrecemos?',
     subtitle: 'Jamón ibérico, embutido de bellota y degustación en El Prat de Llobregat',
-    tabCharcuteria: 'Somos Charcutería',
+    tabCharcuteria: 'Charcutería',
     tabDegustacion: 'Degustación de productos',
-    charcuteriaDescription:
-      'En Charcutería Los Molina seleccionamos a mano cada producto que llega a nuestro mostrador. Trabajamos con las mejores marcas: jamón ibérico Joselito, Cinco Jotas, embutidos de bellota, queso manchego, queso curado y semicurado para ofrecerte siempre lo mejor de la tierra.',
-    brandsTitle: 'Marcas con las que trabajamos',
+    charcuteriaDescriptionIntro:
+      'En Charcutería Los Molina seleccionamos a mano cada producto que llega a nuestro mostrador.',
+    charcuteriaDescriptionBrands: 'Trabajamos con las mejores marcas:',
     degustacionDescription:
       '¿Sabías que también puedes venir a degustar nuestros productos en el local? Preparamos todo al momento con los mismos ingredientes de primera calidad que ofrecemos en nuestro mostrador. Siéntate, relájate y disfruta.',
     degustacionFooter:

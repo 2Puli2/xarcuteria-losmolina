@@ -35,11 +35,11 @@ export const CAT = {
   offer: {
     title: 'Què oferim?',
     subtitle: 'Pernil ibèric, embotit de gla i degustació al local — El Prat de Llobregat',
-    tabCharcuteria: 'Som Xarcuteria',
+    tabCharcuteria: 'Xarcuteria',
     tabDegustacion: 'Degustació de productes',
-    charcuteriaDescription:
-      "A la Xarcuteria Los Molina seleccionem a mà cada producte que arriba al nostre mostrador. Treballem amb les millors marques: pernil ibèric Joselito, Cinco Jotas, embotits de gla, formatge manchego, formatge curat i semicurat per oferir-te sempre el millor de la terra.",
-    brandsTitle: 'Marques amb les que treballem',
+    charcuteriaDescriptionIntro:
+      "A la Xarcuteria Los Molina seleccionem a mà cada producte que arriba al nostre mostrador.",
+    charcuteriaDescriptionBrands: 'Treballem amb les millors marques:',
     degustacionDescription:
       "Sabies que també pots venir a degustar els nostres productes al local? Preparem tot al moment amb els mateixos ingredients de primera qualitat que oferim al nostre mostrador. Seu, relaxa't i gaudeix.",
     degustacionFooter:
