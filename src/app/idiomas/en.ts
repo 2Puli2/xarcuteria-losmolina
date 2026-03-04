@@ -6,7 +6,7 @@ export const EN = {
 
   // General
   general: {
-    logoTagline: 'Charcuterie · Xarcuteria · Tasting',
+    logoTagline: 'Charcuterie · Tasting',
     logoAlt: 'Charcutería Los Molina',
     openMenu: 'Open menu',
     scroll: 'Scroll',
