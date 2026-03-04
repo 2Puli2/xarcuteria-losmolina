@@ -16,8 +16,8 @@ export class SidebarComponent {
   /** Estado abierto/cerrado */
   readonly isOpen = signal(false);
 
-  /** Evento de navegación */
-  readonly navigate = output<string>();
+  /** Evento de scroll a sección (unificado con home.ts) */
+  readonly scrollTo = output<string>();
 
   constructor(readonly idioma: IdiomaService) {}
 
@@ -45,7 +45,7 @@ export class SidebarComponent {
   }
 
   onNavigate(sectionId: string): void {
-    this.navigate.emit(sectionId);
+    this.scrollTo.emit(sectionId);
     this.close();
   }
 }

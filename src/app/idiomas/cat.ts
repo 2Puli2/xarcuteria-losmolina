@@ -6,7 +6,7 @@ export const CAT = {
 
   // General
   general: {
-    logoTagline: 'Xarcuteria · Charcutería · Degustació',
+    logoTagline: 'Xarcuteria · Degustació',
     logoAlt: 'Xarcuteria Los Molina',
     openMenu: 'Obrir menú',
     scroll: 'Desplaçar',

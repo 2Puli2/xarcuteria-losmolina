@@ -54,14 +54,25 @@ export class CoreComponent {
 
   /**
    * Hace scroll suave a la sección indicada.
+   * En mobile (< 768px) aplica automáticamente 20px de desfase adicional.
    * @param sectionId - ID de la sección destino
+   * @param offset - Desfase opcional en píxeles (negativo = arriba, positivo = abajo)
    */
-  scrollToSection(sectionId: string): void {
+  scrollToSection(sectionId: string, offset: number = 0): void {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({
+      // Detectar si es mobile (pantalla < 768px)
+      const isMobile = window.innerWidth < 768;
+      
+      // Aplicar 20px adicional si es mobile
+      const finalOffset = isMobile ? offset + -55 : offset;
+      
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      const finalPosition = elementPosition + finalOffset;
+      
+      window.scrollTo({
+        top: finalPosition,
         behavior: 'smooth',
-        block: 'start',
       });
     }
   }
