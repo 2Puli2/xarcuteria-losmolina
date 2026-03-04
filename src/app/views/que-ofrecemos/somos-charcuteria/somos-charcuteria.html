@@ -1,25 +1,28 @@
 <div class="charcuteria">
-  <p class="charcuteria__description">{{ idioma.t().offer.charcuteriaDescription }}</p>
+  <div class="charcuteria__description-block">
+    <p class="charcuteria__description">{{ idioma.t().offer.charcuteriaDescriptionIntro }}</p>
+    <p class="charcuteria__description charcuteria__description--accent">
+      {{ idioma.t().offer.charcuteriaDescriptionBrands }}
+    </p>
+  </div>
 
   <div class="charcuteria__brands-section">
-    <h3 class="charcuteria__brands-title">{{ idioma.t().offer.brandsTitle }}</h3>
-    <div class="charcuteria__brands-grid">
-      @for (brand of brands; track brand.name) {
-        <a
-          class="charcuteria__brand"
-          [href]="brand.url"
-          target="_blank"
-          rel="noopener noreferrer"
-          [title]="brand.name"
-        >
-          <img
-            class="charcuteria__brand-image"
-            [src]="brand.image"
-            [alt]="brand.name"
-          />
-          <span class="charcuteria__brand-name">{{ brand.name }}</span>
-        </a>
-      }
+    <div class="charcuteria__brand-stage">
+      <a
+        class="charcuteria__brand"
+        [class.charcuteria__brand--visible]="visible()"
+        [href]="currentBrand.url"
+        target="_blank"
+        rel="noopener noreferrer"
+        [title]="currentBrand.name"
+      >
+        <img
+          class="charcuteria__brand-image"
+          [src]="currentBrand.image"
+          [alt]="currentBrand.name"
+        />
+        <span class="charcuteria__brand-name">{{ currentBrand.name }}</span>
+      </a>
     </div>
   </div>
 </div>

@@ -6,7 +6,7 @@ export const EN = {
 
   // General
   general: {
-    logoTagline: 'Charcuterie · Xarcuteria · Tasting',
+    logoTagline: 'Charcuterie · Tasting',
     logoAlt: 'Charcutería Los Molina',
     openMenu: 'Open menu',
     scroll: 'Scroll',
@@ -35,11 +35,11 @@ export const EN = {
   offer: {
     title: 'What do we offer?',
     subtitle: 'Iberian ham, bellota cold cuts and in-store tasting — El Prat de Llobregat',
-    tabCharcuteria: 'We are Charcuterie',
+    tabCharcuteria: 'Charcuterie',
     tabDegustacion: 'Product tasting',
-    charcuteriaDescription:
-      'At Charcutería Los Molina we hand-select every product that arrives at our counter. We work with the best brands: Joselito, Cinco Jotas, Iberian ham, bellota cold cuts, manchego cheese and aged or semi-aged cheeses to always offer you the best of the land.',
-    brandsTitle: 'Brands we work with',
+    charcuteriaDescriptionIntro:
+      'At Charcutería Los Molina we hand-select every product that arrives at our counter.',
+    charcuteriaDescriptionBrands: 'We work with the best brands:',
     degustacionDescription:
       'Did you know you can also come taste our products in the store? We prepare everything fresh with the same high-quality ingredients we offer at our counter. Sit down, relax and enjoy.',
     degustacionFooter:
