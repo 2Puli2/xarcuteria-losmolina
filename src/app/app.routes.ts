@@ -11,6 +11,11 @@ const BASE_ROUTES: Routes = [
         m => m.TrabajaConNosotrosComponent
       ),
   },
+  {
+    path: 'carta',
+    loadComponent: () =>
+      import('./views/carta/carta').then(m => m.CartaComponent),
+  },
 ];
 
 /** Prefijos de idioma que necesitan sus propias rutas */
