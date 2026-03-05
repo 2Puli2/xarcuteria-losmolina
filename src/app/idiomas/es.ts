@@ -47,7 +47,7 @@ export const ES = {
     categories: [
       {
         name: 'Tapas',
-        icon: '🍢',
+        icon: '',
         items: [
           { name: 'Taquitos de jamón', desc: 'Cortados en nuestra charcutería y acompañados de palitos de pan' },
           { name: 'Taquitos de queso', desc: 'Los preparamos tanto curados como semicurados y acompañados de palitos de pan' },
@@ -59,7 +59,7 @@ export const ES = {
       },
       {
         name: 'Bocadillos',
-        icon: '🥖',
+        icon: '',
         items: [
           { name: '', desc: 'Elige pan de coca o pan de barra:' },
           { name: 'Jamón', desc: 'Escoge el corte y la calidad que desees' },
@@ -72,7 +72,7 @@ export const ES = {
       },
       {
         name: 'Menús y Tablas',
-        icon: '🧀',
+        icon: '',
         items: [
           { name: 'Tabla de jamón', desc: 'Corte a mano o a máquina. Jamón ibérico, jamón 50% bellota, jamón 100% bellota, jamón Cinco Jotas (5J) o Joselito' },
           { name: 'Tabla ibéricos', desc: 'Surtido completo con chorizo, lomo y salchichón' },
@@ -202,5 +202,48 @@ export const ES = {
     errorFileSize: 'El archivo es demasiado grande. Máximo 5MB.',
     errorRequired: 'Por favor, rellena los campos obligatorios.',
     errorSend: 'Error al enviar el formulario. Intenta de nuevo.',
+  },
+
+  // Carta
+  carta: {
+    title: 'Nuestra Carta',
+    subtitle: 'Carta de productos y precios',
+    aperitivosTitle: 'Aperitivos y Conservas',
+    conservasTitle: 'Conservas Espinaler',
+    menusTitle: 'Menús',
+    menusNote: 'Recomendado para 2 personas',
+    embutidosTitle: 'Nuestros Embutidos',
+    embutidosNote: 'Elige la presentación que prefieras. Pan de coca, pan de barra o al plato.',
+    colEmbutido: 'Embutido',
+    colMedioBoc: '½ Bocadillo',
+    colBocEntero: 'Bocadillo',
+    colTorrada: 'Torrada',
+    colMediaTabla: '½ Tabla',
+    colTabla: 'Tabla',
+    colBocadillo: 'Bocadillo',
+    colPrecio: 'Precio',
+    colMaxi: 'Maxi',
+    colBiquini: 'Biquini',
+    colNormal: 'Normal',
+    colCaliente: 'Bocadillo caliente',
+    colMedio: 'Medio',
+    colEntero: 'Entero',
+    cocaNote: '+1€ coca',
+    cocaNoteFull: '+1,50€ coca',
+    tablasTitle: 'Tablas especiales',
+    tablasNote: 'Precio: tabla / media tabla',
+    calientesTitle: 'Bocadillos calientes',
+    suplementosTitle: 'Suplementos',
+    pizzasTitle: 'Pizzas',
+    postresTitle: 'Postres',
+    navAperitivos: 'Aperitivos',
+    navMenus: 'Menús',
+    navEmbutidos: 'Embutidos',
+    navCalientes: 'Calientes',
+    navSuplementos: 'Suplementos',
+    navPizzas: 'Pizzas',
+    navPostres: 'Postres',
+    footerText: '¡Pregunta siempre por nuestros bocadillos en oferta y menús especiales!',
+    backLink: '← Volver a la web',
   },
 };

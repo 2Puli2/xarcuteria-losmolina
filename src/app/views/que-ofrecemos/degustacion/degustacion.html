@@ -6,20 +6,24 @@
     @for (category of idioma.t().offer.categories; track category.name) {
       <div class="degustacion__category">
         <div class="degustacion__category-header">
-          <span class="degustacion__category-icon">{{ category.icon }}</span>
+          @if (category.icon) {
+            <span class="degustacion__category-icon">{{ category.icon }}</span>
+          }
           <h3 class="degustacion__category-name">{{ category.name }}</h3>
         </div>
 
         <div class="degustacion__items">
           @for (item of category.items; track item.name || item.desc) {
-            <div class="degustacion__item">
-              @if (item.name) {
+            @if (!item.name) {
+              <p class="degustacion__subtitle">{{ item.desc }}</p>
+            } @else {
+              <div class="degustacion__item">
                 <h4 class="degustacion__item-name">{{ item.name }}</h4>
-              }
-              @if (item.desc) {
-                <p class="degustacion__item-description">{{ item.desc }}</p>
-              }
-            </div>
+                @if (item.desc) {
+                  <p class="degustacion__item-description">{{ item.desc }}</p>
+                }
+              </div>
+            }
           }
         </div>
       </div>

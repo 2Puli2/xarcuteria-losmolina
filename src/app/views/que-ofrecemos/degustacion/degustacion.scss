@@ -33,7 +33,7 @@
             gap: $spacing-sm;
             margin-bottom: $spacing-md;
             padding-bottom: $spacing-xs;
-            border-bottom: 2px solid $color-primary;
+            border-bottom: 1px solid rgba($color-accent, 0.45);
         }
 
         &-icon {
@@ -43,8 +43,9 @@
         &-name {
             font-family: $font-family-heading;
             font-size: $font-size-lg;
-            color: $color-accent;
+            color: $color-light;
             font-weight: 600;
+            letter-spacing: 0.03em;
         }
     }
 
@@ -54,27 +55,47 @@
         gap: $spacing-sm;
     }
 
+    &__subtitle {
+        font-size: $font-size-sm;
+        color: rgba($color-accent, 0.7);
+        font-style: italic;
+        padding: 0 $spacing-md;
+        margin: 0;
+    }
+
     &__item {
         padding: $spacing-sm $spacing-md;
         border-radius: $border-radius-md;
-        background-color: rgba(white, 0.03);
         transition: background-color $transition-fast;
 
-        &:hover {
-            background-color: rgba(white, 0.07);
+        // nth-of-type ignora el <p> de subtítulo y solo cuenta los <div> de item
+        &:nth-of-type(odd) {
+            background-color: rgba($color-accent, 0.05);
+
+            &:hover {
+                background-color: rgba($color-accent, 0.10);
+            }
+        }
+
+        &:nth-of-type(even) {
+            background-color: rgba(white, 0.06);
+
+            &:hover {
+                background-color: rgba(white, 0.11);
+            }
         }
 
         &-name {
             font-family: $font-family-base;
             font-size: $font-size-base;
-            color: $color-primary;
+            color: $color-accent;
             font-weight: 600;
             margin-bottom: 2px;
         }
 
         &-description {
             font-size: $font-size-sm;
-            color: $color-light;
+            color: rgba($color-light, 0.75);
             line-height: 1.5;
         }
     }
@@ -85,7 +106,7 @@
         text-align: center;
         padding: $spacing-lg $spacing-md;
         margin-top: $spacing-md;
-        border-top: 2px solid $color-primary;
+        border-top: 1px solid rgba($color-accent, 0.45);
         display: flex;
         flex-direction: column;
         gap: $spacing-md;

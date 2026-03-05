@@ -47,7 +47,7 @@ export const EN = {
     categories: [
       {
         name: 'Appetizers',
-        icon: '🍢',
+        icon: '',
         items: [
           { name: 'Ham bites', desc: 'Cut in our charcuterie and accompanied by breadsticks' },
           { name: 'Cheese bites', desc: 'We prepare them both aged and semi-aged, accompanied by breadsticks' },
@@ -59,7 +59,7 @@ export const EN = {
       },
       {
         name: 'Sandwiches',
-        icon: '🥖',
+        icon: '',
         items: [
           { name: '', desc: 'Choose coca bread or baguette:' },
           { name: 'Ham', desc: 'Choose your cut and quality' },
@@ -72,7 +72,7 @@ export const EN = {
       },
       {
         name: 'Menus and Boards',
-        icon: '🧀',
+        icon: '',
         items: [
           { name: 'Ham board', desc: 'Hand-cut or machine cut. Iberian ham, 50% bellota ham, 100% bellota ham, Cinco Jotas (5J) or Joselito' },
           { name: 'Iberian board', desc: 'Complete selection with chorizo, loin and salami' },
@@ -202,5 +202,48 @@ export const EN = {
     errorFileSize: 'The file is too large. Maximum 5MB.',
     errorRequired: 'Please fill in the required fields.',
     errorSend: 'Error sending the form. Please try again.',
+  },
+
+  // Carta
+  carta: {
+    title: 'Our Menu',
+    subtitle: 'Full menu with prices',
+    aperitivosTitle: 'Appetizers & Preserves',
+    conservasTitle: 'Espinaler Preserves',
+    menusTitle: 'Menus',
+    menusNote: 'Recommended for 2 people',
+    embutidosTitle: 'Our Cured Meats',
+    embutidosNote: 'Choose your preferred presentation. Coca bread, baguette or on a plate.',
+    colEmbutido: 'Cured Meat',
+    colMedioBoc: '½ Sandwich',
+    colBocEntero: 'Sandwich',
+    colTorrada: 'Torrada',
+    colMediaTabla: '½ Board',
+    colTabla: 'Board',
+    colBocadillo: 'Hot Sandwich',
+    colPrecio: 'Price',
+    colMaxi: 'Maxi',
+    colBiquini: 'Biquini',
+    colNormal: 'Normal',
+    colCaliente: 'Hot sandwich',
+    colMedio: 'Half',
+    colEntero: 'Full',
+    cocaNote: '+1€ coca',
+    cocaNoteFull: '+1.50€ coca',
+    tablasTitle: 'Special boards',
+    tablasNote: 'Price: board / half board',
+    calientesTitle: 'Hot sandwiches',
+    suplementosTitle: 'Supplements',
+    pizzasTitle: 'Pizzas',
+    postresTitle: 'Desserts',
+    navAperitivos: 'Appetizers',
+    navMenus: 'Menus',
+    navEmbutidos: 'Cold Cuts',
+    navCalientes: 'Hot Sandwiches',
+    navSuplementos: 'Supplements',
+    navPizzas: 'Pizzas',
+    navPostres: 'Desserts',
+    footerText: 'Always ask about our discounted sandwiches and special menus!',
+    backLink: '← Back to website',
   },
 };

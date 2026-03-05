@@ -1,0 +1,490 @@
+@use '../../../variables' as *;
+
+.carta {
+  min-height: 100vh;
+  background-color: $color-dark;
+  display: flex;
+  justify-content: center;
+  padding: $spacing-xxl $spacing-md $spacing-xl;
+
+  &__container {
+    max-width: 900px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-xl;
+  }
+
+  // ─── Cabecera ───
+  &__header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-md;
+  }
+
+  &__logo-link {
+    text-decoration: none;
+    transition: opacity $transition-fast;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  // ─── Navegación rápida ───
+  &__nav {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: rgba($color-dark, 0.97);
+    backdrop-filter: blur(8px);
+    padding: $spacing-sm 0;
+    border-bottom: 1px solid rgba($color-accent, 0.2);
+  }
+
+  &__nav-btn {
+    background: transparent;
+    border: 1px solid rgba($color-accent, 0.4);
+    color: $color-accent;
+    font-family: $font-family-base;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-md;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color $transition-fast, color $transition-fast, border-color $transition-fast;
+
+    &:hover {
+      background-color: $color-accent;
+      color: $color-dark;
+      border-color: $color-accent;
+    }
+  }
+
+  // ─── Secciones ───
+  &__section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    animation: fadeIn 0.3s ease-in-out;
+    scroll-margin-top: 71px;
+  }
+
+  &__section-title {
+    font-family: $font-family-heading;
+    font-size: $font-size-xl;
+    color: $color-primary;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding-bottom: $spacing-xs;
+    border-bottom: 1px solid rgba($color-accent, 0.45);
+  }
+
+  &__section-note {
+    font-size: $font-size-sm;
+    color: rgba($color-accent, 0.7);
+    text-align: center;
+    font-style: italic;
+    margin: 0;
+  }
+
+  &__subsection-title {
+    font-family: $font-family-heading;
+    font-size: $font-size-md;
+    color: $color-accent;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding-bottom: $spacing-xs;
+    border-bottom: 1px solid rgba($color-accent, 0.2);
+    margin: 0;
+  }
+
+  // ─── Listas (aperitivos, conservas, menús, pizzas, postres) ───
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  &__list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: $spacing-sm $spacing-md;
+    border-radius: 0;
+    transition: background-color $transition-fast;
+
+    &:nth-of-type(odd) {
+      background-color: rgba($color-accent, 0.05);
+    }
+
+    &:nth-of-type(even) {
+      background-color: rgba(white, 0.06);
+    }
+
+    &:hover {
+      background-color: rgba($color-accent, 0.10);
+    }
+
+    &--menu {
+      flex-direction: column;
+      gap: $spacing-xs;
+
+      .carta__list-item-price {
+        align-self: flex-end;
+      }
+    }
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    &-name {
+      font-family: $font-family-base;
+      font-size: $font-size-base;
+      color: $color-light;
+      font-weight: 600;
+    }
+
+    &-desc {
+      font-size: $font-size-sm;
+      color: rgba($color-light, 0.65);
+      line-height: 1.4;
+    }
+
+    &-price {
+      font-family: $font-family-heading;
+      font-size: $font-size-base;
+      color: rgb(161, 161, 161);
+      font-weight: 700;
+      white-space: nowrap;
+      margin-left: $spacing-md;
+    }
+  }
+
+  &__list-note {
+    font-size: $font-size-xs;
+    color: rgba($color-light, 0.5);
+    text-align: center;
+    font-style: italic;
+    margin: $spacing-xs 0 0;
+  }
+
+  // ─── Embutidos: grupos y tabla ───
+  &__embutidos-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    scroll-margin-top: 56px;
+  }
+
+  &__table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: $border-radius-md;
+
+    // Sutil indicador de scroll horizontal
+    &::after {
+      content: '';
+      display: block;
+      height: 0;
+    }
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 640px;
+
+    &--calientes {
+      min-width: 340px;
+    }
+
+    // Segunda tabla enganchada a la anterior
+    &--joined {
+      border-top: 3px solid $color-dark;
+
+      .carta__table-th {
+        &:first-child { border-radius: 0; }
+        &:last-child  { border-radius: 0; }
+      }
+    }
+  }
+
+  // Wrapper con dos tablas: quita el radio inferior de la primera
+  &__table-wrap--double {
+    .carta__table:first-child {
+      .carta__table-row:last-child {
+        .carta__table-td:first-child { border-radius: 0; }
+        .carta__table-td:last-child  { border-radius: 0; }
+      }
+    }
+  }
+
+  &__table-th {
+    font-family: $font-family-heading;
+    font-size: $font-size-sm;
+    color: $color-dark;
+    font-weight: 700;
+    text-align: center;
+    padding: $spacing-sm $spacing-xs;
+    background-color: $color-accent;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+
+    &--name {
+      text-align: left;
+      padding-left: $spacing-md;
+      min-width: 180px;
+    }
+
+    &:first-child {
+      border-radius: $border-radius-md 0 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 $border-radius-md 0 0;
+    }
+  }
+
+  &__table-th-note {
+    display: block;
+    font-size: $font-size-xs;
+    font-weight: 400;
+    color: rgba($color-dark, 0.7);
+    white-space: nowrap;
+  }
+
+  &__table-row {
+    transition: background-color $transition-fast;
+
+    &:nth-child(odd) {
+      background-color: rgba($color-accent, 0.05);
+    }
+
+    &:nth-child(even) {
+      background-color: rgba(white, 0.06);
+    }
+
+    &:hover {
+      background-color: rgba($color-accent, 0.12);
+    }
+
+    &:last-child .carta__table-td {
+      &:first-child {
+        border-radius: 0 0 0 $border-radius-md;
+      }
+
+      &:last-child {
+        border-radius: 0 0 $border-radius-md 0;
+      }
+    }
+  }
+
+  &__table-td {
+    font-size: $font-size-sm;
+    color: #A1A1A1;
+    text-align: center;
+    padding: $spacing-sm $spacing-xs;
+    border-bottom: 1px solid rgba(white, 0.04);
+
+    &--name {
+      text-align: left;
+      padding-left: $spacing-md;
+      color: $color-light;
+      font-weight: 600;
+      font-size: $font-size-base;
+    }
+  }
+
+  &__table-td-desc {
+    display: block;
+    font-size: $font-size-xs;
+    color: rgba($color-light, 0.65);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  // ─── Footer ───
+  &__footer {
+    width: 100%;
+    text-align: center;
+    padding: $spacing-lg $spacing-md;
+    border-top: 1px solid rgba($color-accent, 0.45);
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__footer-text {
+    font-size: $font-size-sm;
+    color: rgba($color-light, 0.65);
+    line-height: 1.7;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  &__back-link {
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    color: $color-accent;
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity $transition-fast;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ─── Responsive tablet ───
+@media (max-width: $breakpoint-md) {
+  .carta {
+    padding: $spacing-xl $spacing-sm;
+
+    &__section-title {
+      font-size: $font-size-lg;
+    }
+
+    &__nav {
+      padding: $spacing-xs $spacing-sm;
+      gap: 6px;
+    }
+
+    &__nav-btn {
+      font-size: 10px;
+      padding: 4px $spacing-xs;
+    }
+
+    &__table {
+      min-width: 520px;
+
+      &--calientes {
+        min-width: 260px;
+      }
+    }
+
+    &__table-th,
+    &__table-td {
+      font-size: $font-size-xs;
+      padding: $spacing-xs 4px;
+    }
+  }
+}
+
+// ─── Responsive móvil ───
+@media (max-width: $breakpoint-sm) {
+  .carta {
+    padding: $spacing-lg $spacing-xs;
+
+    &__container {
+      gap: $spacing-lg;
+    }
+
+    &__section-title {
+      font-size: $font-size-md;
+    }
+
+    &__subsection-title {
+      font-size: $font-size-base;
+    }
+
+    &__nav {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      justify-content: flex-start;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: $spacing-xs;
+      gap: 6px;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    &__nav-btn {
+      font-size: 10px;
+      padding: 4px $spacing-xs;
+      flex-shrink: 0;
+    }
+
+    &__list-item {
+      padding: $spacing-xs $spacing-sm;
+
+      &-name {
+        font-size: $font-size-sm;
+      }
+
+      &-desc {
+        font-size: $font-size-xs;
+      }
+
+      &-price {
+        font-size: $font-size-sm;
+      }
+    }
+
+    &__table {
+      min-width: 460px;
+
+      &--calientes {
+        min-width: 240px;
+      }
+    }
+
+    &__table-th {
+      font-size: 11px;
+      padding: $spacing-xs 3px;
+
+      &--name {
+        padding-left: $spacing-xs;
+        min-width: 110px;
+      }
+    }
+
+    &__table-td {
+      font-size: 11px;
+      padding: $spacing-xs 3px;
+
+      &--name {
+        padding-left: $spacing-xs;
+        font-size: $font-size-xs;
+      }
+    }
+  }
+}

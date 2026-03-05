@@ -47,7 +47,7 @@ export const CAT = {
     categories: [
       {
         name: 'Tapes',
-        icon: '🍢',
+        icon: '',
         items: [
           { name: 'Taquets de pernil', desc: 'Tallats a la nostra xarcuteria i acompanyats de bastonets de pa' },
           { name: 'Taquets de formatge', desc: 'Els preparem tant curats com semicurats i acompanyats de bastonets de pa' },
@@ -59,7 +59,7 @@ export const CAT = {
       },
       {
         name: 'Entrepans',
-        icon: '🥖',
+        icon: '',
         items: [
           { name: '', desc: 'Tria pa de coca o pa de barra:' },
           { name: 'Pernil', desc: 'Tria el tall i la qualitat que desitgis' },
@@ -72,7 +72,7 @@ export const CAT = {
       },
       {
         name: 'Menús i Taules',
-        icon: '🧀',
+        icon: '',
         items: [
           { name: 'Taula de pernil', desc: 'Tall a mà o màquina. Pernil ibèric, pernil 50% gla, pernil 100% gla, Cinco Jotas (5J) o Joselito' },
           { name: 'Taula ibèrica', desc: 'Assortiment complet amb xoriço, llom i salxitxó' },
@@ -202,5 +202,48 @@ export const CAT = {
     errorFileSize: "L'arxiu és massa gran. Màxim 5MB.",
     errorRequired: 'Si us plau, omple els camps obligatoris.',
     errorSend: "Error en enviar el formulari. Torna-ho a intentar.",
+  },
+
+  // Carta
+  carta: {
+    title: 'La Nostra Carta',
+    subtitle: 'Carta de productes i preus',
+    aperitivosTitle: 'Aperitius i Conserves',
+    conservasTitle: 'Conserves Espinaler',
+    menusTitle: 'Menús',
+    menusNote: 'Recomanat per a 2 persones',
+    embutidosTitle: 'Els Nostres Embotits',
+    embutidosNote: 'Tria la presentació que prefereixis. Pa de coca, pa de barra o al plat.',
+    colEmbutido: 'Embotit',
+    colMedioBoc: '½ Entrepà',
+    colBocEntero: 'Entrepà',
+    colTorrada: 'Torrada',
+    colMediaTabla: '½ Taula',
+    colTabla: 'Taula',
+    colBocadillo: 'Entrepà calent',
+    colPrecio: 'Preu',
+    colMaxi: 'Maxi',
+    colBiquini: 'Biquini',
+    colNormal: 'Normal',
+    colCaliente: 'Entrepà calent',
+    colMedio: 'Mig',
+    colEntero: 'Sencer',
+    cocaNote: '+1€ coca',
+    cocaNoteFull: '+1,50€ coca',
+    tablasTitle: 'Taules especials',
+    tablasNote: 'Preu: taula / mitja taula',
+    calientesTitle: 'Entrepans calents',
+    suplementosTitle: 'Suplements',
+    pizzasTitle: 'Pizzes',
+    postresTitle: 'Postres',
+    navAperitivos: 'Aperitius',
+    navMenus: 'Menús',
+    navEmbutidos: 'Embotits',
+    navCalientes: 'Calents',
+    navSuplementos: 'Suplements',
+    navPizzas: 'Pizzes',
+    navPostres: 'Postres',
+    footerText: 'Pregunta sempre pels nostres entrepans en oferta i menús especials!',
+    backLink: '← Tornar a la web',
   },
 };
