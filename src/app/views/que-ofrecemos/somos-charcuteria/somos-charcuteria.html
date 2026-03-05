@@ -6,23 +6,57 @@
     </p>
   </div>
 
-  <div class="charcuteria__brands-section">
-    <div class="charcuteria__brand-stage">
-      <a
-        class="charcuteria__brand"
-        [class.charcuteria__brand--visible]="visible()"
-        [href]="currentBrand.url"
-        target="_blank"
-        rel="noopener noreferrer"
-        [title]="currentBrand.name"
-      >
-        <img
-          class="charcuteria__brand-image"
-          [src]="currentBrand.image"
-          [alt]="currentBrand.name"
-        />
-        <span class="charcuteria__brand-name">{{ currentBrand.name }}</span>
-      </a>
+  <!-- Layout: Foto a izquierda, Brands carousel a derecha -->
+  <div class="charcuteria__content">
+    <!-- Mostrador de la charcutería -->
+    <div class="charcuteria__counter-image">
+      <img
+        src="/images/gallery/mostrador_charcu.jpg"
+        alt="Mostrador de la Charcutería Los Molina"
+        class="charcuteria__counter-photo"
+      />
+    </div>
+
+    <!-- Carrusel de marcas con flechas -->
+    <div class="charcuteria__brands-carousel">
+      <div class="charcuteria__brands-section">
+        <div class="charcuteria__brand-stage">
+          <button
+            class="charcuteria__carousel-arrow charcuteria__carousel-arrow--prev"
+            (click)="prev()"
+            aria-label="Marca anterior"
+          >
+            ◀
+          </button>
+
+          <a
+            class="charcuteria__brand"
+            [class.charcuteria__brand--visible]="visible()"
+            [href]="currentBrand.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            [title]="idioma.t().offer.brandDescriptions[currentBrand.key]"
+          >
+            <img
+              class="charcuteria__brand-image"
+              [src]="currentBrand.image"
+              [alt]="currentBrand.name"
+            />
+            <span class="charcuteria__brand-name">{{ currentBrand.name }}</span>
+            <span class="charcuteria__brand-desc">
+              {{ idioma.t().offer.brandDescriptions[currentBrand.key] }}
+            </span>
+          </a>
+
+          <button
+            class="charcuteria__carousel-arrow charcuteria__carousel-arrow--next"
+            (click)="next()"
+            aria-label="Siguiente marca"
+          >
+            ▶
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

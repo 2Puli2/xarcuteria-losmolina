@@ -2,6 +2,7 @@
   <div class="carta__container">
     <!-- Cabecera -->
     <div class="carta__header">
+      <app-language-selector class="carta__header-lang" />
       <a [routerLink]="idioma.localizeRoute('/')" class="carta__logo-link">
         <app-logo size="md" />
       </a>
@@ -29,7 +30,7 @@
       <h2 class="carta__section-title">{{ idioma.t().carta.aperitivosTitle }}</h2>
 
       <div class="carta__list">
-        @for (item of aperitivos; track item.name) {
+        @for (item of aperitivos(); track item.name) {
           <div class="carta__list-item">
             <div class="carta__list-item-info">
               <span class="carta__list-item-name">{{ item.name }}</span>
@@ -46,7 +47,7 @@
       <h3 class="carta__subsection-title">{{ idioma.t().carta.conservasTitle }}</h3>
 
       <div class="carta__list">
-        @for (item of conservas; track item.name) {
+        @for (item of conservas(); track item.name) {
           <div class="carta__list-item">
             <div class="carta__list-item-info">
               <span class="carta__list-item-name">{{ item.name }}</span>
@@ -66,7 +67,7 @@
       <p class="carta__section-note">{{ idioma.t().carta.menusNote }}</p>
 
       <div class="carta__list">
-        @for (item of menus; track item.name) {
+        @for (item of menus(); track item.name) {
           <div class="carta__list-item carta__list-item--menu">
             <div class="carta__list-item-info">
               <span class="carta__list-item-name">{{ item.name }}</span>
@@ -85,7 +86,7 @@
       <h2 class="carta__section-title">{{ idioma.t().carta.embutidosTitle }}</h2>
       <p class="carta__section-note">{{ idioma.t().carta.embutidosNote }}</p>
 
-      @for (group of embutidoGroups; track group.title) {
+      @for (group of embutidoGroups(); track group.title) {
         <div class="carta__embutidos-group">
           <h3 class="carta__subsection-title">{{ group.title }}</h3>
 
@@ -146,7 +147,7 @@
               </tr>
             </thead>
             <tbody>
-              @for (item of biquinis; track item.name) {
+              @for (item of biquinis(); track item.name) {
                 <tr class="carta__table-row">
                   <td class="carta__table-td carta__table-td--name">
                     <span>{{ item.name }}</span>
@@ -171,7 +172,7 @@
               </tr>
             </thead>
             <tbody>
-              @for (item of calientesOtros; track item.name) {
+              @for (item of calientesOtros(); track item.name) {
                 <tr class="carta__table-row">
                   <td class="carta__table-td carta__table-td--name">
                     <span>{{ item.name }}</span>
@@ -188,21 +189,22 @@
         </div>
       </div>
 
-      <!-- Suplementos -->
-      <div class="carta__embutidos-group" id="carta-suplementos">
-        <h3 class="carta__subsection-title">{{ idioma.t().carta.suplementosTitle }}</h3>
+      <!-- Divisor antes de suplementos -->
+      <hr class="carta__divider" />
 
+      <!-- Suplementos -->
+      <div class="carta__embutidos-group carta__embutidos-group--suplementos" id="carta-suplementos">
         <div class="carta__table-wrap">
           <table class="carta__table">
             <thead>
               <tr>
-                <th class="carta__table-th carta__table-th--name"></th>
+                <th class="carta__table-th carta__table-th--name">{{ idioma.t().carta.suplementosTitle }}</th>
                 <th class="carta__table-th">{{ idioma.t().carta.colMedio }}</th>
                 <th class="carta__table-th">{{ idioma.t().carta.colEntero }}</th>
               </tr>
             </thead>
             <tbody>
-              @for (item of suplementos; track item.name) {
+              @for (item of suplementos(); track item.name) {
                 <tr class="carta__table-row">
                   <td class="carta__table-td carta__table-td--name">
                     <span>{{ item.name }}</span>
@@ -223,9 +225,10 @@
     <!-- ═══════ 4. Pizzas ═══════ -->
     <section class="carta__section" id="carta-pizzas">
       <h2 class="carta__section-title">{{ idioma.t().carta.pizzasTitle }}</h2>
+      <p class="carta__section-note">{{ idioma.t().carta.pizzasNote }}</p>
 
       <div class="carta__list">
-        @for (item of pizzas; track item.name) {
+        @for (item of pizzas(); track item.name) {
           <div class="carta__list-item">
             <div class="carta__list-item-info">
               <span class="carta__list-item-name">{{ item.name }}</span>
@@ -241,7 +244,7 @@
       <h2 class="carta__section-title">{{ idioma.t().carta.postresTitle }}</h2>
 
       <div class="carta__list">
-        @for (item of postres; track item.name) {
+        @for (item of postres(); track item.name) {
           <div class="carta__list-item">
             <div class="carta__list-item-info">
               <span class="carta__list-item-name">{{ item.name }}</span>
@@ -254,6 +257,7 @@
 
     <!-- Footer -->
     <div class="carta__footer">
+      <app-language-selector />
       <p class="carta__footer-text">{{ idioma.t().carta.footerText }}</p>
       <a [routerLink]="idioma.localizeRoute('/')" class="carta__back-link">{{ idioma.t().carta.backLink }}</a>
     </div>

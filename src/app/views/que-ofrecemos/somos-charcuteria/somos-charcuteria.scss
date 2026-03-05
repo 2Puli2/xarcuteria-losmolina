@@ -28,6 +28,81 @@
     }
   }
 
+  // ─── Layout contenido: foto + brands en flex ───
+  &__content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xl;
+    justify-content: center;
+  }
+
+  // ─── Mostrador foto ───
+  &__counter-image {
+    flex: 0 1 auto;
+    max-width: 450px;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba($color-accent, 0.2);
+  }
+
+  &__counter-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform $transition-fast;
+
+  }
+
+  // ─── Carrusel de marcas con flechas overlay ───
+  &__brands-carousel {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    justify-content: center;
+  }
+
+  // ─── Flechas de navegación (overlay, 80% del tamaño) ───
+  &__carousel-arrow {
+    position: absolute;
+    background: rgba($color-dark, 0.7);
+    border: 2px solid $color-accent;
+    color: $color-accent;
+    font-size: 14px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $border-radius-full;
+    cursor: pointer;
+    transition: all $transition-fast;
+    z-index: 10;
+
+    &:hover {
+      background-color: rgba($color-accent, 0.35);
+      color: $color-dark;
+      transform: scale(1.02);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &--prev {
+      left: 12px;
+      top: 50%;
+      transform: translateY(-5%);
+    }
+
+    &--next {
+      right: 12px;
+      top: 50%;
+      transform: translateY(-5%);
+    }
+  }
+
   // ─── Marcas ───
   &__brands-section {
     width: 100%;
@@ -37,21 +112,13 @@
     gap: $spacing-md;
   }
 
-  &__brands-title {
-    font-family: $font-family-heading;
-    font-size: $font-size-md;
-    color: $color-accent;
-    font-weight: 600;
-    text-align: center;
-  }
-
-  // Contenedor fijo que mantiene el tamaño siempre visible
+  // Contenedor fijo que mantiene el tamaño (100% mayor que antes)
   &__brand-stage {
-    width: 180px;
-    height: 160px;
-    background-color: rgba(white, 0.06);
+    position: relative;
+    width: 360px;
+    height: 320px;
+    background-color: rgba(white, 0.01);
     border-radius: $border-radius-md;
-    border: 2px solid rgba(white, 0.12);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,13 +129,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: $spacing-xs;
-    width: 100%;
-    height: 100%;
+    gap: $spacing-md;
+    width: 130%;
+    height: 130%;
     text-decoration: none;
     cursor: pointer;
     border-radius: $border-radius-md;
-    padding: $spacing-md;
+    padding: $spacing-xl;
+
 
     // El fade se controla con opacity; empieza invisible
     opacity: 0;
@@ -82,29 +150,41 @@
       opacity: 1;
     }
 
-    &:hover {
-      background-color: rgba($color-accent, 0.1);
-      transform: translateY(-3px);
-      box-shadow: 0 4px 20px rgba($color-accent, 0.25);
-    }
+  
 
     &-image {
-      width: 90px;
-      height: 65px;
+      width: 180px;
+      height: 130px;
       object-fit: contain;
       transition: transform $transition-fast;
     }
 
     &:hover &-image {
       transform: scale(1.05);
+      opacity: 1;
     }
 
     &-name {
       font-family: $font-family-base;
-      font-size: $font-size-sm;
+      font-size: $font-size-base;
       color: $color-secondary;
       font-weight: 600;
       text-align: center;
+    }
+
+    &-desc {
+      font-family: $font-family-base;
+      font-size: $font-size-sm;
+      color: $color-light;
+      text-align: center;
+      line-height: 1.5;
+      opacity: 0.6;
+      max-width: 280px;
+      transition: opacity $transition-fast;
+    }
+
+    &:hover &-desc {
+      opacity: 1;
     }
   }
 }
@@ -123,25 +203,49 @@
 // ─── Responsive móvil ───
 @media (max-width: $breakpoint-sm) {
   .charcuteria {
+    &__content {
+      flex-direction: column;
+      gap: $spacing-lg;
+    }
+
+    &__counter-image {
+      max-width: 100%;
+    }
+
     &__description {
       font-size: $font-size-sm;
     }
 
+    &__carousel-arrow {
+      width: 36px;
+      height: 36px;
+      font-size: 12px;
+
+      &--prev {
+        left: 8px;
+      }
+
+      &--next {
+        right: 8px;
+      }
+    }
+
     &__brand-stage {
-      width: 150px;
-      height: 135px;
+      width: 240px;
+      height: 210px;
     }
 
     &__brand {
-      padding: $spacing-sm;
+      padding: $spacing-lg;
+      gap: $spacing-sm;
 
       &-image {
-        width: 70px;
-        height: 50px;
+        width: 120px;
+        height: 85px;
       }
 
       &-name {
-        font-size: $font-size-xs;
+        font-size: $font-size-sm;
       }
     }
   }

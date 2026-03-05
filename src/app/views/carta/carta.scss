@@ -18,11 +18,19 @@
 
   // ─── Cabecera ───
   &__header {
+    width: 100%;
+    position: relative;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: $spacing-md;
+  }
+
+  &__header-lang {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 
   &__logo-link {
@@ -219,6 +227,7 @@
 
     &--calientes {
       min-width: 340px;
+      table-layout: fixed;
     }
 
     // Segunda tabla enganchada a la anterior
@@ -228,6 +237,44 @@
       .carta__table-th {
         &:first-child { border-radius: 0; }
         &:last-child  { border-radius: 0; }
+      }
+    }
+  }
+
+  // Divisor visual entre secciones
+  &__divider {
+    width: 100%;
+    max-width: 600px;
+    border: none;
+    border-top: 1px solid rgba($color-accent, 0.2);
+    margin: $spacing-lg 0;
+    opacity: 0.6;
+  }
+
+  // Estilo especial para suplementos (apartado secundario, discreto)
+  &__embutidos-group--suplementos {
+    .carta__subsection-title {
+      color: rgba($color-accent, 0.6);
+      border-bottom: 1px solid rgba($color-accent, 0.15);
+    }
+
+    .carta__table-th {
+      background-color: rgba($color-accent, 0.08);
+      color: rgba($color-light, 0.7);
+      border-bottom: 1px solid rgba($color-accent, 0.15);
+    }
+
+    .carta__table-row {
+      &:nth-child(odd) {
+        background-color: rgba($color-dark, 0.4);
+      }
+
+      &:nth-child(even) {
+        background-color: rgba($color-dark, 0.25);
+      }
+
+      &:hover {
+        background-color: rgba($color-accent, 0.08);
       }
     }
   }
@@ -338,7 +385,7 @@
   }
 
   &__footer-text {
-    font-size: $font-size-sm;
+    font-size: $font-size-md;
     color: rgba($color-light, 0.65);
     line-height: 1.7;
     max-width: 650px;
