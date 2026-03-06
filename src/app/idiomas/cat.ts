@@ -263,6 +263,7 @@ export const CAT = {
     navPostres: 'Postres',
     footerText: 'Tens un event? Preparem safates, lots i càtering a mida. Consulta\'ns!',
     backLink: '← Tornar a la web',
+    scrollHint: 'Llisca la taula per veure totes les opcions',
   },
 
   // ─── Ítems de la carta: noms i descripcions per idioma ───────────────────────

@@ -263,6 +263,7 @@ export const EN = {
     navPostres: 'Desserts',
     footerText: 'Hosting an event? We prepare custom boards, hampers and catering. Ask us!',
     backLink: '← Back to website',
+    scrollHint: 'Swipe the table to see all options',
   },
 
   // ─── Carta items: names and descriptions per language ────────────────────────

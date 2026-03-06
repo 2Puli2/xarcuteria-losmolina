@@ -85,6 +85,11 @@
     <section class="carta__section" id="carta-embutidos">
       <h2 class="carta__section-title">{{ idioma.t().carta.embutidosTitle }}</h2>
       <p class="carta__section-note">{{ idioma.t().carta.embutidosNote }}</p>
+      <p class="carta__scroll-hint">
+        <span class="carta__scroll-hint-icon">⇄</span>
+        {{ idioma.t().carta.scrollHint }}
+        <span class="carta__scroll-hint-arrow">››</span>
+      </p>
 
       @for (group of embutidoGroups(); track group.title) {
         <div class="carta__embutidos-group">

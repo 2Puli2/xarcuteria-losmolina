@@ -110,6 +110,41 @@
     margin: 0;
   }
 
+  &__scroll-hint {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: $font-size-xs;
+    color: $color-accent;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 9px 20px;
+    border: 1px solid rgba($color-accent, 0.45);
+    border-radius: 100px;
+    background: rgba($color-accent, 0.07);
+    margin: 0 auto;
+    animation: scrollHintPulse 2.8s ease-in-out infinite;
+  }
+
+  &__scroll-hint-icon {
+    font-size: 17px;
+    line-height: 1;
+    opacity: 0.85;
+    flex-shrink: 0;
+  }
+
+  &__scroll-hint-arrow {
+    display: inline-block;
+    font-size: $font-size-md;
+    line-height: 1;
+    font-weight: 700;
+    color: $color-accent;
+    animation: scrollHintBounce 1.2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
   &__subsection-title {
     font-family: $font-family-heading;
     font-size: $font-size-md;
@@ -125,7 +160,6 @@
   &__list {
     display: flex;
     flex-direction: column;
-    gap: 0;
   }
 
   &__list-item {
@@ -133,7 +167,6 @@
     justify-content: space-between;
     align-items: flex-start;
     padding: $spacing-sm $spacing-md;
-    border-radius: 0;
     transition: background-color $transition-fast;
 
     &:nth-of-type(odd) {
@@ -188,14 +221,6 @@
     }
   }
 
-  &__list-note {
-    font-size: $font-size-xs;
-    color: rgba($color-light, 0.5);
-    text-align: center;
-    font-style: italic;
-    margin: $spacing-xs 0 0;
-  }
-
   // ─── Embutidos: grupos y tabla ───
   &__embutidos-group {
     width: 100%;
@@ -210,13 +235,6 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     border-radius: $border-radius-md;
-
-    // Sutil indicador de scroll horizontal
-    &::after {
-      content: '';
-      display: block;
-      height: 0;
-    }
   }
 
   &__table {
@@ -224,10 +242,21 @@
     border-collapse: separate;
     border-spacing: 0;
     min-width: 640px;
+    table-layout: fixed;
 
     &--calientes {
       min-width: 340px;
       table-layout: fixed;
+
+      .carta__table-th--name,
+      .carta__table-td--name {
+        width: 55%;
+      }
+
+      .carta__table-th:not(.carta__table-th--name),
+      .carta__table-td:not(.carta__table-td--name) {
+        width: 22.5%;
+      }
     }
 
     // Segunda tabla enganchada a la anterior
@@ -253,6 +282,27 @@
 
   // Estilo especial para suplementos (apartado secundario, discreto)
   &__embutidos-group--suplementos {
+    .carta__table {
+      table-layout: fixed;
+      min-width: auto;
+
+      .carta__table-th--name,
+      .carta__table-td--name {
+        width: 55%;
+      }
+
+      .carta__table-th:not(.carta__table-th--name),
+      .carta__table-td:not(.carta__table-td--name) {
+        width: 22.5%;
+      }
+
+      .carta__table-th--name,
+      .carta__table-td--name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
     .carta__subsection-title {
       color: rgba($color-accent, 0.6);
       border-bottom: 1px solid rgba($color-accent, 0.15);
@@ -418,6 +468,28 @@
   }
 }
 
+@keyframes scrollHintBounce {
+  0%, 100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(6px);
+  }
+}
+
+@keyframes scrollHintPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba($color-accent, 0);
+    border-color: rgba($color-accent, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 14px rgba($color-accent, 0.18);
+    border-color: rgba($color-accent, 0.8);
+  }
+}
+
 // ─── Responsive tablet ───
 @media (max-width: $breakpoint-md) {
   .carta {
@@ -437,6 +509,10 @@
       padding: 4px $spacing-xs;
     }
 
+    &__scroll-hint {
+      display: flex;
+    }
+
     &__table {
       min-width: 520px;
 
@@ -449,6 +525,20 @@
     &__table-td {
       font-size: $font-size-xs;
       padding: $spacing-xs 4px;
+    }
+
+    // Columna de nombre fija al hacer scroll horizontal
+    &__table-th--name {
+      position: sticky;
+      left: 0;
+      z-index: 2;
+    }
+
+    &__table-td--name {
+      position: sticky;
+      left: 0;
+      z-index: 1;
+      background-color: $color-dark;
     }
   }
 }
@@ -485,8 +575,6 @@
     }
 
     &__nav-btn {
-      font-size: 10px;
-      padding: 4px $spacing-xs;
       flex-shrink: 0;
     }
 

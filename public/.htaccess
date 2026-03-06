@@ -1,0 +1,45 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  
+  # Permitir acceso directo a archivos y carpetas reales
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  
+  # Redirigir todas las rutas a index.html para que Angular Router las maneje
+  RewriteRule ^(.*)$ index.html [L]
+</IfModule>
+
+# Comprensión GZIP para mejor rendimiento
+<IfModule mod_gzip.c>
+  mod_gzip_on On
+  mod_gzip_dechunk On
+  mod_gzip_item_include file .(html?|txt|css|js|json|xml|webp|svg)$
+  mod_gzip_item_include handler ^cgi-script$
+  mod_gzip_item_exclude mime ^image/
+  mod_gzip_item_exclude rn \.zip$
+  mod_gzip_level 6
+  mod_gzip_vary On
+</IfModule>
+
+# Cache para archivos estáticos
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType application/x-javascript "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+</IfModule>
+
+# Headers para seguridad y rendimiento
+<IfModule mod_headers.c>
+  Header set X-UA-Compatible "IE=Edge"
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
