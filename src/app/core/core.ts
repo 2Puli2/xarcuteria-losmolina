@@ -59,9 +59,13 @@ export class CoreComponent {
   scrollToSection(sectionId: string): void {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({
+      const isMobile = window.innerWidth <= 768;
+      const offset = isMobile ? 120 : 0; // Más espacio en mobile por el header
+      
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - offset,
         behavior: 'smooth',
-        block: 'start',
       });
     }
   }
