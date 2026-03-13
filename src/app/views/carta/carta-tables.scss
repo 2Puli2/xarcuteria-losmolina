@@ -58,6 +58,22 @@
         &:last-child  { border-radius: 0; }
       }
     }
+
+    // Tabla tirador de cervezas (sección Bebidas)
+    &--bebidas {
+      min-width: 280px;
+      table-layout: fixed;
+
+      .carta__table-th--name,
+      .carta__table-td--name {
+        width: 80%;
+      }
+
+      .carta__table-th:not(.carta__table-th--name),
+      .carta__table-td:not(.carta__table-td--name) {
+        width: 20%;
+      }
+    }
   }
 
   // Estilo especial para suplementos (apartado secundario, discreto)

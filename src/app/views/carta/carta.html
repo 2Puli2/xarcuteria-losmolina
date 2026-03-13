@@ -12,11 +12,15 @@
         variant="light"
       />
 
-      <p class="carta__footer-text">{{ idioma.t().carta.footerText }}</p>
+      <p class="carta__header-footer-text">{{ idioma.t().carta.footerText }}</p>
     </div>
+
+    <!-- Nota de suplemento de terraza -->
+    <p class="carta__terrace-note">{{ idioma.t().carta.terrazeSupplementNote }}</p>
 
     <!-- Navegación rápida -->
     <nav class="carta__nav">
+      <button class="carta__nav-btn" (click)="scrollTo('carta-bebidas')">{{ idioma.t().carta.navBebidas }}</button>
       <button class="carta__nav-btn" (click)="scrollTo('carta-aperitivos')">{{ idioma.t().carta.navAperitivos }}</button>
       <button class="carta__nav-btn" (click)="scrollTo('carta-menus')">{{ idioma.t().carta.navMenus }}</button>
       <button class="carta__nav-btn" (click)="scrollTo('carta-embutidos')">{{ idioma.t().carta.navEmbutidos }}</button>
@@ -25,7 +29,127 @@
       <button class="carta__nav-btn" (click)="scrollTo('carta-postres')">{{ idioma.t().carta.navPostres }}</button>
     </nav>
 
-    <!-- ═══════ 1. Aperitivos y Conservas ═══════ -->
+    <!-- Leyenda (desactivada de momento) -->
+    <!-- Componente legend oculto: será activado cuando se vuelva a trabajar en los indicadores -->
+    <!-- <app-legend></app-legend> -->
+
+    <!-- ═══════ 1. Bebidas ═══════ -->
+    <section class="carta__section" id="carta-bebidas">
+      <h2 class="carta__section-title">{{ idioma.t().carta.bebidasTitle }}</h2>
+
+      <!-- Refrescos -->
+      <h3 class="carta__subsection-title">{{ idioma.t().carta.refrescosTitle }}</h3>
+      <div class="carta__list">
+        @for (item of refrescos; track item.name) {
+          <div class="carta__list-item">
+            <div class="carta__list-item-info">
+              <span class="carta__list-item-name">
+                {{ item.name }}
+                @if (item.favorite || item.glutenFree) {
+                  <span class="carta__list-item-icons">
+                    @if (item.favorite) {
+                      <span class="carta__icon-favorite">★</span>
+                    }
+                    @if (item.glutenFree) {
+                      <span class="carta__icon-gluten-free">🌾</span>
+                    }
+                  </span>
+                }
+              </span>
+              @if (item.desc) {
+                <span class="carta__list-item-desc">{{ item.desc }}</span>
+              }
+            </div>
+            <span class="carta__list-item-price">{{ item.price }}€</span>
+          </div>
+        }
+      </div>
+
+      <!-- Cervezas -->
+      <h3 class="carta__subsection-title">{{ idioma.t().carta.cervezasTitle }}</h3>
+      <div class="carta__list">
+        @for (item of cervezas; track item.name) {
+          <div class="carta__list-item">
+            <div class="carta__list-item-info">
+              <span class="carta__list-item-name">
+                {{ item.name }}
+                @if (item.favorite || item.glutenFree) {
+                  <span class="carta__list-item-icons">
+                    @if (item.favorite) {
+                      <span class="carta__icon-favorite">★</span>
+                    }
+                    @if (item.glutenFree) {
+                      <span class="carta__icon-gluten-free">🌾</span>
+                    }
+                  </span>
+                }
+              </span>
+              @if (item.desc) {
+                <span class="carta__list-item-desc">{{ item.desc }}</span>
+              }
+            </div>
+            <span class="carta__list-item-price">{{ item.price }}€</span>
+          </div>
+        }
+      </div>
+
+      <!-- Vinos -->
+      <h3 class="carta__subsection-title">{{ idioma.t().carta.vinosTitle }}</h3>
+      <div class="carta__list">
+        @for (item of vinos; track item.name) {
+          <div class="carta__list-item">
+            <div class="carta__list-item-info">
+              <span class="carta__list-item-name">
+                {{ item.name }}
+                @if (item.favorite || item.glutenFree) {
+                  <span class="carta__list-item-icons">
+                    @if (item.favorite) {
+                      <span class="carta__icon-favorite">★</span>
+                    }
+                    @if (item.glutenFree) {
+                      <span class="carta__icon-gluten-free">🌾</span>
+                    }
+                  </span>
+                }
+              </span>
+              @if (item.desc) {
+                <span class="carta__list-item-desc">{{ item.desc }}</span>
+              }
+            </div>
+            <span class="carta__list-item-price">{{ item.price }}€</span>
+          </div>
+        }
+      </div>
+
+      <!-- Cafés -->
+      <h3 class="carta__subsection-title">{{ idioma.t().carta.cafesTitle }}</h3>
+      <div class="carta__list">
+        @for (item of cafes; track item.name) {
+          <div class="carta__list-item">
+            <div class="carta__list-item-info">
+              <span class="carta__list-item-name">
+                {{ item.name }}
+                @if (item.favorite || item.glutenFree) {
+                  <span class="carta__list-item-icons">
+                    @if (item.favorite) {
+                      <span class="carta__icon-favorite">★</span>
+                    }
+                    @if (item.glutenFree) {
+                      <span class="carta__icon-gluten-free">🌾</span>
+                    }
+                  </span>
+                }
+              </span>
+            </div>
+            <span class="carta__list-item-price">{{ item.price }}€</span>
+          </div>
+        }
+      </div>
+
+      <p class="carta__bebidas-note">{{ idioma.t().carta.hieloExtraNote }}</p>
+    </section>
+
+    <!-- ═══════ 2. Aperitivos y Conservas ═══════ -->
     <section class="carta__section" id="carta-aperitivos">
       <h2 class="carta__section-title">{{ idioma.t().carta.aperitivosTitle }}</h2>
 
@@ -61,7 +185,7 @@
       </div>
     </section>
 
-    <!-- ═══════ 2. Menús ═══════ -->
+    <!-- ═══════ 3. Menús ═══════ -->
     <section class="carta__section" id="carta-menus">
       <h2 class="carta__section-title">{{ idioma.t().carta.menusTitle }}</h2>
       <p class="carta__section-note">{{ idioma.t().carta.menusNote }}</p>
@@ -81,7 +205,7 @@
       </div>
     </section>
 
-    <!-- ═══════ 3. Nuestros Embutidos ═══════ -->
+    <!-- ═══════ 4. Nuestros Embutidos ═══════ -->
     <section class="carta__section" id="carta-embutidos">
       <h2 class="carta__section-title">{{ idioma.t().carta.embutidosTitle }}</h2>
       <p class="carta__section-note">{{ idioma.t().carta.embutidosNote }}</p>
@@ -227,7 +351,7 @@
       </div>
     </section>
 
-    <!-- ═══════ 4. Pizzas ═══════ -->
+    <!-- ═══════ 5. Pizzas ═══════ -->
     <section class="carta__section" id="carta-pizzas">
       <h2 class="carta__section-title">{{ idioma.t().carta.pizzasTitle }}</h2>
       <p class="carta__section-note">{{ idioma.t().carta.pizzasNote }}</p>
@@ -244,7 +368,7 @@
       </div>
     </section>
 
-    <!-- ═══════ 5. Postres ═══════ -->
+    <!-- ═══════ 6. Postres ═══════ -->
     <section class="carta__section" id="carta-postres">
       <h2 class="carta__section-title">{{ idioma.t().carta.postresTitle }}</h2>
 
