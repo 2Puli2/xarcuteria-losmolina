@@ -281,7 +281,7 @@ export const CAT = {
     medianasLabel: 'Mitges',
     colCerveza: 'Cervesa',
     colClara: 'Clara',
-    hieloExtraNote: 'Gel extra disponible',
+    hieloExtraNote: 'Gel extra +0,20€',
   },
 
   // ─── Ítems de la carta: noms i descripcions per idioma ───────────────────────

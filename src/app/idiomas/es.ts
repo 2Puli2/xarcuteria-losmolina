@@ -279,7 +279,7 @@ export const ES = {
     colCerveza: 'Cerveza',
     colClara: 'Clara',
     clara: 'Clara',
-    hieloExtraNote: 'Hielo extra disponible',
+    hieloExtraNote: 'Hielo extra +0,20€',
   },
 
   // ─── Ítems de la carta: nombres y descripciones por idioma ───────────────────

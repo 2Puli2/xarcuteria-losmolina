@@ -281,7 +281,7 @@ export const EN = {
     medianasLabel: 'Bottled',
     colCerveza: 'Beer',
     colClara: 'Shandy',
-    hieloExtraNote: 'Extra ice available',
+    hieloExtraNote: 'Extra ice +0,20€',
   },
 
   // ─── Carta items: names and descriptions per language ────────────────────────

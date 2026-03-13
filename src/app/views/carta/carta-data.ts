@@ -202,8 +202,7 @@ export const SUPLEMENTOS_PRICES: SuplementoPriceRow[] = [
     { key: 'brie',         medio: '1,50', entero: '3,00' },
     { key: 'fresco_cabra', medio: '2,50', entero: '5,00' },
     { key: 'olivas',       medio: '1,00', entero: '2,00' },
-    { key: 'suplemento_terraza', medio: '0,20', entero: '0,20' },
-    { key: 'suplemento_hielo_extra', medio: '0,20', entero: '0,20' },
+
 ];
 
 // ─── Pizzas ───────────────────────────────────────────────────────────────────

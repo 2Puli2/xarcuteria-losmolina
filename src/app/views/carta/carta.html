@@ -14,11 +14,8 @@
 
       <p class="carta__header-footer-text">{{ idioma.t().carta.footerText }}</p>
     </div>
-
-    <!-- Nota de suplemento de terraza -->
-    <p class="carta__terrace-note">{{ idioma.t().carta.terrazeSupplementNote }}</p>
-
-    <!-- Navegación rápida -->
+<!-- Nota de suplemento de terraza -->
+    <p class="carta__terrace-note">{{ idioma.t().carta.terrazeSupplementNote }}</p> -->
     <nav class="carta__nav">
       <button class="carta__nav-btn" (click)="scrollTo('carta-bebidas')">{{ idioma.t().carta.navBebidas }}</button>
       <button class="carta__nav-btn" (click)="scrollTo('carta-aperitivos')">{{ idioma.t().carta.navAperitivos }}</button>
@@ -383,12 +380,16 @@
         }
       </div>
     </section>
+    <!-- Nota de suplemento de terraza -->
+    <p class="carta__terrace-note">{{ idioma.t().carta.terrazeSupplementNote }}</p> -->
 
     <!-- Footer -->
     <div class="carta__footer">
-      <app-language-selector />
+      
       <p class="carta__footer-text">{{ idioma.t().carta.footerText }}</p>
       <a [routerLink]="idioma.localizeRoute('/')" class="carta__back-link">{{ idioma.t().carta.backLink }}</a>
     </div>
+      <app-language-selector />
   </div>
+
 </div>
