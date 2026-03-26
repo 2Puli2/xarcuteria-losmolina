@@ -1,6 +1,7 @@
-import { Component, signal, OnInit, inject } from '@angular/core';
+import { Component, signal, inject, effect } from '@angular/core';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { IdiomaService } from './idiomas/idioma.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -9,21 +10,27 @@ import { filter } from 'rxjs/operators';
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App implements OnInit {
+export class App {
   protected readonly title = signal('Charcutería Los Molina');
 
   private router = inject(Router);
   private idioma = inject(IdiomaService);
 
-  ngOnInit(): void {
+  // Convertir el Observable de eventos del router a Signal
+  private readonly navigationEnd = toSignal(
+    this.router.events.pipe(filter((e) => e instanceof NavigationEnd))
+  );
+
+  constructor() {
     // Detectar idioma en la URL inicial
     this.idioma.detectLangFromUrl(this.router.url);
 
-    // Detectar idioma en cada cambio de ruta
-    this.router.events
-      .pipe(filter((e) => e instanceof NavigationEnd))
-      .subscribe((e) => {
-        this.idioma.detectLangFromUrl((e as NavigationEnd).urlAfterRedirects);
-      });
+    // Reaccionar con effect cuando cambia la navegación
+    effect(() => {
+      const nav = this.navigationEnd();
+      if (nav) {
+        this.idioma.detectLangFromUrl((nav as NavigationEnd).urlAfterRedirects);
+      }
+    });
   }
 }
