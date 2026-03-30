@@ -1,0 +1,334 @@
+@use '../../../variables' as *;
+
+.carta {
+  min-height: 100vh;
+  background-color: $color-dark;
+  display: flex;
+  justify-content: center;
+  padding: $spacing-xxl $spacing-md $spacing-xl;
+
+  &__container {
+    max-width: 900px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-xl;
+  }
+
+  // ─── Cabecera ───
+  &__header {
+    width: 100%;
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-md;
+  }
+
+  &__header-lang {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &__logo-link {
+    text-decoration: none;
+    transition: opacity $transition-fast;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__header-footer-text {
+    margin-top: $spacing-md;
+    padding: $spacing-md $spacing-lg;
+    font-size: $font-size-md;
+    color: $color-light;
+    border: 1px solid rgba($color-accent, 0.3);
+    border-radius: 6px;
+    background: linear-gradient(135deg, rgba($color-accent, 0.05), rgba($color-accent, 0.02));
+    box-shadow: 0 2px 8px rgba($color-dark, 0.3);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+
+  // ─── Nota de suplemento de terraza ───
+  &__terrace-note {
+    width: 100%;
+    font-size: $font-size-xs;
+    color: rgba($color-accent, 0.6);
+    text-align: left;
+    margin-left: 30px;
+    font-style: italic;
+  }
+
+  // ─── Navegación rápida ───
+  &__nav {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: rgba($color-dark, 0.97);
+    backdrop-filter: blur(8px);
+    padding: $spacing-sm 0;
+    border-bottom: 1px solid rgba($color-accent, 0.2);
+  }
+
+  &__nav-btn {
+    background: transparent;
+    border: 1px solid rgba($color-accent, 0.4);
+    color: $color-accent;
+    font-family: $font-family-base;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-md;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color $transition-fast, color $transition-fast, border-color $transition-fast;
+
+    &:hover {
+      background-color: $color-accent;
+      color: $color-dark;
+      border-color: $color-accent;
+    }
+  }
+
+  // ─── Secciones ───
+  &__section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    animation: fadeIn 0.3s ease-in-out;
+    scroll-margin-top: 71px;
+  }
+
+  &__section-title {
+    font-family: $font-family-heading;
+    font-size: $font-size-xl;
+    color: $color-primary;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding-bottom: $spacing-xs;
+    border-bottom: 1px solid rgba($color-accent, 0.45);
+  }
+
+  &__section-note {
+    font-size: $font-size-sm;
+    color: rgba($color-accent, 0.7);
+    text-align: center;
+    font-style: italic;
+    margin: 0;
+  }
+
+  &__bebidas-sublabel {
+    font-size: $font-size-sm;
+    color: rgba($color-accent, 0.75);
+    font-style: italic;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: $spacing-sm 0 $spacing-xs;
+  }
+
+  &__bebidas-note {
+    font-size: $font-size-sm;
+    color: rgba($color-light, 0.55);
+    text-align: center;
+    font-style: italic;
+    margin-top: $spacing-md;
+    padding: $spacing-sm $spacing-md;
+    border: 1px solid rgba($color-accent, 0.15);
+    border-radius: $border-radius-md;
+  }
+
+  // ─── Leyenda ───
+  &__legend {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    justify-content: center;
+    align-items: center;
+    padding: $spacing-md;
+    background: linear-gradient(135deg, rgba($color-accent, 0.08), rgba($color-accent, 0.03));
+    border: 1px solid rgba($color-accent, 0.2);
+    border-radius: $border-radius-md;
+    margin-bottom: $spacing-md;
+  }
+
+  &__legend-title {
+    font-size: $font-size-sm;
+    font-weight: 700;
+    color: $color-accent;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__legend-item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    font-size: $font-size-sm;
+    color: $color-light;
+  }
+
+  &__legend-icon {
+    font-size: $font-size-base;
+    display: inline-block;
+  }
+
+  // ─── Iconos en items ───
+  &__list-item-icons {
+    display: flex;
+    gap: $spacing-xs;
+    align-items: center;
+    margin-left: $spacing-sm;
+  }
+
+  &__icon-favorite {
+    color: #FFD700;
+    font-size: $font-size-sm;
+  }
+
+  &__icon-gluten-free {
+    font-size: $font-size-sm;
+  }
+
+  &__divider {
+    width: 100%;
+    max-width: 600px;
+    border: none;
+    border-top: 1px solid rgba($color-accent, 0.2);
+    margin: $spacing-lg 0;
+    opacity: 0.6;
+  }
+
+  // ─── Footer ───
+  &__footer {
+    width: 100%;
+    text-align: center;
+    padding: $spacing-lg $spacing-md;
+    border-top: 1px solid rgba($color-accent, 0.45);
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__footer-text {
+    font-size: $font-size-md;
+    color: rgba($color-light, 0.65);
+    line-height: 1.7;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  &__back-link {
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    color: $color-accent;
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity $transition-fast;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+
+  // ─── Suplementos Especiales ───
+  &__suplementos-especiales {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    justify-content: center;
+    align-items: center;
+    margin: $spacing-lg 0;
+  }
+
+  &__suplemento-especial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-xs;
+    padding: $spacing-sm $spacing-md;
+    border: 1px solid rgba($color-light, 0.1);
+    border-radius: 4px;
+    background-color: rgba($color-light, 0.03);
+    transition: all $transition-fast;
+
+    &:hover {
+      border-color: rgba($color-accent, 0.3);
+      background-color: rgba($color-accent, 0.05);
+    }
+
+    &-name {
+      font-size: $font-size-sm;
+      font-weight: 500;
+      color: $color-light;
+    }
+
+    &-price {
+      font-size: $font-size-md;
+      font-weight: 700;
+      color: $color-accent;
+    }
+  }
+
+  // ─── Footer ───
+  &__footer {
+    width: 100%;
+    margin-top: $spacing-xxl;
+    padding-top: $spacing-xxl;
+    border-top: 1px solid rgba($color-light, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-md;
+    text-align: center;
+  }
+
+  &__footer-text {
+    font-size: $font-size-md;
+    color: rgba($color-light, 0.7);
+    margin: 0;
+    border-radius: $border-radius-md;
+  }
+
+  &__back-link {
+    color: $color-accent;
+    text-decoration: none;
+    font-size: $font-size-sm;
+    transition: opacity $transition-fast;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

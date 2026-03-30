@@ -1,0 +1,135 @@
+@use '../../../variables' as *;
+
+// ─── Responsive tablet ───
+@media (max-width: $breakpoint-md) {
+  .carta {
+    padding: $spacing-xl $spacing-sm;
+
+    &__section-title {
+      font-size: $font-size-lg;
+    }
+
+    &__nav {
+      padding: $spacing-xs $spacing-sm;
+      gap: 6px;
+    }
+
+    &__nav-btn {
+      font-size: 10px;
+      padding: 4px $spacing-xs;
+    }
+
+    &__scroll-hint {
+      display: flex;
+    }
+
+    &__table {
+      min-width: 520px;
+
+      &--calientes {
+        min-width: 260px;
+      }
+    }
+
+    &__table-th,
+    &__table-td {
+      font-size: $font-size-xs;
+      padding: $spacing-xs 4px;
+    }
+
+    // Columna de nombre fija al hacer scroll horizontal
+    &__table-th--name {
+      position: sticky;
+      left: 0;
+      z-index: 2;
+    }
+
+    &__table-td--name {
+      position: sticky;
+      left: 0;
+      z-index: 1;
+      background-color: $color-dark;
+    }
+  }
+}
+
+// ─── Responsive móvil ───
+@media (max-width: $breakpoint-sm) {
+  .carta {
+    padding: $spacing-lg $spacing-xs;
+
+    &__container {
+      gap: $spacing-lg;
+    }
+
+    &__section-title {
+      font-size: $font-size-md;
+    }
+
+    &__subsection-title {
+      font-size: $font-size-base;
+    }
+
+    &__nav {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      justify-content: flex-start;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: $spacing-xs;
+      gap: 6px;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    &__nav-btn {
+      flex-shrink: 0;
+    }
+
+    &__list-item {
+      padding: $spacing-xs $spacing-sm;
+
+      &-name {
+        font-size: $font-size-sm;
+      }
+
+      &-desc {
+        font-size: $font-size-xs;
+      }
+
+      &-price {
+        font-size: $font-size-sm;
+      }
+    }
+
+    &__table {
+      min-width: 460px;
+
+      &--calientes {
+        min-width: 240px;
+      }
+    }
+
+    &__table-th {
+      font-size: 11px;
+      padding: $spacing-xs 3px;
+
+      &--name {
+        padding-left: $spacing-xs;
+        min-width: 110px;
+      }
+    }
+
+    &__table-td {
+      font-size: 11px;
+      padding: $spacing-xs 3px;
+
+      &--name {
+        padding-left: $spacing-xs;
+        font-size: $font-size-xs;
+      }
+    }
+  }
+}

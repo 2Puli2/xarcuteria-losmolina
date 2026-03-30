@@ -4,6 +4,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { TitleComponent } from '../../components/title/title';
 import { LogoComponent } from '../../components/logo/logo';
 import { LanguageSelectorComponent } from '../../components/language-selector/language-selector';
+// import { LegendComponent } from '../../components/legend/legend'; // Será usado cuando se active la leyenda
 import { IdiomaService } from '../../idiomas/idioma.service';
 import {
     APERITIVOS_PRICES,
@@ -15,6 +16,11 @@ import {
     SUPLEMENTOS_PRICES,
     PIZZAS_PRICES,
     POSTRES_PRICES,
+    REFRESCOS_DATA,
+    CERVEZAS_DATA,
+
+    VINOS_DATA,
+    CAFES_DATA,
 } from './carta-data';
 
 // ─── Interfaces para el template ─────────────────────────────────────────────
@@ -71,7 +77,7 @@ export interface EmbutidoGroup {
  */
 @Component({
     selector: 'app-carta',
-    imports: [RouterLink, TitleComponent, LogoComponent, LanguageSelectorComponent],
+    imports: [RouterLink, TitleComponent, LogoComponent, LanguageSelectorComponent], // LegendComponent será importado cuando se active
     templateUrl: './carta.html',
     styleUrl: './carta.scss',
 })
@@ -133,12 +139,19 @@ export class CartaComponent {
 
     readonly suplementos = computed<SuplementosRow[]>(() => {
         const t = this.idioma.t().cartaItems.suplementos as Record<string, CartaItem>;
-        return SUPLEMENTOS_PRICES.map(p => ({
+        return SUPLEMENTOS_PRICES.filter(p => !p.key.startsWith('suplemento_')).map(p => ({
             ...(t[p.key] ?? { name: p.key }),
             medio: p.medio,
             entero: p.entero,
         }));
     });
+
+    // ─── Bebidas (datos estáticos — sin dependencia de idioma) ───────────────
+    readonly refrescos        = REFRESCOS_DATA;
+    readonly cervezas = CERVEZAS_DATA;
+
+    readonly vinos            = VINOS_DATA;
+    readonly cafes            = CAFES_DATA;
 
     readonly pizzas = computed<CartaItem[]>(() => {
         const t = this.idioma.t().cartaItems.pizzas as Record<string, CartaItem>;
