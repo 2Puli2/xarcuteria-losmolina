@@ -1,37 +1,30 @@
-/**
- * Traducciones en inglés.
- */
-export const EN = {
+﻿export const EN = {
   lang: 'en',
 
-  // General
   general: {
-    logoTagline: 'Neighbourhood charcuterie · Sandwiches & tasting',
-    logoAlt: 'Charcutería Los Molina',
+    logoTagline: 'Neighbourhood charcuterie Â· Sandwiches & tasting',
+    logoAlt: 'CharcuterÃ­a Los Molina',
     openMenu: 'Open menu',
     scroll: 'Scroll',
   },
 
-  // Home
   home: {
     cta: 'Discover what we offer',
     navAbout: 'About us',
     navFind: 'Where we are',
   },
 
-  // About
   about: {
     title: 'About Us',
     subtitle: 'Neighbourhood charcuterie with quality products and generous sandwiches',
     text1:
-      'At <strong>Charcutería Los Molina</strong> we do what we\'ve always done: neighbourhood charcuterie with top-quality products and sandwiches that are a joy to see. We\'re a family from El Prat who\'ve been behind the counter for years, hand-carving ham and looking after our locals.',
+      'At <strong>CharcuterÃ­a Los Molina</strong> we do what we\'ve always done: neighbourhood charcuterie with top-quality products and sandwiches that are a joy to see. We\'re a family from El Prat who\'ve been behind the counter for years, hand-carving ham and looking after our locals.',
     text2:
-      'We work with Cinco Jotas and Joselito ham hand-carved, bellota cured meats, all kinds of cheeses, Espinaler preserves and other delicacies we\'d buy for ourselves. Fresh bread daily, tomatoes from local farms (km 0) and oil from Jaén at its finest.',
+      'We work with Cinco Jotas and Joselito ham hand-carved, bellota cured meats, all kinds of cheeses, Espinaler preserves and other delicacies we\'d buy for ourselves. Fresh bread daily, tomatoes from local farms (km 0) and oil from JaÃ©n at its finest.',
     text3:
       'Come for breakfast, dinner or to stock your fridge. We prepare sandwiches on the spot, charcuterie boards, cheese platters, gift hampers and catering for your celebrations. Always friendly service, fair prices and that feeling of being in your neighbourhood spot.',
   },
 
-  // Offer
   offer: {
     title: 'What do we offer?',
     subtitle: 'Neighbourhood charcuterie with quality products, generous sandwiches and hand-carved ham',
@@ -39,9 +32,9 @@ export const EN = {
     tabDegustacion: 'Eat with us',
     promoDay: 'Every Wednesday',
     promoTitle: '10% discount',
-    promoCondition: 'On purchases over €30 in store',
+    promoCondition: 'On purchases over â‚¬30 in store',
     charcuteriaDescriptionIntro:
-      'Hand-carved Iberian ham, bellota cured meats, a wide variety of cheeses and appetizers — we prepare custom boards, gift hampers, catering for parties and everything you need to set up the perfect spread at home.',
+      'Hand-carved Iberian ham, bellota cured meats, a wide variety of cheeses and appetizers â€” we prepare custom boards, gift hampers, catering for parties and everything you need to set up the perfect spread at home.',
     charcuteriaDescriptionBrands: 'We work with top-quality brands:',
     brandDescriptions: {
       blazquez: 'Iberian ham from Salamanca with a long family tradition.',
@@ -50,17 +43,17 @@ export const EN = {
       la_selva: 'Cured meats and hams made in Girona with a traditional style.',
       mamma_fiore: 'Italian specialities like burrata, mozzarella and antipasti.',
       garcia_baquero: 'Well-known Spanish cheeses, mild and ideal for sharing.',
-      flor_de_esgueva: 'Cured sheep’s cheese with intense flavour and creamy texture.',
+      flor_de_esgueva: 'Cured sheepâ€™s cheese with intense flavour and creamy texture.',
       can_duran: 'Catalan cured meats such as longaniza and fuet, made traditionally.',
       salgot: 'Cured meats produced in the Montseny area with quality focus.',
       casa_miro: 'Brand associated with cheeses and dairy we use on our boards.',
-      idiazabal: 'Sheep’s cheese with Idiazabal designation, slightly smoky and characterful.',
-      payoyo: 'Goat and sheep cheese from Cádiz sierra with a very distinctive taste.',
+      idiazabal: 'Sheepâ€™s cheese with Idiazabal designation, slightly smoky and characterful.',
+      payoyo: 'Goat and sheep cheese from CÃ¡diz sierra with a very distinctive taste.',
     },
     degustacionDescription:
-      'If you stay for a meal, we prepare hearty sandwiches stuffed with Iberian ham, bikinis, charcuterie and cheese boards, and menus to share. We use crispy bread, tomatoes from local farmers (km 0) and Jaén oil of the finest quality. The Iberian ham sandwich is the star of the show, with a fixed offer of Iberian ham sandwich + drink for €9.50.',
+      'If you stay for a meal, we prepare hearty sandwiches stuffed with Iberian ham, bikinis, charcuterie and cheese boards, and menus to share. We use crispy bread, tomatoes from local farmers (km 0) and JaÃ©n oil of the finest quality. The Iberian ham sandwich is the star of the show, with a fixed offer of Iberian ham sandwich + drink for â‚¬9.50.',
     degustacionFooter:
-      'Planning a vermouth gathering, birthday or dinner at home? Ask about our custom boards, made-to-order catering and group menus — we\'ll find the option that fits your needs and budget.',
+      'Planning a vermouth gathering, birthday or dinner at home? Ask about our custom boards, made-to-order catering and group menus â€” we\'ll find the option that fits your needs and budget.',
     categories: [
       {
         name: 'Appetizers',
@@ -70,7 +63,7 @@ export const EN = {
           { name: 'Cheese cubes', desc: 'Semi-aged or mature, your choice.' },
           { name: 'Cured meat', desc: 'Fuet, longaniza, salami to get started.' },
           { name: 'Olives and preserves', desc: 'Assorted olives, potatoes, cockles, anchovies and more.' },
-          { name: 'Foie and pâtés', desc: 'Foie mi cuit with jam, assorted pâtés.' },
+          { name: 'Foie and pÃ¢tÃ©s', desc: 'Foie mi cuit with jam, assorted pÃ¢tÃ©s.' },
         ],
       },
       {
@@ -78,8 +71,8 @@ export const EN = {
         icon: '',
         items: [
           { name: 'Ham', desc: 'The classic: properly stuffed and you choose the quality.' },
-          { name: 'Iberian cured meat', desc: 'Chorizo, salami, Iberian loin… hearty sandwiches.' },
-          { name: 'Bellota cured meat', desc: 'Morcón, salami, bellota chorizo with intense flavour.' },
+          { name: 'Iberian cured meat', desc: 'Chorizo, salami, Iberian loinâ€¦ hearty sandwiches.' },
+          { name: 'Bellota cured meat', desc: 'MorcÃ³n, salami, bellota chorizo with intense flavour.' },
           { name: 'Cheese', desc: 'Semi-aged or mature, the origin you prefer.' },
           { name: 'Bikinis', desc: 'Sweet ham, Iberian or Mallorcan, the perennial favourites.' },
         ],
@@ -98,7 +91,6 @@ export const EN = {
     ],
   },
 
-  // Location
   location: {
     title: 'Find Us',
     subtitle: 'Your trusted charcuterie in El Prat de Llobregat',
@@ -107,13 +99,13 @@ export const EN = {
     address2: '08820 El Prat de Llobregat',
     address3: 'Barcelona, Spain',
     scheduleTitle: 'Opening Hours',
-    schedule1: 'Monday to Thursday: 8:30–14:00 & 17:00–22:00',
-    schedule2: 'Friday: 8:30–14:00 & 17:00–22:30',
-    schedule3: 'Saturday: 8:30–14:00',
+    schedule1: 'Monday to Thursday: 8:30â€“14:00 & 17:00â€“22:00',
+    schedule2: 'Friday: 8:30â€“14:00 & 17:00â€“22:30',
+    schedule3: 'Saturday: 8:30â€“14:00',
     kitchenScheduleTitle: 'Kitchen availability',
-    kitchenSchedule1: 'Monday to Thursday: 8:30–13:30 & 17:00–21:30',
-    kitchenSchedule2: 'Friday: 8:30–13:30 & 17:00–22:00',
-    kitchenSchedule3: 'Saturday: 8:30–13:30',
+    kitchenSchedule1: 'Monday to Thursday: 8:30â€“13:30 & 17:00â€“21:30',
+    kitchenSchedule2: 'Friday: 8:30â€“13:30 & 17:00â€“22:00',
+    kitchenSchedule3: 'Saturday: 8:30â€“13:30',
     contactTitle: 'Contact',
     phone: '937 82 70 85',
     phoneLabel: 'Phone:',
@@ -122,7 +114,6 @@ export const EN = {
     locationText: 'In the heart of El Prat',
   },
 
-  // Sidebar
   sidebar: {
     home: 'Home',
     about: 'About Us',
@@ -132,14 +123,12 @@ export const EN = {
     closeMenu: 'Close menu',
   },
 
-  // Footer
   footer: {
-    address: 'Frederic Soler, 17 — El Prat de Llobregat, Barcelona',
+    address: 'Frederic Soler, 17 â€” El Prat de Llobregat, Barcelona',
     work: 'Work with us',
-    copyright: 'Charcutería Los Molina — All rights reserved',
+    copyright: 'CharcuterÃ­a Los Molina â€” All rights reserved',
   },
 
-  // Reviews
   reviews: {
     title: 'What our customers say',
     loading: 'Loading reviews...',
@@ -162,14 +151,14 @@ export const EN = {
       },
       {
         author: 'Augusto',
-        text: 'Simple and cozy café in El Prat where I found the best Iberian Ham in the area, served on crispy bread with tomato and olive oil it becomes a delicious delicacy. I accompanied it with fresh and intense coffee. The service is good and the prices reasonable. Good, Nice and Cheap as we say in Peru.',
+        text: 'Simple and cozy cafÃ© in El Prat where I found the best Iberian Ham in the area, served on crispy bread with tomato and olive oil it becomes a delicious delicacy. I accompanied it with fresh and intense coffee. The service is good and the prices reasonable. Good, Nice and Cheap as we say in Peru.',
       },
       {
         author: 'Eduardo',
         text: 'Excellent place, very good pork products and cheeses, both to buy and to taste there, washed down with quality beer, wine, or cavas.',
       },
       {
-        author: 'Jazmín',
+        author: 'JazmÃ­n',
         text: 'The times we had gone were for breakfast. This time we decided to go for dinner, and honestly, wonderful!! tables of cheeses and ham with a spectacular flavor, the attention of the waiters excellent, they explain the variety of things. We were on the terrace, very nice, little noise, clean atmosphere. Definitely we will return.',
       },
       {
@@ -195,14 +184,13 @@ export const EN = {
     ],
   },
 
-  // Work with us
   work: {
     title: 'Work with us',
     subtitle: 'We\'re looking for people with a passion for great food',
     successTitle: 'We have received your application!',
     successText:
       'We will get in touch with you soon. Thank you for your interest in joining the team.',
-    backLink: '← Back to website',
+    backLink: 'â† Back to website',
     nameLabel: 'Full name *',
     namePlaceholder: 'Your full name',
     emailLabel: 'Email *',
@@ -213,7 +201,7 @@ export const EN = {
     messagePlaceholder:
       'Tell us about yourself, your experience and why you would like to join the team...',
     cvLabel: 'Upload your CV (PDF, DOC, DOCX, max. 5MB)',
-    cvPlaceholder: '📎 Select your CV',
+    cvPlaceholder: 'ðŸ“Ž Select your CV',
     submitButton: 'Send application',
     submitting: 'Sending...',
     errorFileSize: 'The file is too large. Maximum 5MB.',
@@ -221,7 +209,6 @@ export const EN = {
     errorSend: 'Error sending the form. Please try again.',
   },
 
-  // Carta
   carta: {
     title: 'Our Menu',
     subtitle: 'Hand-carved ham, bellota cured meats, artisan cheeses and much more',
@@ -232,10 +219,10 @@ export const EN = {
     embutidosTitle: 'Our Cured Meats',
     embutidosNote: 'Choose your preferred presentation. Coca bread, baguette or on a plate.',
     colEmbutido: 'Cured Meat',
-    colMedioBoc: '½ Sandwich',
+    colMedioBoc: 'Â½ Sandwich',
     colBocEntero: 'Sandwich',
     colTorrada: 'Torrada',
-    colMediaTabla: '½ Board',
+    colMediaTabla: 'Â½ Board',
     colTabla: 'Board',
     colBocadillo: 'Hot Sandwich',
     colPrecio: 'Price',
@@ -245,8 +232,8 @@ export const EN = {
     colCaliente: 'Hot sandwich',
     colMedio: 'Half',
     colEntero: 'Full',
-    cocaNote: '+1€ coca',
-    cocaNoteFull: '+1.50€ coca',
+    cocaNote: '+1â‚¬ coca',
+    cocaNoteFull: '+1.50â‚¬ coca',
     tablasTitle: 'Special boards',
     tablasNote: 'Price: board / half board',
     calientesTitle: 'Hot sandwiches',
@@ -262,22 +249,21 @@ export const EN = {
     navPizzas: 'Pizzas',
     navPostres: 'Desserts',
     footerText: 'Hosting an event? We prepare custom boards, hampers and catering. Ask us!',
-    backLink: '← Back to website',
+    backLink: 'â† Back to website',
   },
 
-  // ─── Carta items: names and descriptions per language ────────────────────────
     cartaItems: {
     aperitivos: {
       olivas_xxl:       { name: 'Assorted XXL Olives' },
       taquitos_jamon:   { name: 'Iberian Ham Bites' },
       tapa_fuet:        { name: 'Fuet or Longaniza Tapa' },
-      flores_tete_1:    { name: 'Tête de Moine Flowers (1 pc)' },
-      flores_tete_5:    { name: 'Tête de Moine Flowers (5 pcs)' },
+      flores_tete_1:    { name: 'TÃªte de Moine Flowers (1 pc)' },
+      flores_tete_5:    { name: 'TÃªte de Moine Flowers (5 pcs)' },
       dados_semicurado: { name: 'Semi-cured Cheese Cubes' },
       dados_curado:     { name: 'Cured Cheese Cubes' },
-      surtido_pates:    { name: 'Assorted Pâtés' },
+      surtido_pates:    { name: 'Assorted PÃ¢tÃ©s' },
       bloc_foie:        { name: 'Foie Bloc',        desc: 'With jam and toast' },
-      lacon_pimenton:   { name: 'Lacón with Paprika' },
+      lacon_pimenton:   { name: 'LacÃ³n with Paprika' },
       salmon_ahumado:   { name: 'Smoked Salmon',    desc: 'With butter and toast' },
       boquerones:       { name: 'Anchovies in Vinegar' },
       anchoas:          { name: 'Anchovies (5 fillets)' },
@@ -293,9 +279,9 @@ export const EN = {
       navajas:               { name: 'Razor Clams' },
       sardinas:              { name: 'Sardines in Olive Oil' },
       chipirones:            { name: 'Baby Squid' },
-      ria_noia:              { name: 'Ría de Noia',    desc: 'Potato chips, olives, cockles and anchovies in vinegar' },
-      ria_ribadeo:           { name: 'Ría de Ribadeo', desc: 'Potato chips, olives, cockles and mussels' },
-      ria_muros:             { name: 'Ría de Muros',   desc: 'Potato chips, olives, cockles, mussels and anchovies' },
+      ria_noia:              { name: 'RÃ­a de Noia',    desc: 'Potato chips, olives, cockles and anchovies in vinegar' },
+      ria_ribadeo:           { name: 'RÃ­a de Ribadeo', desc: 'Potato chips, olives, cockles and mussels' },
+      ria_muros:             { name: 'RÃ­a de Muros',   desc: 'Potato chips, olives, cockles, mussels and anchovies' },
     },
     menus: {
       menu_iberico:      { name: 'Iberian Menu',       desc: 'Iberian shoulder portion, semi-cured cheese portion, bread with tomato and 2 drinks' },
@@ -319,15 +305,15 @@ export const EN = {
       chorizo_iberico:         { name: 'Iberian Chorizo' },
       chorizo_bellota:         { name: 'Acorn Chorizo' },
       chorizo_joselito:        { name: 'Joselito Chorizo' },
-      salchichon_iberico:      { name: 'Iberian Salchichón' },
-      salchichon_bellota:      { name: 'Acorn Salchichón' },
-      salchichon_joselito:     { name: 'Joselito Salchichón' },
+      salchichon_iberico:      { name: 'Iberian SalchichÃ³n' },
+      salchichon_bellota:      { name: 'Acorn SalchichÃ³n' },
+      salchichon_joselito:     { name: 'Joselito SalchichÃ³n' },
       lomo_iberico:            { name: 'Iberian Loin' },
       lomo_bellota:            { name: 'Acorn Loin' },
       lomo_joselito:           { name: 'Joselito Loin' },
-      morcon_bellota:          { name: 'Acorn Morcón' },
+      morcon_bellota:          { name: 'Acorn MorcÃ³n' },
       presa_cinco_jotas:       { name: 'Cinco Jotas Presa' },
-      surtido_iberico:         { name: 'Iberian Assortment',     desc: 'Loin, chorizo and salchichón' },
+      surtido_iberico:         { name: 'Iberian Assortment',     desc: 'Loin, chorizo and salchichÃ³n' },
       jamon_dulce:             { name: 'Cooked Ham' },
       bull_blanco:             { name: 'Bull Blanco' },
       bull_negro:              { name: 'Bull Negro' },
@@ -346,9 +332,9 @@ export const EN = {
       queso_semicurado:        { name: 'Semi-cured Cheese' },
       queso_curado:            { name: 'Cured Cheese' },
       queso_fresco_cabra:      { name: 'Fresh Goat Cheese' },
-      queso_manchego:          { name: 'Manchego Peña Nieto Cheese' },
+      queso_manchego:          { name: 'Manchego PeÃ±a Nieto Cheese' },
       queso_payoyo:            { name: 'Payoyo Cheese' },
-      tabla_queso_gourmet:     { name: 'Gourmet Cheese Board',   desc: 'Señorío de Quevedo, rosemary-cured cheese, truffle cheese and Tête de Moine' },
+      tabla_queso_gourmet:     { name: 'Gourmet Cheese Board',   desc: 'SeÃ±orÃ­o de Quevedo, rosemary-cured cheese, truffle cheese and TÃªte de Moine' },
     },
     biquinis: {
       biquini:            { name: 'Biquini' },
@@ -358,7 +344,7 @@ export const EN = {
     calientes: {
       bacon:             { name: 'Bacon' },
       bacon_curado:      { name: 'Cured Bacon' },
-      lacon:             { name: 'Lacón',              desc: 'with sweet or spicy paprika' },
+      lacon:             { name: 'LacÃ³n',              desc: 'with sweet or spicy paprika' },
       sobrasada:         { name: 'Sobrasada' },
       sobrasada_iberica: { name: 'Iberian Sobrasada',  desc: 'sweet or spicy' },
       chistorra:         { name: 'Chistorra' },
@@ -366,7 +352,7 @@ export const EN = {
       pikantwurst:       { name: 'Pikantwurst' },
       cervela:           { name: 'Cervela' },
       bratwurst:         { name: 'Bratwurst' },
-      malaguenya:        { name: 'Malagueña' },
+      malaguenya:        { name: 'MalagueÃ±a' },
     },
     suplementos: {
       havarti:    { name: 'Havarti Cheese' },
@@ -386,7 +372,7 @@ export const EN = {
       trufas:         { name: 'Chocolate Truffles with Cream (4 pcs)' },
       coulant:        { name: 'Chocolate Lava Cake with Cream' },
       tarta_santiago: { name: 'Tarta Santiago' },
-      mel_i_mato:     { name: 'Mel i Mató' },
+      mel_i_mato:     { name: 'Mel i MatÃ³' },
     },
   },
 };

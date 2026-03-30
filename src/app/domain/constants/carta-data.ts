@@ -1,21 +1,4 @@
-/**
- * ─── Datos de la Carta — Fuente única de precios ──────────────────────────────
- *
- * Este archivo es la ÚNICA fuente de verdad para los precios.
- * Los nombres y descripciones están en los archivos de idioma
- * (es.ts / en.ts / cat.ts) bajo la sección `cartaItems`.
- *
- * ┌───────────────────────────────────────────────────────────────────────────┐
- * │  Para modificar precios:  edita SOLO este archivo.                        │
- * │  Para añadir un producto: añade la `key` aquí + la traducción en cada     │
- * │  archivo de idioma (es/en/cat).                                           │
- * └───────────────────────────────────────────────────────────────────────────┘
- *
- * Gestión externa (sin backend): ver /public/data/carta-prices.json
- * → compatible con Excel · Google Sheets · cualquier editor JSON
- */
-
-// ─── Interfaces de precio ─────────────────────────────────────────────────────
+﻿
 
 export interface PriceItem {
     key: string;
@@ -54,7 +37,6 @@ export interface SuplementoPriceRow {
     entero: string;
 }
 
-// ─── Aperitivos ───────────────────────────────────────────────────────────────
 
 export const APERITIVOS_PRICES: PriceItem[] = [
     { key: 'olivas_xxl',        price: '3,90'  },
@@ -72,7 +54,6 @@ export const APERITIVOS_PRICES: PriceItem[] = [
     { key: 'anchoas',           price: '9,90'  },
 ];
 
-// ─── Conservas Espinaler ──────────────────────────────────────────────────────
 
 export const CONSERVAS_PRICES: PriceItem[] = [
     { key: 'patatas_chips',         price: '2,00'  },
@@ -90,7 +71,6 @@ export const CONSERVAS_PRICES: PriceItem[] = [
     { key: 'ria_muros',             price: '19,90' },
 ];
 
-// ─── Menús ────────────────────────────────────────────────────────────────────
 
 export const MENUS_PRICES: PriceItem[] = [
     { key: 'menu_iberico',      price: '22,90' },
@@ -98,7 +78,6 @@ export const MENUS_PRICES: PriceItem[] = [
     { key: 'menu_delicatessen', price: '39,90' },
 ];
 
-// ─── Embutidos (tabla cruzada) ────────────────────────────────────────────────
 
 export const EMBUTIDO_GROUPS_PRICES: EmbutidoPriceGroup[] = [
     {
@@ -163,7 +142,6 @@ export const EMBUTIDO_GROUPS_PRICES: EmbutidoPriceGroup[] = [
     },
 ];
 
-// ─── Biquinis ─────────────────────────────────────────────────────────────────
 
 export const BIQUINIS_PRICES: BiquiniPriceRow[] = [
     { key: 'biquini',            normal: '2,90', maxi: '5,10' },
@@ -171,7 +149,6 @@ export const BIQUINIS_PRICES: BiquiniPriceRow[] = [
     { key: 'biquini_mallorquin', normal: '3,70', maxi: '5,90' },
 ];
 
-// ─── Bocadillos Calientes ─────────────────────────────────────────────────────
 
 export const CALIENTES_PRICES: CalientePriceRow[] = [
     { key: 'bacon',             medio: '1,00', entero: '6,20' },
@@ -187,7 +164,6 @@ export const CALIENTES_PRICES: CalientePriceRow[] = [
     { key: 'malaguenya',                        entero: '6,20' },
 ];
 
-// ─── Suplementos ──────────────────────────────────────────────────────────────
 
 export const SUPLEMENTOS_PRICES: SuplementoPriceRow[] = [
     { key: 'havarti',    medio: '1,00', entero: '2,00' },
@@ -197,7 +173,6 @@ export const SUPLEMENTOS_PRICES: SuplementoPriceRow[] = [
     { key: 'brie',       medio: '1,00', entero: '2,00' },
 ];
 
-// ─── Pizzas ───────────────────────────────────────────────────────────────────
 
 export const PIZZAS_PRICES: PriceItem[] = [
     { key: 'pizza_jamon_dulce',    price: '11,90' },
@@ -207,7 +182,6 @@ export const PIZZAS_PRICES: PriceItem[] = [
     { key: 'pizza_4_quesos',       price: '13,90' },
 ];
 
-// ─── Postres ──────────────────────────────────────────────────────────────────
 
 export const POSTRES_PRICES: PriceItem[] = [
     { key: 'trufas',         price: '4,50' },
