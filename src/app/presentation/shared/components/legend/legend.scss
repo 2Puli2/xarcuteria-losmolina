@@ -1,0 +1,38 @@
+@use '../../../../../variables' as *;
+
+.legend {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+  justify-content: center;
+  align-items: center;
+  padding: $spacing-md;
+  background: linear-gradient(135deg, rgba($color-accent, 0.08), rgba($color-accent, 0.03));
+  border: 1px solid rgba($color-accent, 0.2);
+  border-radius: $border-radius-md;
+  margin-bottom: $spacing-md;
+}
+
+.legend__title {
+  font-size: $font-size-sm;
+  font-weight: 700;
+  color: $color-accent;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  width: 100%;
+  text-align: center;
+}
+
+.legend__item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-size: $font-size-sm;
+  color: $color-light;
+}
+
+.legend__icon {
+  font-size: $font-size-base;
+  display: inline-block;
+}

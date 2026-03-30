@@ -1,0 +1,68 @@
+@use '../../../../variables' as *;
+
+.carta {
+  // ─── Listas (aperitivos, conservas, menús, pizzas, postres) ───
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: $spacing-sm $spacing-md;
+    transition: background-color $transition-fast;
+
+    &:nth-of-type(odd) {
+      background-color: rgba($color-accent, 0.05);
+    }
+
+    &:nth-of-type(even) {
+      background-color: rgba(white, 0.06);
+    }
+
+    &:hover {
+      background-color: rgba($color-accent, 0.10);
+    }
+
+    &--menu {
+      flex-direction: column;
+      gap: $spacing-xs;
+
+      .carta__list-item-price {
+        align-self: flex-end;
+      }
+    }
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    &-name {
+      font-family: $font-family-base;
+      font-size: $font-size-base;
+      color: $color-light;
+      font-weight: 600;
+    }
+
+    &-desc {
+      font-size: $font-size-sm;
+      color: rgba($color-light, 0.65);
+      line-height: 1.4;
+    }
+
+    &-price {
+      font-family: $font-family-heading;
+      font-size: $font-size-base;
+      color: rgb(161, 161, 161);
+      font-weight: 700;
+      white-space: nowrap;
+      margin-left: $spacing-md;
+    }
+  }
+}

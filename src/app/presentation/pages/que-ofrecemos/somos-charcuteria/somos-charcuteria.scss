@@ -28,6 +28,7 @@
     }
   }
 
+  // ─── Layout contenido: foto + brands en flex ───
   &__content {
     width: 100%;
     display: flex;
@@ -36,6 +37,7 @@
     justify-content: center;
   }
 
+  // ─── Mostrador foto ───
   &__counter-image {
     flex: 0 1 auto;
     max-width: 450px;
@@ -53,6 +55,7 @@
 
   }
 
+  // ─── Carrusel de marcas con flechas overlay ───
   &__brands-carousel {
     display: flex;
     align-items: center;
@@ -60,6 +63,7 @@
     justify-content: center;
   }
 
+  // ─── Flechas de navegación (overlay, 80% del tamaño) ───
   &__carousel-arrow {
     position: absolute;
     background: rgba($color-dark, 0.7);
@@ -99,6 +103,7 @@
     }
   }
 
+  // ─── Marcas ───
   &__brands-section {
     width: 100%;
     display: flex;
@@ -107,6 +112,7 @@
     gap: $spacing-md;
   }
 
+  // Contenedor fijo que mantiene el tamaño (100% mayor que antes)
   &__brand-stage {
     position: relative;
     width: 360px;
@@ -132,6 +138,7 @@
     padding: $spacing-xl;
 
 
+    // El fade se controla con opacity; empieza invisible
     opacity: 0;
     transition:
       opacity 0.5s ease,
@@ -182,6 +189,111 @@
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ─── Promo Banner ───
+.charcuteria__promo {
+  width: 100%;
+  background: linear-gradient(135deg, $color-primary 0%, #7a1a17 100%);
+  border-radius: $border-radius-lg;
+  padding: $spacing-lg $spacing-xl;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  border: 2px solid rgba($color-accent, 0.45);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 20px,
+      rgba(0, 0, 0, 0.06) 20px,
+      rgba(0, 0, 0, 0.06) 40px
+    );
+    pointer-events: none;
+  }
+}
+
+.charcuteria__promo-body {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  z-index: 1;
+}
+
+.charcuteria__promo-day {
+  display: inline-block;
+  background-color: $color-accent;
+  color: $color-dark;
+  font-family: $font-family-heading;
+  font-size: $font-size-xs;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 14px;
+  border-radius: $border-radius-full;
+  align-self: flex-start;
+}
+
+.charcuteria__promo-title {
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: 700;
+  color: $color-light;
+  margin: 0;
+  line-height: 1.1;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.charcuteria__promo-condition {
+  font-size: $font-size-sm;
+  color: rgba($color-light, 0.8);
+  margin: 0;
+  font-style: italic;
+}
+
+.charcuteria__promo-highlight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.charcuteria__promo-number {
+  font-family: $font-family-heading;
+  font-size: 80px;
+  font-weight: 900;
+  color: $color-accent;
+  line-height: 1;
+  text-shadow: 0 0 30px rgba($color-accent, 0.35);
+}
+
+.charcuteria__promo-label {
+  font-family: $font-family-heading;
+  font-size: $font-size-md;
+  font-weight: 700;
+  color: $color-accent;
+  letter-spacing: 0.25em;
+  margin-top: -8px;
+}
+
+// ─── Responsive móvil ───
 @media (max-width: $breakpoint-sm) {
   .charcuteria {
     &__content {
@@ -229,8 +341,19 @@
         font-size: $font-size-sm;
       }
     }
+
+    &__promo {
+      flex-direction: column;
+      text-align: center;
+      padding: $spacing-md;
+    }
+
+    &__promo-day {
+      align-self: center;
+    }
+
+    &__promo-number {
+      font-size: 64px;
+    }
   }
 }
-
-
-

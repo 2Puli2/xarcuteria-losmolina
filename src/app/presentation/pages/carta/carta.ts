@@ -15,6 +15,11 @@ import {
     SUPLEMENTOS_PRICES,
     PIZZAS_PRICES,
     POSTRES_PRICES,
+    REFRESCOS_DATA,
+    CERVEZAS_DATA,
+    VINOS_DATA,
+    CAFES_DATA,
+    BebidaItem,
 } from '../../../domain/constants/carta-data';
 
 
@@ -122,7 +127,7 @@ export class CartaComponent {
 
     readonly suplementos = computed<SuplementosRow[]>(() => {
         const t = this.idioma.t().cartaItems.suplementos as Record<string, CartaItem>;
-        return SUPLEMENTOS_PRICES.map(p => ({
+        return SUPLEMENTOS_PRICES.filter(p => !p.key.startsWith('suplemento_')).map(p => ({
             ...(t[p.key] ?? { name: p.key }),
             medio: p.medio,
             entero: p.entero,
@@ -139,6 +144,10 @@ export class CartaComponent {
         return POSTRES_PRICES.map(p => ({ ...(t[p.key] ?? { name: p.key }), price: p.price }));
     });
 
+    readonly refrescos: BebidaItem[] = REFRESCOS_DATA;
+    readonly cervezas: BebidaItem[] = CERVEZAS_DATA;
+    readonly vinos: BebidaItem[] = VINOS_DATA;
+    readonly cafes: BebidaItem[] = CAFES_DATA;
 
     scrollTo(sectionId: string): void {
         document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });

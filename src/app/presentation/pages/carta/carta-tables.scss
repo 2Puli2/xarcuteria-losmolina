@@ -1,0 +1,221 @@
+@use '../../../../variables' as *;
+
+.carta {
+  // ─── Embutidos: grupos y tabla ───
+  &__embutidos-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    scroll-margin-top: 56px;
+  }
+
+  &__table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: $border-radius-md;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 640px;
+    table-layout: fixed;
+
+    .carta__table-th--name,
+    .carta__table-td--name {
+      width: 66%;
+    }
+
+    .carta__table-th:not(.carta__table-th--name),
+    .carta__table-td:not(.carta__table-td--name) {
+      width: 35%;
+    }
+
+    &--calientes {
+      min-width: 340px;
+      table-layout: fixed;
+
+      .carta__table-th--name,
+      .carta__table-td--name {
+        width: 55%;
+      }
+
+      .carta__table-th:not(.carta__table-th--name),
+      .carta__table-td:not(.carta__table-td--name) {
+        width: 22.5%;
+      }
+    }
+
+    // Segunda tabla enganchada a la anterior
+    &--joined {
+      border-top: 3px solid $color-dark;
+
+      .carta__table-th {
+        &:first-child { border-radius: 0; }
+        &:last-child  { border-radius: 0; }
+      }
+    }
+
+    // Tabla tirador de cervezas (sección Bebidas)
+    &--bebidas {
+      min-width: 280px;
+      table-layout: fixed;
+
+      .carta__table-th--name,
+      .carta__table-td--name {
+        width: 80%;
+      }
+
+      .carta__table-th:not(.carta__table-th--name),
+      .carta__table-td:not(.carta__table-td--name) {
+        width: 20%;
+      }
+    }
+  }
+
+  // Estilo especial para suplementos (apartado secundario, discreto)
+  &__embutidos-group--suplementos {
+    .carta__table {
+      table-layout: fixed;
+      min-width: auto;
+
+      .carta__table-th--name,
+      .carta__table-td--name {
+        width: 55%;
+      }
+
+      .carta__table-th:not(.carta__table-th--name),
+      .carta__table-td:not(.carta__table-td--name) {
+        width: 22.5%;
+      }
+
+      .carta__table-th--name,
+      .carta__table-td--name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .carta__subsection-title {
+      color: rgba($color-accent, 0.6);
+      border-bottom: 1px solid rgba($color-accent, 0.15);
+    }
+
+    .carta__table-th {
+      background-color: rgba($color-accent, 0.08);
+      color: rgba($color-light, 0.7);
+      border-bottom: 1px solid rgba($color-accent, 0.15);
+    }
+
+    .carta__table-row {
+      &:nth-child(odd) {
+        background-color: rgba($color-dark, 0.4);
+      }
+
+      &:nth-child(even) {
+        background-color: rgba($color-dark, 0.25);
+      }
+
+      &:hover {
+        background-color: rgba($color-accent, 0.08);
+      }
+    }
+  }
+
+  // Wrapper con dos tablas: quita el radio inferior de la primera
+  &__table-wrap--double {
+    .carta__table:first-child {
+      .carta__table-row:last-child {
+        .carta__table-td:first-child { border-radius: 0; }
+        .carta__table-td:last-child  { border-radius: 0; }
+      }
+    }
+  }
+
+  &__table-th {
+    font-family: $font-family-heading;
+    font-size: $font-size-sm;
+    color: $color-dark;
+    font-weight: 700;
+    text-align: center;
+    padding: $spacing-sm $spacing-xs;
+    background-color: $color-accent;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+
+    &--name {
+      text-align: left;
+      padding-left: $spacing-md;
+      min-width: 180px;
+    }
+
+    &:first-child {
+      border-radius: $border-radius-md 0 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 $border-radius-md 0 0;
+    }
+  }
+
+  &__table-th-note {
+    display: block;
+    font-size: $font-size-xs;
+    font-weight: 400;
+    color: rgba($color-dark, 0.7);
+    white-space: nowrap;
+  }
+
+  &__table-row {
+    transition: background-color $transition-fast;
+
+    &:nth-child(odd) {
+      background-color: rgba($color-accent, 0.05);
+    }
+
+    &:nth-child(even) {
+      background-color: rgba(white, 0.06);
+    }
+
+    &:hover {
+      background-color: rgba($color-accent, 0.12);
+    }
+
+    &:last-child .carta__table-td {
+      &:first-child {
+        border-radius: 0 0 0 $border-radius-md;
+      }
+
+      &:last-child {
+        border-radius: 0 0 $border-radius-md 0;
+      }
+    }
+  }
+
+  &__table-td {
+    font-size: $font-size-sm;
+    color: #A1A1A1;
+    text-align: center;
+    padding: $spacing-sm $spacing-xs;
+    border-bottom: 1px solid rgba(white, 0.04);
+
+    &--name {
+      text-align: left;
+      padding-left: $spacing-md;
+      color: $color-light;
+      font-weight: 600;
+      font-size: $font-size-base;
+    }
+  }
+
+  &__table-td-desc {
+    display: block;
+    font-size: $font-size-xs;
+    color: rgba($color-light, 0.65);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+}
