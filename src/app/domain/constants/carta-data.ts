@@ -1,5 +1,3 @@
-
-
 export interface PriceItem {
     key: string;
     price: string;
@@ -37,7 +35,6 @@ export interface SuplementoPriceRow {
     entero: string;
 }
 
-
 export const APERITIVOS_PRICES: PriceItem[] = [
     { key: 'olivas_xxl',        price: '3,90'  },
     { key: 'taquitos_jamon',    price: '6,50'  },
@@ -53,7 +50,6 @@ export const APERITIVOS_PRICES: PriceItem[] = [
     { key: 'boquerones',        price: '6,90'  },
     { key: 'anchoas',           price: '9,90'  },
 ];
-
 
 export const CONSERVAS_PRICES: PriceItem[] = [
     { key: 'patatas_chips',         price: '2,00'  },
@@ -71,13 +67,11 @@ export const CONSERVAS_PRICES: PriceItem[] = [
     { key: 'ria_muros',             price: '19,90' },
 ];
 
-
 export const MENUS_PRICES: PriceItem[] = [
     { key: 'menu_iberico',      price: '22,90' },
     { key: 'menu_bellota',      price: '26,90' },
     { key: 'menu_delicatessen', price: '39,90' },
 ];
-
 
 export const EMBUTIDO_GROUPS_PRICES: EmbutidoPriceGroup[] = [
     {
@@ -142,13 +136,11 @@ export const EMBUTIDO_GROUPS_PRICES: EmbutidoPriceGroup[] = [
     },
 ];
 
-
 export const BIQUINIS_PRICES: BiquiniPriceRow[] = [
     { key: 'biquini',            normal: '2,90', maxi: '5,10' },
     { key: 'biquini_iberico',    normal: '4,00', maxi: '6,80' },
     { key: 'biquini_mallorquin', normal: '3,70', maxi: '5,90' },
 ];
-
 
 export const CALIENTES_PRICES: CalientePriceRow[] = [
     { key: 'bacon',             medio: '1,00', entero: '6,20' },
@@ -164,7 +156,6 @@ export const CALIENTES_PRICES: CalientePriceRow[] = [
     { key: 'malaguenya',                        entero: '6,20' },
 ];
 
-
 export const SUPLEMENTOS_PRICES: SuplementoPriceRow[] = [
     { key: 'havarti',    medio: '1,00', entero: '2,00' },
     { key: 'semicurado', medio: '1,00', entero: '2,00' },
@@ -173,7 +164,6 @@ export const SUPLEMENTOS_PRICES: SuplementoPriceRow[] = [
     { key: 'brie',       medio: '1,00', entero: '2,00' },
 ];
 
-
 export const PIZZAS_PRICES: PriceItem[] = [
     { key: 'pizza_jamon_dulce',    price: '11,90' },
     { key: 'pizza_jamon_iberico',  price: '13,90' },
@@ -181,7 +171,6 @@ export const PIZZAS_PRICES: PriceItem[] = [
     { key: 'pizza_sobrasada_brie', price: '13,90' },
     { key: 'pizza_4_quesos',       price: '13,90' },
 ];
-
 
 export const POSTRES_PRICES: PriceItem[] = [
     { key: 'trufas',         price: '4,50' },

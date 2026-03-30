@@ -1,19 +1,16 @@
 export const ES = {
   lang: 'es',
-
   general: {
     logoTagline: 'Charcutería de barrio · Bocadillos y degustación',
     logoAlt: 'Charcutería Los Molina',
     openMenu: 'Abrir menú',
     scroll: 'Scroll',
   },
-
   home: {
     cta: 'Descubre qué ofrecemos',
     navAbout: 'Sobre nosotros',
     navFind: 'Dónde estamos',
   },
-
   about: {
     title: 'Sobre Nosotros',
     subtitle: 'Charcutería de barrio con género de calidad y bocadillos bien generosos',
@@ -24,7 +21,6 @@ export const ES = {
     text3:
       'Aquí puedes venir a desayunar, a cenar o a llenar la nevera. Te preparamos bocadillos al momento, bandejas de embutido, tablas de queso, lotes de regalo y cátering para tus celebraciones. Siempre con trato cercano, precio justo y la sensación de estar en la charcu de toda la vida.',
   },
-
   offer: {
     title: '¿Qué ofrecemos?',
     subtitle: 'Charcutería de barrio con género top, bocadillos que te dejan agusto y jamón cortado a mano',
@@ -32,7 +28,7 @@ export const ES = {
     tabDegustacion: 'Para comer aquí',
     promoDay: 'Cada miércoles',
     promoTitle: '10% de descuento',
-    promoCondition: 'En compras superiores a 30�� en tienda',
+    promoCondition: 'En compras superiores a 30€ en tienda',
     charcuteriaDescriptionIntro:
       'En nuestra charcuteria tienes jamón ibérico cortado a mano o a maquina, embutido ibérico y de bellota, mucha variedad de quesos y aperitivos. Te preparamos bandejas por encargo, lotes para regalo, cátering para fiestas y todo el género para que te montes el aperitivo en casa.',
     charcuteriaDescriptionBrands: 'Trabajamos con marcas de primera:',
@@ -51,7 +47,7 @@ export const ES = {
       payoyo: 'Queso de cabra y oveja de la sierra de Cádiz, con sabor muy personal.',
     },
     degustacionDescription:
-      'Si te quedas a comer, preparamos al momento bocadillos bien llenos de jamón ibérico, bikinis, tablas de embutido y quesos y menús para compartir. Usamos pan crujiente, tomate km 0 de payeses de la zona y aceite de Jaén de máxima calidad. El bocadillo de jamón ibérico es el rey de la casa, con una oferta fija de bocadillo de jamón ibérico + bebida por 9,5��.',
+      'Si te quedas a comer, preparamos al momento bocadillos bien llenos de jamón ibérico, bikinis, tablas de embutido y quesos y menús para compartir. Usamos pan crujiente, tomate km 0 de payeses de la zona y aceite de Jaén de máxima calidad. El bocadillo de jamón ibérico es el rey de la casa, con una oferta fija de bocadillo de jamón ibérico + bebida por 9,5€.',
     degustacionFooter:
       '¿Organizas un vermut, un cumpleaños o una cena en casa? Pregunta por nuestras bandejas, cátering a medida y menús para grupos; buscamos la opción que mejor te encaje en cantidad y precio.',
     categories: [
@@ -71,7 +67,7 @@ export const ES = {
         icon: '',
         items: [
           { name: 'Jamón', desc: 'El clásico: bien relleno y tú escoges la calidad.' },
-          { name: 'Embutido ibérico', desc: 'Chorizo, salchichón, lomo ibérico⬦ para no quedarse con hambre.' },
+          { name: 'Embutido ibérico', desc: 'Chorizo, salchichón, lomo ibérico… para no quedarse con hambre.' },
           { name: 'Embutido de bellota', desc: 'Morcón, salchichón, chorizo de bellota con sabor intenso.' },
           { name: 'Queso', desc: 'Semicurado o curado, la procedencia que quieras.' },
           { name: 'Bikinis', desc: 'Jamón dulce, ibérico o mallorquín, los favoritos de siempre.' },
@@ -88,7 +84,6 @@ export const ES = {
       },
     ],
   },
-
   location: {
     title: 'Dónde Encontrarnos',
     subtitle: 'Tu charcutería de barrio en El Prat de Llobregat',
@@ -97,13 +92,13 @@ export const ES = {
     address2: '08820 El Prat de Llobregat',
     address3: 'Barcelona, España',
     scheduleTitle: 'Horario',
-    schedule1: 'Lunes a Jueves: 8:30�14:00 y 17:00�22:00',
-    schedule2: 'Viernes: 8:30�14:00 y 17:00�22:30',
-    schedule3: 'Sábados: 8:30�14:00',
+    schedule1: 'Lunes a Jueves: 8:30–14:00 y 17:00–22:00',
+    schedule2: 'Viernes: 8:30–14:00 y 17:00–22:30',
+    schedule3: 'Sábados: 8:30–14:00',
     kitchenScheduleTitle: 'Disponibilidad de cocina',
-    kitchenSchedule1: 'Lunes a Jueves: 8:30�13:30 y 17:00�21:30',
-    kitchenSchedule2: 'Viernes: 8:30�13:30 y 17:00�22:00',
-    kitchenSchedule3: 'Sábados: 8:30�13:30',
+    kitchenSchedule1: 'Lunes a Jueves: 8:30–13:30 y 17:00–21:30',
+    kitchenSchedule2: 'Viernes: 8:30–13:30 y 17:00–22:00',
+    kitchenSchedule3: 'Sábados: 8:30–13:30',
     contactTitle: 'Contacto',
     phone: '937 82 70 85',
     phoneLabel: 'Teléfono:',
@@ -111,7 +106,6 @@ export const ES = {
     locationLabel: 'Ubicación:',
     locationText: 'En el centro de El Prat, a un paso de todo',
   },
-
   sidebar: {
     home: 'Inicio',
     about: 'Sobre nosotros',
@@ -120,13 +114,11 @@ export const ES = {
     work: 'Trabaja con nosotros',
     closeMenu: 'Cerrar menú',
   },
-
   footer: {
-    address: 'Frederic Soler, 17 � El Prat de Llobregat, Barcelona',
+    address: 'Frederic Soler, 17 — El Prat de Llobregat, Barcelona',
     work: 'Trabaja con nosotros',
-    copyright: 'Xarcuteria Los Molina � Todos los derechos reservados',
+    copyright: 'Xarcuteria Los Molina — Todos los derechos reservados',
   },
-
   reviews: {
     title: 'Lo que dicen nuestros clientes',
     loading: 'Cargando reseñas...',
@@ -181,14 +173,13 @@ export const ES = {
       },
     ],
   },
-
   work: {
     title: 'Trabaja con nosotros',
     subtitle: 'Si te gusta el buen producto y el trato de bar de barrio, este puede ser tu sitio',
     successTitle: '¡Hemos recibido tu candidatura!',
     successText:
       'Te contactaremos en cuanto la leamos. Gracias por querer formar parte de la charcu.',
-    backLink: '� � Volver a la web',
+    backLink: '← Volver a la web',
     nameLabel: 'Nombre completo *',
     namePlaceholder: 'Tu nombre completo',
     emailLabel: 'Email *',
@@ -199,14 +190,13 @@ export const ES = {
     messagePlaceholder:
       'Cuéntanos un poco sobre ti, tu experiencia y qué te apetece aportar en Los Molina.',
     cvLabel: 'Sube tu currículum (PDF, DOC, DOCX, máx. 5MB)',
-    cvPlaceholder: '�x} Selecciona tu currículum',
+    cvPlaceholder: '📎 Selecciona tu currículum',
     submitButton: 'Enviar candidatura',
     submitting: 'Enviando...',
     errorFileSize: 'El archivo es demasiado grande. Máximo 5MB.',
     errorRequired: 'Por favor, rellena los campos obligatorios.',
     errorSend: 'Error al enviar el formulario. Intenta de nuevo.',
   },
-
   carta: {
     title: 'Nuestra Carta',
     subtitle: '',
@@ -230,8 +220,8 @@ export const ES = {
     colCaliente: 'Bocadillo caliente',
     colMedio: 'Medio',
     colEntero: 'Entero',
-    cocaNote: '+1�� coca',
-    cocaNoteFull: '+1,50�� coca',
+    cocaNote: '+1€ coca',
+    cocaNoteFull: '+1,50€ coca',
     tablasTitle: 'Tablas especiales',
     tablasNote: 'Precio: tabla / media tabla',
     calientesTitle: 'Bocadillos calientes',
@@ -247,10 +237,9 @@ export const ES = {
     navPizzas: 'Pizzas',
     navPostres: 'Postres',
     footerText: '¡Recuerda preguntar siempre por nuestras ofertas en bocadillos y sugerencias fuera de carta!',
-    backLink: '� � Volver a la web',
+    backLink: '← Volver a la web',
   },
-
-    cartaItems: {
+  cartaItems: {
     aperitivos: {
       olivas_xxl:       { name: 'Surtido de Olivas XXL' },
       taquitos_jamon:   { name: 'Taquitos de Jamón Ibérico' },
@@ -374,4 +363,3 @@ export const ES = {
     },
   },
 };
-

@@ -1,19 +1,16 @@
 export const CAT = {
   lang: 'cat',
-
   general: {
     logoTagline: 'Xarcuteria de barri · Entrepans i degustació',
     logoAlt: 'Xarcuteria Los Molina',
     openMenu: 'Obrir menú',
     scroll: 'Desplaçar',
   },
-
   home: {
     cta: 'Descobreix què oferim',
     navAbout: 'Sobre nosaltres',
     navFind: 'On som',
   },
-
   about: {
     title: 'Sobre nosaltres',
     subtitle: 'Vuit anys de família, barri i bon producte',
@@ -24,7 +21,6 @@ export const CAT = {
     text3:
       'Bon producte a preu just. Safates d\'embotit per encàrrec, catering per a celebracions. Perquè menjar bé no hauria de ser un privilegi, i compartir un buen producte és la nostra manera de fer les coses.',
   },
-
   offer: {
     title: 'Què oferim?',
     subtitle: 'Xarcuteria de barri amb productes de qualitat, entrepans generosos i pernil tallat a mà',
@@ -32,26 +28,26 @@ export const CAT = {
     tabDegustacion: 'Menjar aquí',
     promoDay: 'Cada dimecres',
     promoTitle: '10% de descompte',
-    promoCondition: 'En compres superiors a 30�� a botiga',
+    promoCondition: 'En compres superiors a 30€ a botiga',
     charcuteriaDescriptionIntro:
       'Al mostrador tens pernil ibèric tallat a mà o a màquina, embutit ibèric i de gla, molta varietat de formatges i aperitius. Te preparem safates per encàrrec, lots per a regal, càtering per a festes i tot el gènere perquè te\'ns munti l\'aperitiu a casa.',
     charcuteriaDescriptionBrands: 'Treballem amb marques de primera:',
     brandDescriptions: {
       blazquez: 'Pernil ibèric de Salamanca amb llarga tradició familiar.',
-      joselito: 'Pernil ibèric de gla d�"alta gamma, molt valorat pel seu sabor.',
+      joselito: 'Pernil ibèric de gla d’alta gamma, molt valorat pel seu sabor.',
       cinco_jotas: 'Pernil ibèric de gla 100%, clàssic de la devesa de Jabugo.',
       la_selva: 'Embotits i pernils elaborats a Girona amb estil tradicional.',
       mamma_fiore: 'Especialitats italianes com burrata, mozzarella i antipasti.',
       garcia_baquero: 'Formatges espanyols coneguts, suaus i ideals per compartir.',
-      flor_de_esgueva: 'Formatge d�"ovella curat amb sabor intens i textura mantegosa.',
+      flor_de_esgueva: 'Formatge d’ovella curat amb sabor intens i textura mantegosa.',
       can_duran: 'Embotits catalans com llonganissa i fuet, de recepta tradicional.',
       salgot: 'Embotits elaborats al Montseny amb enfoc en la qualitat del producte.',
       casa_miro: 'Marca vinculada a formatges i làctics presents a les nostres taules.',
-      idiazabal: 'Formatge d�"ovella amb denominació Idiazabal, lleugerament fumat i amb caràcter.',
+      idiazabal: 'Formatge d’ovella amb denominació Idiazabal, lleugerament fumat i amb caràcter.',
       payoyo: 'Formatge de cabra i ovella de la serra de Cadis, amb gust molt personal.',
     },
     degustacionDescription:
-      'Si et quedes a menjar, preparem al moment entrepans ben plens de pernil ibèric, bikinis, taules d\'embutit i formatge i menús per compartir. Usem pa crujent, tomàquet km 0 de pagesos de la zona i oli de Jaén de màxima qualitat. L\'entrepà de pernil ibèric és el rei de la casa, amb una oferta fixa d\'entrepà de pernil ibèric + beguda per 9,50��.',
+      'Si et quedes a menjar, preparem al moment entrepans ben plens de pernil ibèric, bikinis, taules d\'embutit i formatge i menús per compartir. Usem pa crujent, tomàquet km 0 de pagesos de la zona i oli de Jaén de màxima qualitat. L\'entrepà de pernil ibèric és el rei de la casa, amb una oferta fixa d\'entrepà de pernil ibèric + beguda per 9,50€.',
     degustacionFooter:
       '¿Organitzes un vermut, un aniversari o una cena a casa? Pregunta per les nostres safates, càtering a mida i menús per a grups; busquem l\'opció que millor t\'encaixi en quantitat i preu.',
     categories: [
@@ -71,7 +67,7 @@ export const CAT = {
         icon: '',
         items: [
           { name: 'Pernil', desc: 'El clàssic: ben rellè i tú trias la qualitat.' },
-          { name: 'Embutit ibèric', desc: 'Xoriço, salxitxó, llom ibèric⬦ entrepans per no quedar-se amb gana.' },
+          { name: 'Embutit ibèric', desc: 'Xoriço, salxitxó, llom ibèric… entrepans per no quedar-se amb gana.' },
           { name: 'Embutit de gla', desc: 'Morcó, salxitxó, xoriço de gla amb sabor intens.' },
           { name: 'Formatge', desc: 'Semicurat o curat, la procedència que vulguis.' },
           { name: 'Bikinis', desc: 'De pernil dolç, de pernil ibèric o mallorquí, els favorits de sempre.' },
@@ -90,7 +86,6 @@ export const CAT = {
       },
     ],
   },
-
   location: {
     title: 'On som',
     subtitle: 'Xarcuteria de barri al Prat de Llobregat',
@@ -99,13 +94,13 @@ export const CAT = {
     address2: '08820 El Prat de Llobregat',
     address3: 'Barcelona, Espanya',
     scheduleTitle: 'Horari',
-    schedule1: 'Dilluns a Dijous: 8:30�14:00 i 17:00�22:00',
-    schedule2: 'Divendres: 8:30�14:00 i 17:00�22:30',
-    schedule3: 'Dissabtes: 8:30�14:00',
+    schedule1: 'Dilluns a Dijous: 8:30–14:00 i 17:00–22:00',
+    schedule2: 'Divendres: 8:30–14:00 i 17:00–22:30',
+    schedule3: 'Dissabtes: 8:30–14:00',
     kitchenScheduleTitle: 'Disponibilitat de cuina',
-    kitchenSchedule1: 'Dilluns a Dijous: 8:30�13:30 i 17:00�21:30',
-    kitchenSchedule2: 'Divendres: 8:30�13:30 i 17:00�22:00',
-    kitchenSchedule3: 'Dissabtes: 8:30�13:30',
+    kitchenSchedule1: 'Dilluns a Dijous: 8:30–13:30 i 17:00–21:30',
+    kitchenSchedule2: 'Divendres: 8:30–13:30 i 17:00–22:00',
+    kitchenSchedule3: 'Dissabtes: 8:30–13:30',
     contactTitle: 'Contacte',
     phone: '937 82 70 85',
     phoneLabel: 'Telèfon:',
@@ -113,7 +108,6 @@ export const CAT = {
     locationLabel: 'Ubicació:',
     locationText: 'Al cor del Prat',
   },
-
   sidebar: {
     home: 'Inici',
     about: 'Sobre Nosaltres',
@@ -122,13 +116,11 @@ export const CAT = {
     work: 'Treballa amb nosaltres',
     closeMenu: 'Tancar menú',
   },
-
   footer: {
-    address: 'Frederic Soler, 17 � El Prat de Llobregat, Barcelona',
+    address: 'Frederic Soler, 17 — El Prat de Llobregat, Barcelona',
     work: 'Treballa amb nosaltres',
-    copyright: 'Xarcuteria Los Molina � Tots els drets reservats',
+    copyright: 'Xarcuteria Los Molina — Tots els drets reservats',
   },
-
   reviews: {
     title: 'El que diuen els nostres clients',
     loading: 'Carregant ressenyes...',
@@ -183,14 +175,13 @@ export const CAT = {
       },
     ],
   },
-
   work: {
     title: 'Treballa amb nosaltres',
     subtitle: 'Busquem el teu cap, mans i cor per la nostra xarcuteria',
     successTitle: 'Hem rebut la teva candidatura!',
     successText:
       "Aviat ens posarem en contacte amb tu. Gràcies pel teu interès a formar part de l'equip.",
-    backLink: '� � Tornar a la web',
+    backLink: '← Tornar a la web',
     nameLabel: 'Nom complet *',
     namePlaceholder: 'El teu nom complet',
     emailLabel: 'Email *',
@@ -201,14 +192,13 @@ export const CAT = {
     messagePlaceholder:
       "Explica'ns sobre tu, la teva experiència i per què t'agradaria formar part de l'equip...",
     cvLabel: 'Puja el teu currículum (PDF, DOC, DOCX, màx. 5MB)',
-    cvPlaceholder: '�x} Selecciona el teu currículum',
+    cvPlaceholder: '📎 Selecciona el teu currículum',
     submitButton: 'Enviar candidatura',
     submitting: 'Enviant...',
     errorFileSize: "L'arxiu és massa gran. Màxim 5MB.",
     errorRequired: 'Si us plau, omple els camps obligatoris.',
     errorSend: "Error en enviar el formulari. Torna-ho a intentar.",
   },
-
   carta: {
     title: 'La Nostra Carta',
     subtitle: 'Pernil tallat a mà, embotits de gla, formatges artesans i molt més',
@@ -232,8 +222,8 @@ export const CAT = {
     colCaliente: 'Entrepà calent',
     colMedio: 'Mig',
     colEntero: 'Sencer',
-    cocaNote: '+1�� coca',
-    cocaNoteFull: '+1,50�� coca',
+    cocaNote: '+1€ coca',
+    cocaNoteFull: '+1,50€ coca',
     tablasTitle: 'Taules especials',
     tablasNote: 'Preu: taula / mitja taula',
     calientesTitle: 'Entrepans calents',
@@ -249,10 +239,9 @@ export const CAT = {
     navPizzas: 'Pizzes',
     navPostres: 'Postres',
     footerText: 'Tens un event? Preparem safates, lots i càtering a mida. Consulta\'ns!',
-    backLink: '� � Tornar a la web',
+    backLink: '← Tornar a la web',
   },
-
-    cartaItems: {
+  cartaItems: {
     aperitivos: {
       olivas_xxl:       { name: "Assortiment d'Olives XXL" },
       taquitos_jamon:   { name: 'Trossets de Pernil Ibèric' },
@@ -376,4 +365,3 @@ export const CAT = {
     },
   },
 };
-
