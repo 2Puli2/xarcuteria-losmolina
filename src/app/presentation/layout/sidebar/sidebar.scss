@@ -1,0 +1,104 @@
+@use '../../../../variables' as *;
+
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1999;
+  animation: fadeIn 0.25s ease;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -280px;
+  width: 280px;
+  height: 100vh;
+  background-color: #0d1b1e;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  transition: right $transition-base;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+
+  &--open {
+    right: 0;
+  }
+
+  &__header {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: $spacing-md;
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: $font-size-lg;
+    cursor: pointer;
+    transition: color $transition-fast;
+    padding: $spacing-xs;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  &__nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: $spacing-md $spacing-lg;
+    gap: $spacing-xs;
+  }
+
+  &__link {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: $font-family-heading;
+    font-size: $font-size-base;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-align: left;
+    padding: $spacing-sm 0;
+    cursor: pointer;
+    transition: color $transition-fast;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+
+  &__footer {
+    padding: $spacing-lg;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  &__footer-link {
+    font-family: $font-family-base;
+    font-size: $font-size-sm;
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    transition: color $transition-fast;
+    letter-spacing: 0.5px;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+
+  &__lang-selector {
+    position: absolute;
+    top: 35px;
+    left: $spacing-md;
+    z-index: 1;
+  }
+}
+
+

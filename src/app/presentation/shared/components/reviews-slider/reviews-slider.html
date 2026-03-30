@@ -1,0 +1,45 @@
+@if (getCurrentReview(); as review) {
+  <div class="reviews-slider">
+    <!-- Título eliminado -->
+
+    <!-- Contenido de la reseña -->
+    <!-- Divider dorado -->
+    <div class="reviews-slider__divider"></div>
+    <div 
+      class="reviews-slider__content"
+      [class.dragging]="isDragging()"
+      (mousedown)="onDragStart($event)"
+      (touchstart)="onDragStart($event)"
+      (mousemove)="onDragMove($event)"
+      (touchmove)="onDragMove($event)"
+      (mouseup)="onDragEnd($event)"
+      (mouseleave)="onDragEnd()"
+      (touchend)="onDragEnd($event)"
+    >
+      <div class="reviews-slider__review">
+        <p class="reviews-slider__text">{{ review.text }}</p>
+        <p class="reviews-slider__author">— {{ review.author }}</p>
+      </div>
+    </div>
+
+    <!-- Navegación -->
+    <div class="reviews-slider__navigation">
+      <div class="reviews-slider__dots">
+        @for (item of reviews(); let i = $index; track i) {
+          <button
+            class="reviews-slider__dot"
+            [class.reviews-slider__dot--active]="i === currentReviewIndex()"
+            (click)="currentReviewIndex.set(i)"
+            [attr.aria-label]="idioma.t().reviews.reviewLabel + ' ' + (i + 1)"
+          ></button>
+        }
+      </div>
+    </div>
+
+    <p class="reviews-slider__source">{{ idioma.t().reviews.source }}</p>
+  </div>
+} @else {
+  <div class="reviews-slider reviews-slider--empty">
+    <p>{{ idioma.t().reviews.loading }}</p>
+  </div>
+}

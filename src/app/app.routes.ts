@@ -1,27 +1,24 @@
 import { Route, Routes } from '@angular/router';
-import { CoreComponent } from './core/core';
+import { CoreComponent } from './presentation/layout/core/core';
 
-/** Rutas base (sin prefijo de idioma) */
 const BASE_ROUTES: Routes = [
   { path: '', component: CoreComponent },
   {
     path: 'trabaja-con-nosotros',
     loadComponent: () =>
-      import('./views/trabaja-con-nosotros/trabaja-con-nosotros').then(
+      import('./presentation/pages/trabaja-con-nosotros/trabaja-con-nosotros').then(
         m => m.TrabajaConNosotrosComponent
       ),
   },
   {
     path: 'carta',
     loadComponent: () =>
-      import('./views/carta/carta').then(m => m.CartaComponent),
+      import('./presentation/pages/carta/carta').then(m => m.CartaComponent),
   },
 ];
 
-/** Prefijos de idioma que necesitan sus propias rutas */
 const LANG_PREFIXES = ['en', 'cat'];
 
-/** Genera rutas con prefijo de idioma a partir de las rutas base */
 function withLangPrefix(prefix: string): Routes {
   return BASE_ROUTES.map(route => ({
     ...route,

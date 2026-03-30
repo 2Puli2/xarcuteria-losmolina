@@ -1,0 +1,391 @@
+/**
+ * Traducciones en español (idioma principal).
+ */
+export const ES = {
+  lang: 'es',
+
+  // General
+  general: {
+    logoTagline: 'Charcutería de barrio · Bocadillos y degustación',
+    logoAlt: 'Charcutería Los Molina',
+    openMenu: 'Abrir menú',
+    scroll: 'Scroll',
+  },
+
+  // Home
+  home: {
+    cta: 'Descubre qué ofrecemos',
+    navAbout: 'Sobre nosotros',
+    navFind: 'Dónde estamos',
+  },
+
+  // Quiénes Somos
+  about: {
+    title: 'Sobre Nosotros',
+    subtitle: 'Charcutería de barrio con género de calidad y bocadillos bien generosos',
+    text1:
+      'En <strong>Charcutería Los Molina</strong> hacemos lo de siempre: charcutería de barrio con género top y bocadillos que dan gusto verlos. Somos una familia de El Prat que lleva 8 años detrás del mostrador, cortando jamón a mano y cuidando a la gente del barrio.',
+    text2:
+      'Trabajamos con jamón Cinco Jotas y Joselito cortado a mano, embutidos de bellota, quesos de todos los tipos que quieras, conservas Espinaler y otros caprichos que también nos llevamos a casa. El pan los horneamos a cada rato, el tomate es de payeses de la zona (km 0) y el aceite es de Jaén, de máxima calidad.',
+    text3:
+      'Aquí puedes venir a desayunar, a cenar o a llenar la nevera. Te preparamos bocadillos al momento, bandejas de embutido, tablas de queso, lotes de regalo y cátering para tus celebraciones. Siempre con trato cercano, precio justo y la sensación de estar en la charcu de toda la vida.',
+  },
+
+  // Qué Ofrecemos
+  offer: {
+    title: '¿Qué ofrecemos?',
+    subtitle: 'Charcutería de barrio con género top, bocadillos que te dejan agusto y jamón cortado a mano',
+    tabCharcuteria: 'Charcutería',
+    tabDegustacion: 'Para comer aquí',
+    promoDay: 'Cada miércoles',
+    promoTitle: '10% de descuento',
+    promoCondition: 'En compras superiores a 30€ en tienda',
+    charcuteriaDescriptionIntro:
+      'En nuestra charcuteria tienes jamón ibérico cortado a mano o a maquina, embutido ibérico y de bellota, mucha variedad de quesos y aperitivos. Te preparamos bandejas por encargo, lotes para regalo, cátering para fiestas y todo el género para que te montes el aperitivo en casa.',
+    charcuteriaDescriptionBrands: 'Trabajamos con marcas de primera:',
+    brandDescriptions: {
+      blazquez: 'Jamón ibérico de Salamanca con larga tradición familiar.',
+      joselito: 'Jamón ibérico de bellota de alta gama, muy valorado por su sabor.',
+      cinco_jotas: 'Jamón ibérico de bellota 100%, clásico de la dehesa de Jabugo.',
+      la_selva: 'Embutidos y jamones elaborados en Girona con estilo tradicional.',
+      mamma_fiore: 'Selección de productos italianos como burrata, mozzarella y antipasti.',
+      garcia_baquero: 'Quesos españoles muy conocidos, suaves y fáciles de compartir en tabla.',
+      flor_de_esgueva: 'Queso de oveja curado con sabor intenso y textura mantecosa.',
+      can_duran: 'Embutidos catalanes como longaniza y fuet, de receta tradicional.',
+      salgot: 'Embutidos elaborados en el Montseny con enfoque en producto de calidad.',
+      casa_miro: 'Marca vinculada a quesos y lácteos presentes en nuestras tablas.',
+      idiazabal: 'Queso de oveja con denominación Idiazabal, ahumado y con carácter.',
+      payoyo: 'Queso de cabra y oveja de la sierra de Cádiz, con sabor muy personal.',
+    },
+    degustacionDescription:
+      'Si te quedas a comer, preparamos al momento bocadillos bien llenos de jamón ibérico, bikinis, tablas de embutido y quesos y menús para compartir. Usamos pan crujiente, tomate km 0 de payeses de la zona y aceite de Jaén de máxima calidad. El bocadillo de jamón ibérico es el rey de la casa, con una oferta fija de bocadillo de jamón ibérico + bebida por 9,5€.',
+    degustacionFooter:
+      '¿Organizas un vermut, un cumpleaños o una cena en casa? Pregunta por nuestras bandejas, cátering a medida y menús para grupos; buscamos la opción que mejor te encaje en cantidad y precio.',
+    categories: [
+      {
+        name: 'Aperitivos',
+        icon: '',
+        items: [
+          { name: 'Jamón ibérico en taquitos', desc: 'Para picar cortado a mano con pan.' },
+          { name: 'Queso en dados', desc: 'Semicurado o curado, tú eliges.' },
+          { name: 'Embutido', desc: 'Fuet, longaniza, salchichón para abrir boca.' },
+          { name: 'Olivas y conservas', desc: 'Olivas variadas, patatas, berberechos, anchoas y más.' },
+          { name: 'Foie y patés', desc: 'Foie mi cuit con mermelada, patés variados.' },
+        ],
+      },
+      {
+        name: 'Bocadillos',
+        icon: '',
+        items: [
+          { name: 'Jamón', desc: 'El clásico: bien relleno y tú escoges la calidad.' },
+          { name: 'Embutido ibérico', desc: 'Chorizo, salchichón, lomo ibérico… para no quedarse con hambre.' },
+          { name: 'Embutido de bellota', desc: 'Morcón, salchichón, chorizo de bellota con sabor intenso.' },
+          { name: 'Queso', desc: 'Semicurado o curado, la procedencia que quieras.' },
+          { name: 'Bikinis', desc: 'Jamón dulce, ibérico o mallorquín, los favoritos de siempre.' },
+        ],
+      },
+      {
+        name: 'Tablas',
+        icon: '',
+        items: [
+          { name: 'Tabla de jamón', desc: 'Cortado a mano: 50% bellota, 100% bellota, Cinco Jotas o Joselito.' },
+          { name: 'Tabla de embutidos', desc: 'Ibéricos o de bellota, surtidos para compartir.' },
+          { name: 'Tabla de quesos', desc: 'Selección variada curada, semicurada o mixta.' },
+        ],
+      },
+    ],
+  },
+
+  // Ubicación
+  location: {
+    title: 'Dónde Encontrarnos',
+    subtitle: 'Tu charcutería de barrio en El Prat de Llobregat',
+    addressTitle: 'Dirección',
+    address1: 'Frederic Soler, 17',
+    address2: '08820 El Prat de Llobregat',
+    address3: 'Barcelona, España',
+    scheduleTitle: 'Horario',
+    schedule1: 'Lunes a Jueves: 8:30–14:00 y 17:00–22:00',
+    schedule2: 'Viernes: 8:30–14:00 y 17:00–22:30',
+    schedule3: 'Sábados: 8:30–14:00',
+    kitchenScheduleTitle: 'Disponibilidad de cocina',
+    kitchenSchedule1: 'Lunes a Jueves: 8:30–13:30 y 17:00–21:30',
+    kitchenSchedule2: 'Viernes: 8:30–13:30 y 17:00–22:00',
+    kitchenSchedule3: 'Sábados: 8:30–13:30',
+    contactTitle: 'Contacto',
+    phone: '937 82 70 85',
+    phoneLabel: 'Teléfono:',
+    emailLabel: 'Correo electrónico:',
+    locationLabel: 'Ubicación:',
+    locationText: 'En el centro de El Prat, a un paso de todo',
+  },
+
+  // Sidebar
+  sidebar: {
+    home: 'Inicio',
+    about: 'Sobre nosotros',
+    offer: '¿Qué ofrecemos?',
+    find: 'Dónde estamos',
+    work: 'Trabaja con nosotros',
+    closeMenu: 'Cerrar menú',
+  },
+
+  // Footer
+  footer: {
+    address: 'Frederic Soler, 17 — El Prat de Llobregat, Barcelona',
+    work: 'Trabaja con nosotros',
+    copyright: 'Xarcuteria Los Molina — Todos los derechos reservados',
+  },
+
+  // Reviews
+  reviews: {
+    title: 'Lo que dicen nuestros clientes',
+    loading: 'Cargando reseñas...',
+    prevLabel: 'Reseña anterior',
+    nextLabel: 'Siguiente reseña',
+    reviewLabel: 'Reseña',
+    source: 'Comentarios extraídos de nuestras reseñas de Google',
+    items: [
+      {
+        author: 'Juan',
+        text: 'Los viejos amigos del instituto nos reunimos alli para almorzar los bocatas estan bien y hay una variedad de embutidos y quesos de mucha calidad. El personal esta muy atento el otro dia me ofrecieron uns oferta de jamon de bellota excelente .muy recomendable.',
+      },
+      {
+        author: 'Antonio',
+        text: 'Un sitio fantástico para degustar unos buenos embutidos. Las olivas de la casa nos encantan y el servicio de los empleados de 10 siempre!!!!',
+      },
+      {
+        author: 'Max',
+        text: 'Muy rico y servicio atento, Gabi nos trata como reyes. El bikini es para llorar de gusto, está riquísimo. El parmesano que venden es increïble, le pones eso a cualquier pasta y ya tienes cena. Siempre amables y detallistas',
+      },
+      {
+        author: 'Augusto',
+        text: 'Sencillo y acogedor café en El Prat donde encontré el mejor Jamón Ibérico de la zona que servido en pan crujiente con tomate y aceite de Oliva se convierte en un delicioso manjar. Lo acompañe con un café fresco e intenso. La atención es buena y los precios razonables. Bueno, Bonito y Barato como decimos en Perú.',
+      },
+      {
+        author: 'Eduardo',
+        text: 'Excelente sitio, muy buenos productos del cerdo y quesos, tanto para comprar como para degustar alli mismo, regados con cerveza, vino, o cavas de calidad.',
+      },
+      {
+        author: 'Jazmín',
+        text: 'Las veces que hemos ido habían sido para desayunar. Esta vez decidimos ir a cenar, y la verdad, estupendo!!, tablas de quesos y jamón con un sabor espectacular, la atención de los camareros excelente, te explican la variedad de cosas. Estuvimos en la terraza, muy bien, poco ruido, ambiente limpio. Sin duda repetiremos.',
+      },
+      {
+        author: 'Julia',
+        text: 'Me encantó!! Me lo recomendó un compañero del trabajo y es un acierto!! El jamón riquísimo y la atención de la camarera excelente. Siempre tengo ganas de volver. Difícil aparcar, para tenerlo en cuenta.',
+      },
+      {
+        author: 'Adrian',
+        text: 'Producto de primerísima calidad y un equipo siempre amabilísimo. Precios correctisimos. Parada obligatoria, sólo o en compañía.',
+      },
+      {
+        author: 'Carles',
+        text: 'Buen local para almorzar o merendar y embutidos de primera y no hablar de los jamones del más bueno al más excelente.',
+      },
+      {
+        author: 'Jalena',
+        text: 'Simplemente genial todo fresco y de buena calidad. Muy amables, precios correctos. Tienen terraza.',
+      },
+       {
+        author: 'C. G.',
+        text: 'Recomendado 100%! Un trato excelente! El Personal extremadamente amable, sobretodo una de las camareras principales! Una Calidad excelente en todos los embutidos, la presentación de las tablas de embutido muy elegante y los bocadillos con un pan crujiente y extremadamente bueno. Y unos cafés con gusto, sin ser aguado y te lo sirven tal y como lo pides.Un personal muy atento. Si estas en el Prat es un lugar obligado para parar.',
+      },
+    ],
+  },
+
+  // Trabaja con nosotros
+  work: {
+    title: 'Trabaja con nosotros',
+    subtitle: 'Si te gusta el buen producto y el trato de bar de barrio, este puede ser tu sitio',
+    successTitle: '¡Hemos recibido tu candidatura!',
+    successText:
+      'Te contactaremos en cuanto la leamos. Gracias por querer formar parte de la charcu.',
+    backLink: '← Volver a la web',
+    nameLabel: 'Nombre completo *',
+    namePlaceholder: 'Tu nombre completo',
+    emailLabel: 'Email *',
+    emailPlaceholder: 'tu@email.com',
+    phoneLabel: 'Teléfono',
+    phonePlaceholder: '600 000 000',
+    messageLabel: '¿Por qué quieres trabajar con nosotros? *',
+    messagePlaceholder:
+      'Cuéntanos un poco sobre ti, tu experiencia y qué te apetece aportar en Los Molina.',
+    cvLabel: 'Sube tu currículum (PDF, DOC, DOCX, máx. 5MB)',
+    cvPlaceholder: '📎 Selecciona tu currículum',
+    submitButton: 'Enviar candidatura',
+    submitting: 'Enviando...',
+    errorFileSize: 'El archivo es demasiado grande. Máximo 5MB.',
+    errorRequired: 'Por favor, rellena los campos obligatorios.',
+    errorSend: 'Error al enviar el formulario. Intenta de nuevo.',
+  },
+
+  // Carta
+  carta: {
+    title: 'Nuestra Carta',
+    subtitle: '',
+    aperitivosTitle: 'Aperitivos y Conservas',
+    conservasTitle: 'Conservas Espinaler',
+    menusTitle: 'Menús',
+    menusNote: 'Recomendado para 2 personas',
+    embutidosTitle: 'Nuestros Embutidos',
+    embutidosNote: 'Elige cómo lo prefieres: pan de coca, pan de barra o al plato.',
+    colEmbutido: 'Embutido',
+    colMedioBoc: '½ Bocadillo',
+    colBocEntero: 'Bocadillo',
+    colTorrada: 'Torrada',
+    colMediaTabla: '½ Tabla',
+    colTabla: 'Tabla',
+    colBocadillo: 'Bocadillo',
+    colPrecio: 'Precio',
+    colMaxi: 'Maxi',
+    colBiquini: 'Biquini',
+    colNormal: 'Normal',
+    colCaliente: 'Bocadillo caliente',
+    colMedio: 'Medio',
+    colEntero: 'Entero',
+    cocaNote: '+1€ coca',
+    cocaNoteFull: '+1,50€ coca',
+    tablasTitle: 'Tablas especiales',
+    tablasNote: 'Precio: tabla / media tabla',
+    calientesTitle: 'Bocadillos calientes',
+    suplementosTitle: 'Suplementos',
+    pizzasTitle: 'Pizzas',
+    pizzasNote: 'Hechas con ingredientes de nuestra charcutería, como en casa',
+    postresTitle: 'Postres',
+    navAperitivos: 'Aperitivos',
+    navMenus: 'Menús',
+    navEmbutidos: 'Embutidos',
+    navCalientes: 'Calientes',
+    navSuplementos: 'Suplementos',
+    navPizzas: 'Pizzas',
+    navPostres: 'Postres',
+    footerText: '¡Recuerda preguntar siempre por nuestras ofertas en bocadillos y sugerencias fuera de carta!',
+    backLink: '← Volver a la web',
+  },
+
+  // ─── Ítems de la carta: nombres y descripciones por idioma ───────────────────
+    cartaItems: {
+    aperitivos: {
+      olivas_xxl:       { name: 'Surtido de Olivas XXL' },
+      taquitos_jamon:   { name: 'Taquitos de Jamón Ibérico' },
+      tapa_fuet:        { name: 'Tapa de Fuet o Longaniza' },
+      flores_tete_1:    { name: 'Flores de Tete de Moine (1u)' },
+      flores_tete_5:    { name: 'Flores de Tete de Moine (5u)' },
+      dados_semicurado: { name: 'Dados de Queso Semicurado' },
+      dados_curado:     { name: 'Dados de Queso Curado' },
+      surtido_pates:    { name: 'Surtido de Patés' },
+      bloc_foie:        { name: 'Bloc de Foie' },
+      lacon_pimenton:   { name: 'Lacón con Pimentón' },
+      salmon_ahumado:   { name: 'Salmón Ahumado' },
+      boquerones:       { name: 'Boquerones' },
+      anchoas:          { name: 'Anchoas (5 filetes)' },
+    },
+    conservas: {
+      patatas_chips:          { name: 'Patatas Chips' },
+      patatas_chips_grandes:  { name: 'Patatas Chips Grandes' },
+      olivas_rellenas:        { name: 'Olivas Rellenas' },
+      berberechos_55:         { name: 'Berberechos 55/65' },
+      berberechos_30:         { name: 'Berberechos 30/40' },
+      mejillones:             { name: 'Mejillones' },
+      almejas:                { name: 'Almejas al Natural' },
+      navajas:                { name: 'Navajas' },
+      sardinas:               { name: 'Sardinas en Aceite de Oliva' },
+      chipirones:             { name: 'Chipirones' },
+      ria_noia:               { name: 'Ría de Noia' },
+      ria_ribadeo:            { name: 'Ría de Ribadeo' },
+      ria_muros:              { name: 'Ría de Muros' },
+    },
+    menus: {
+      menu_iberico:      { name: 'Menú Ibérico' },
+      menu_bellota:      { name: 'Menú Bellota' },
+      menu_delicatessen: { name: 'Menú Delicatessen' },
+    },
+    embutidoGroupTitles: {
+      jamon:              'Jamón',
+      embutidos_ibericos: 'Embutidos ibéricos',
+      fiambres:           'Fiambres, embutidos y especiales',
+      quesos:             'Quesos',
+    },
+    embutidoItems: {
+      paleta_iberica_maquina:  { name: 'Paleta Ibérica a Máquina' },
+      tabla_mixta:             { name: 'Tabla Mixta' },
+      paleta_bellota_maquina:  { name: 'Paleta de Bellota a Máquina' },
+      iberico_cebo_mano:       { name: 'Ibérico de Cebo a Mano' },
+      cinco_jotas_mano:        { name: 'Cinco Jotas a Mano' },
+      joselito_mano:           { name: 'Joselito a Mano' },
+      jamon_serrano:           { name: 'Jamón Serrano' },
+      chorizo_iberico:         { name: 'Chorizo Ibérico' },
+      chorizo_bellota:         { name: 'Chorizo Bellota' },
+      chorizo_joselito:        { name: 'Chorizo Joselito' },
+      salchichon_iberico:      { name: 'Salchichón Ibérico' },
+      salchichon_bellota:      { name: 'Salchichón Bellota' },
+      salchichon_joselito:     { name: 'Salchichón Joselito' },
+      lomo_iberico:            { name: 'Lomo Ibérico' },
+      lomo_bellota:            { name: 'Lomo Bellota' },
+      lomo_joselito:           { name: 'Lomo Joselito' },
+      morcon_bellota:          { name: 'Morcón Bellota' },
+      presa_cinco_jotas:       { name: 'Presa Cinco Jotas' },
+      surtido_iberico:         { name: 'Surtido Ibérico' },
+      jamon_dulce:             { name: 'Jamón Dulce' },
+      bull_blanco:             { name: 'Bull Blanco' },
+      bull_negro:              { name: 'Bull Negro' },
+      mortadela_italiana:      { name: 'Mortadela Italiana' },
+      mortadela_trufada:       { name: 'Mortadela Trufada' },
+      catalana_can_duran:      { name: 'Catalana Can Duran' },
+      catalana_trufada:        { name: 'Catalana Trufada' },
+      pechuga_pavo_natural:    { name: 'Pechuga de Pavo Natural' },
+      pechuga_pavo_braseada:   { name: 'Pechuga de Pavo Braseada' },
+      fuet:                    { name: 'Fuet' },
+      longaniza_vic:           { name: 'Longaniza de Vic' },
+      cecina:                  { name: 'Cecina' },
+      surtido_fiambres:        { name: 'Surtido de Fiambres' },
+      atun:                    { name: 'Atún' },
+      cantabrico:              { name: 'Cantábrico' },
+      queso_semicurado:        { name: 'Queso Semicurado' },
+      queso_curado:            { name: 'Queso Curado' },
+      queso_fresco_cabra:      { name: 'Queso Fresco de Cabra' },
+      queso_manchego:          { name: 'Queso Manchego Peña Nieto' },
+      queso_payoyo:            { name: 'Queso Payoyo' },
+      tabla_queso_gourmet:     { name: 'Tabla Queso Gourmet' },
+    },
+    biquinis: {
+      biquini:            { name: 'Biquini' },
+      biquini_iberico:    { name: 'Biquini Ibérico' },
+      biquini_mallorquin: { name: 'Biquini Mallorquín' },
+    },
+    calientes: {
+      bacon:             { name: 'Bacon' },
+      bacon_curado:      { name: 'Bacon curado' },
+      lacon:             { name: 'Lacón' },
+      sobrasada:         { name: 'Sobrasada' },
+      sobrasada_iberica: { name: 'Sobrasada Ibérica' },
+      chistorra:         { name: 'Chistorra' },
+      frankfurt:         { name: 'Frankfurt' },
+      pikantwurst:       { name: 'Pikantwurst' },
+      cervela:           { name: 'Cervela' },
+      bratwurst:         { name: 'Bratwurst' },
+      malaguenya:        { name: 'Malagueña' },
+    },
+    suplementos: {
+      havarti:    { name: 'Queso havarti' },
+      semicurado: { name: 'Queso semicurado' },
+      curado:     { name: 'Queso curado' },
+      manchego:   { name: 'Queso manchego' },
+      brie:       { name: 'Queso brie' },
+    },
+    pizzas: {
+      pizza_jamon_dulce:    { name: 'Pizza Jamón dulce' },
+      pizza_jamon_iberico:  { name: 'Pizza Jamón ibérico' },
+      pizza_bacon:          { name: 'Pizza Bacon' },
+      pizza_sobrasada_brie: { name: 'Pizza Sobrasada y brie' },
+      pizza_4_quesos:       { name: 'Pizza 4 quesos' },
+    },
+    postres: {
+      trufas:         { name: 'Trufas con Nata (4 ud)' },
+      coulant:        { name: 'Coulant de Chocolate con Nata' },
+      tarta_santiago: { name: 'Tarta Santiago' },
+      mel_i_mato:     { name: 'Mel i mató' },
+    },
+  },
+};
+

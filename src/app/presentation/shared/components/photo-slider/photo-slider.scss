@@ -1,0 +1,56 @@
+@use '../../../../../variables' as *;
+
+.photo-slider {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__swiper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    box-shadow: $shadow-lg;
+
+    --swiper-pagination-color: #{rgba($color-dark, 0.8)};
+    --swiper-pagination-bullet-inactive-color: rgba(26, 54, 64, 0.3);
+    --swiper-pagination-bullet-inactive-opacity: 1;
+    --swiper-pagination-bullet-size: 5px;
+    --swiper-pagination-bullet-horizontal-gap: 3px;
+  }
+
+  &__slide {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.photo-slider__swiper::part(bullet-active) {
+  width: 16px;
+  border-radius: 3px;
+}
+
+@media (max-width: $breakpoint-md) {
+  .photo-slider {
+    &__swiper {
+      --swiper-pagination-bullet-size: 5px;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .photo-slider {
+    &__swiper {
+      --swiper-pagination-bullet-size: 5px;
+    }
+  }
+}
+
+

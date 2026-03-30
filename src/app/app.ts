@@ -1,6 +1,6 @@
 import { Component, signal, OnInit, inject } from '@angular/core';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
-import { IdiomaService } from './idiomas/idioma.service';
+import { IdiomaService } from './application/language/language.service';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -16,10 +16,8 @@ export class App implements OnInit {
   private idioma = inject(IdiomaService);
 
   ngOnInit(): void {
-    // Detectar idioma en la URL inicial
     this.idioma.detectLangFromUrl(this.router.url);
 
-    // Detectar idioma en cada cambio de ruta
     this.router.events
       .pipe(filter((e) => e instanceof NavigationEnd))
       .subscribe((e) => {

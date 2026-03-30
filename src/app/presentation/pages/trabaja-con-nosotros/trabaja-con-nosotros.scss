@@ -1,0 +1,213 @@
+@use '../../../../variables' as *;
+
+.trabaja {
+  min-height: 100vh;
+  background-color: $color-dark;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-xxl $spacing-md;
+
+  &__container {
+    max-width: 560px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-xl;
+  }
+
+  &__header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-md;
+  }
+
+  &__logo-link {
+    text-decoration: none;
+    transition: opacity $transition-fast;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__error {
+    width: 100%;
+    padding: $spacing-md;
+    background-color: rgba(255, 107, 107, 0.15);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    border-radius: $border-radius-md;
+    color: rgba(255, 107, 107, 0.9);
+    font-size: $font-size-sm;
+    text-align: center;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  &__label {
+    font-family: $font-family-heading;
+    font-size: $font-size-sm;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.5px;
+  }
+
+  &__input,
+  &__textarea {
+    width: 100%;
+    padding: 12px $spacing-sm;
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    color: $color-light;
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: $border-radius-md;
+    outline: none;
+    transition: border-color $transition-fast, background-color $transition-fast;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    &:focus {
+      border-color: $color-accent;
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+  }
+
+  &__textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  &__file-upload {
+    position: relative;
+  }
+
+  &__file-input {
+    display: none;
+  }
+
+  &__file-label {
+    display: block;
+    width: 100%;
+    padding: 12px $spacing-sm;
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: $border-radius-md;
+    cursor: pointer;
+    transition: all $transition-fast;
+    text-align: center;
+
+    &:hover {
+      border-color: $color-accent;
+      color: $color-accent;
+      background-color: rgba(255, 255, 255, 0.06);
+    }
+  }
+
+  &__file-input:focus + &__file-label {
+    border-color: $color-accent;
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  &__submit {
+    width: 100%;
+    padding: 14px $spacing-lg;
+    font-family: $font-family-heading;
+    font-size: $font-size-base;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: $color-light;
+    background-color: $color-primary;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all $transition-base;
+    margin-top: $spacing-sm;
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba($color-primary, 0.4);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &__success {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-xl;
+    background-color: rgba(255, 255, 255, 0.04);
+    border-radius: $border-radius-lg;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  &__success-icon {
+    font-size: 48px;
+  }
+
+  &__success-title {
+    font-family: $font-family-heading;
+    font-size: $font-size-lg;
+    color: $color-accent;
+    font-weight: 600;
+  }
+
+  &__success-text {
+    font-size: $font-size-base;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    max-width: 400px;
+  }
+
+  &__back-link {
+    font-family: $font-family-base;
+    font-size: $font-size-sm;
+    color: $color-accent;
+    text-decoration: none;
+    transition: color $transition-fast;
+    letter-spacing: 0.5px;
+
+    &:hover {
+      color: $color-light;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .trabaja {
+    padding: $spacing-xl $spacing-sm;
+
+    &__submit {
+      padding: 12px $spacing-md;
+      font-size: $font-size-sm;
+    }
+  }
+}
+
+

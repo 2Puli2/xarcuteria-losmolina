@@ -1,6 +1,4 @@
-/* ============================
-   Estilos globales — LA CHARCU
-   ============================ */
+/* Estilos globales — LA CHARCU */
 @use 'sass:color';
 @use 'variables' as *;
 
@@ -29,13 +27,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Reset de enlaces */
 a {
   text-decoration: none;
   color: inherit;
 }
 
-/* Reset de listas */
 ul, ol {
   list-style: none;
 }
@@ -47,7 +43,6 @@ img {
   display: block;
 }
 
-/* Scroll suave para toda la página */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -73,10 +68,9 @@ img {
 /* Selección de texto */
 ::selection {
   background-color: $color-primary;
-  color: $color-secondary;
+  color: $color-light;
 }
 
-/* Media queries globales para asegurar consistencia */
 @media (max-width: $breakpoint-md) {
   body {
     font-size: 14px;
@@ -88,3 +82,10 @@ img {
     font-size: 13px;
   }
 }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+

@@ -1,0 +1,196 @@
+@use '../../../../variables' as *;
+
+.que-ofrecemos {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-dark;
+  padding: $spacing-xxl $spacing-md;
+
+  &__container {
+    max-width: 900px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-xl;
+  }
+
+  &__tabs {
+    display: flex;
+    gap: $spacing-sm;
+    width: 100%;
+    justify-content: center;
+  }
+
+  &__tab {
+    flex: 1;
+    max-width: 320px;
+    padding: $spacing-sm $spacing-md;
+    font-family: $font-family-heading;
+    font-size: $font-size-base;
+    font-weight: 600;
+    color: $color-light;
+    background-color: rgba(white, 0.05);
+    border: 2px solid transparent;
+    border-radius: $border-radius-md;
+    cursor: pointer;
+    transition: all $transition-fast;
+    text-align: center;
+
+    &:hover {
+      background-color: rgba(white, 0.1);
+      border-color: $color-primary;
+    }
+
+    &--active {
+      background-color: $color-primary;
+      color: $color-light;
+      border-color: $color-primary;
+
+      &:hover {
+        background-color: $color-primary;
+        border-color: $color-primary;
+      }
+    }
+  }
+  &__promo {
+    width: 100%;
+    background: linear-gradient(135deg, $color-primary 0%, #7a1a17 100%);
+    border-radius: $border-radius-lg;
+    padding: $spacing-lg $spacing-xl;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-md;
+    border: 2px solid rgba($color-accent, 0.45);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 20px,
+        rgba(0, 0, 0, 0.06) 20px,
+        rgba(0, 0, 0, 0.06) 40px
+      );
+      pointer-events: none;
+    }
+  }
+
+  &__promo-body {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+    z-index: 1;
+  }
+
+  &__promo-day {
+    display: inline-block;
+    background-color: $color-accent;
+    color: $color-dark;
+    font-family: $font-family-heading;
+    font-size: $font-size-xs;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 4px 14px;
+    border-radius: $border-radius-full;
+    align-self: flex-start;
+  }
+
+  &__promo-title {
+    font-family: $font-family-heading;
+    font-size: $font-size-xl;
+    font-weight: 700;
+    color: $color-light;
+    margin: 0;
+    line-height: 1.1;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  &__promo-condition {
+    font-size: $font-size-sm;
+    color: rgba($color-light, 0.8);
+    margin: 0;
+    font-style: italic;
+  }
+
+  &__promo-highlight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+    flex-shrink: 0;
+  }
+
+  &__promo-number {
+    font-family: $font-family-heading;
+    font-size: 80px;
+    font-weight: 900;
+    color: $color-accent;
+    line-height: 1;
+    text-shadow: 0 0 30px rgba($color-accent, 0.35);
+  }
+
+  &__promo-label {
+    font-family: $font-family-heading;
+    font-size: $font-size-md;
+    font-weight: 700;
+    color: $color-accent;
+    letter-spacing: 0.25em;
+    margin-top: -8px;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .que-ofrecemos {
+    padding: $spacing-xl $spacing-sm;
+
+    &__tabs {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__tab {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .que-ofrecemos {
+    padding: $spacing-lg $spacing-xs;
+
+    &__container {
+      gap: $spacing-lg;
+    }
+
+    &__tab {
+      font-size: $font-size-sm;
+      padding: $spacing-xs $spacing-sm;
+    }
+
+    &__promo {
+      flex-direction: column;
+      text-align: center;
+      padding: $spacing-md;
+    }
+
+    &__promo-day {
+      align-self: center;
+    }
+
+    &__promo-number {
+      font-size: 64px;
+    }
+  }
+}
+
+

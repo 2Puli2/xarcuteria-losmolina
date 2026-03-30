@@ -1,0 +1,236 @@
+@use '../../../../../variables' as *;
+
+.charcuteria {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+  animation: fadeIn 0.3s ease-in-out;
+
+  &__description-block {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    align-items: center;
+  }
+
+  &__description {
+    font-size: $font-size-base;
+    color: $color-light;
+    line-height: 1.7;
+    text-align: center;
+    max-width: 700px;
+    margin: 0;
+
+    &--accent {
+      color: $color-accent;
+      font-weight: 600;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xl;
+    justify-content: center;
+  }
+
+  &__counter-image {
+    flex: 0 1 auto;
+    max-width: 450px;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba($color-accent, 0.2);
+  }
+
+  &__counter-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform $transition-fast;
+
+  }
+
+  &__brands-carousel {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    justify-content: center;
+  }
+
+  &__carousel-arrow {
+    position: absolute;
+    background: rgba($color-dark, 0.7);
+    border: 2px solid $color-accent;
+    color: $color-accent;
+    font-size: 14px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $border-radius-full;
+    cursor: pointer;
+    transition: all $transition-fast;
+    z-index: 10;
+
+    &:hover {
+      background-color: rgba($color-accent, 0.35);
+      color: $color-dark;
+      transform: scale(1.02);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &--prev {
+      left: 12px;
+      top: 50%;
+      transform: translateY(-5%);
+    }
+
+    &--next {
+      right: 12px;
+      top: 50%;
+      transform: translateY(-5%);
+    }
+  }
+
+  &__brands-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-md;
+  }
+
+  &__brand-stage {
+    position: relative;
+    width: 360px;
+    height: 320px;
+    background-color: rgba(white, 0.01);
+    border-radius: $border-radius-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-md;
+    width: 130%;
+    height: 130%;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: $border-radius-md;
+    padding: $spacing-xl;
+
+
+    opacity: 0;
+    transition:
+      opacity 0.5s ease,
+      background-color $transition-fast,
+      transform $transition-fast,
+      box-shadow $transition-fast;
+
+    &--visible {
+      opacity: 1;
+    }
+
+  
+
+    &-image {
+      width: 180px;
+      height: 130px;
+      object-fit: contain;
+      transition: transform $transition-fast;
+    }
+
+    &:hover &-image {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+
+    &-name {
+      font-family: $font-family-base;
+      font-size: $font-size-base;
+      color: $color-light;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    &-desc {
+      font-family: $font-family-base;
+      font-size: $font-size-sm;
+      color: $color-light;
+      text-align: center;
+      line-height: 1.5;
+      opacity: 0.6;
+      max-width: 280px;
+      transition: opacity $transition-fast;
+    }
+
+    &:hover &-desc {
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .charcuteria {
+    &__content {
+      flex-direction: column;
+      gap: $spacing-lg;
+    }
+
+    &__counter-image {
+      max-width: 100%;
+    }
+
+    &__description {
+      font-size: $font-size-sm;
+    }
+
+    &__carousel-arrow {
+      width: 36px;
+      height: 36px;
+      font-size: 12px;
+
+      &--prev {
+        left: 8px;
+      }
+
+      &--next {
+        right: 8px;
+      }
+    }
+
+    &__brand-stage {
+      width: 240px;
+      height: 210px;
+    }
+
+    &__brand {
+      padding: $spacing-lg;
+      gap: $spacing-sm;
+
+      &-image {
+        width: 120px;
+        height: 85px;
+      }
+
+      &-name {
+        font-size: $font-size-sm;
+      }
+    }
+  }
+}
+
+
+
