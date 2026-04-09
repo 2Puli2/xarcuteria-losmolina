@@ -232,7 +232,7 @@ export const ES = {
       navajas:                { name: 'Navajas' },
       sardinas:               { name: 'Sardinas en Aceite de Oliva' },
       chipirones:             { name: 'Chipirones' },
-      ria_noia:               { name: 'Ría de Noia', desc: 'Patatas, aceitunas, berberechos y anchoas en vinagre' },
+      ria_noia:               { name: 'Ría de Noia', desc: 'Patatas, aceitunas, berberechos y boquerones' },
       ria_ribadeo:            { name: 'Ría de Ribadeo', desc: 'Patatas, aceitunas, berberechos y mejillones' },
       ria_muros:              { name: 'Ría de Muros', desc: 'Patatas, aceitunas, berberechos, mejillones y anchoas' },
     },

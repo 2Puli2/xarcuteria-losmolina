@@ -234,7 +234,7 @@ export const CAT = {
       navajas:               { name: 'Navalles' },
       sardinas:              { name: "Sardines en Oli d'Oliva" },
       chipirones:            { name: 'Calamarsons' },
-      ria_noia:              { name: 'Ría de Noia',    desc: 'Patates, olives, escopinyes i anxoves en vinagre' },
+      ria_noia:              { name: 'Ría de Noia',    desc: 'Patates, olives, escopinyes i boquerons' },
       ria_ribadeo:           { name: 'Ría de Ribadeo', desc: 'Patates, olives, escopinyes i musclos' },
       ria_muros:             { name: 'Ría de Muros',   desc: 'Patates, olives, escopinyes, musclos i anxoves' },
     },
