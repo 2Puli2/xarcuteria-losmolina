@@ -251,7 +251,7 @@ export const CAT = {
     },
     embutidoItems: {
       paleta_iberica_maquina:  { name: 'Paletilla Ibèrica a Màquina' },
-      tabla_mixta:             { name: 'Taula Mixta',              desc: 'Paletilla ibèrica i formatge semicurat.' },
+      tabla_mixta:             { name: 'Taula Mixta',              desc: 'Paletilla ibèrica i formatge semicurat' },
       paleta_bellota_maquina:  { name: 'Paletilla de Bellota a Màquina' },
       iberico_cebo_mano:       { name: 'Ibèric de Cebo a Mà' },
       cinco_jotas_mano:        { name: 'Cinco Jotas a Mà' },
@@ -285,7 +285,7 @@ export const CAT = {
       cecina:                  { name: 'Cecina' },
       surtido_fiambres:        { name: 'Assortiment de Fiambres',  desc: 'Bull blanc, bull negre, mortadel·la i catalana' },
       atun:                    { name: 'Tonyina' },
-      cantabrico:              { name: 'Cantàbric', desc: 'Anxoves, olives, pebrot vermell i tonyina.' },
+      cantabrico:              { name: 'Cantàbric', desc: 'Anxoves, olives, pebrot vermell i tonyina' },
       queso_semicurado:        { name: 'Formatge Semicurat' },
       queso_curado:            { name: 'Formatge Curat' },
       queso_fresco_cabra:      { name: 'Formatge Fresc de Cabra' },

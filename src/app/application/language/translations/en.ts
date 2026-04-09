@@ -251,7 +251,7 @@ export const EN = {
     },
     embutidoItems: {
       paleta_iberica_maquina:  { name: 'Iberian Shoulder (sliced)' },
-      tabla_mixta:             { name: 'Mixed Board',             desc: 'Iberian shoulder and semi-cured cheese.' },
+      tabla_mixta:             { name: 'Mixed Board',             desc: 'Iberian shoulder and semi-cured cheese' },
       paleta_bellota_maquina:  { name: 'Acorn-fed Shoulder (sliced)' },
       iberico_cebo_mano:       { name: 'Iberian Grain-fed Ham (hand-carved)' },
       cinco_jotas_mano:        { name: 'Cinco Jotas Ham (hand-carved)' },
@@ -285,7 +285,7 @@ export const EN = {
       cecina:                  { name: 'Cecina' },
       surtido_fiambres:        { name: 'Cold Cuts Assortment',   desc: 'Bull blanco, bull negro, mortadella and catalana' },
       atun:                    { name: 'Tuna' },
-      cantabrico:              { name: 'Cantabrian', desc: 'Anchovies, olives, red pepper and tuna.' },
+      cantabrico:              { name: 'Cantabrian', desc: 'Anchovies, olives, red pepper and tuna' },
       queso_semicurado:        { name: 'Semi-cured Cheese' },
       queso_curado:            { name: 'Cured Cheese' },
       queso_fresco_cabra:      { name: 'Fresh Goat Cheese' },
