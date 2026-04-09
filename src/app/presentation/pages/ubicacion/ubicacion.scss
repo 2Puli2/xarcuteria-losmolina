@@ -9,7 +9,8 @@
   padding: $spacing-xxl $spacing-md;
 
   &__container {
-    max-width: 900px;
+    max-width: $layout-max-width;
+    min-width: min($layout-min-width, 100%);
     width: 100%;
     display: flex;
     flex-direction: column;

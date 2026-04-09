@@ -1,7 +1,6 @@
 @use '../../../../variables' as *;
 
 .carta {
-  // ─── Listas (aperitivos, conservas, menús, pizzas, postres) ───
   &__list {
     display: flex;
     flex-direction: column;

@@ -16,7 +16,6 @@
     gap: $spacing-xl;
   }
 
-  // ─── Cabecera ───
   &__header {
     width: 100%;
     position: relative;
@@ -55,7 +54,6 @@
     letter-spacing: 0.3px;
   }
 
-  // ─── Nota de suplemento de terraza ───
   &__terrace-note {
     width: 100%;
     font-size: $font-size-xs;
@@ -64,7 +62,6 @@
     font-style: italic;
   }
 
-  // ─── Navegación rápida ───
   &__nav {
     width: 100%;
     display: flex;
@@ -102,7 +99,6 @@
     }
   }
 
-  // ─── Secciones ───
   &__section {
     width: 100%;
     display: flex;
@@ -153,7 +149,6 @@
     border-radius: $border-radius-md;
   }
 
-  // ─── Leyenda ───
   &__legend {
     width: 100%;
     display: flex;
@@ -191,7 +186,6 @@
     display: inline-block;
   }
 
-  // ─── Iconos en items ───
   &__list-item-icons {
     display: flex;
     gap: $spacing-xs;
@@ -217,7 +211,6 @@
     opacity: 0.6;
   }
 
-  // ─── Footer ───
   &__footer {
     width: 100%;
     text-align: center;
@@ -249,7 +242,6 @@
     }
   }
 
-  // ─── Suplementos Especiales ───
   &__suplementos-especiales {
     display: flex;
     flex-wrap: wrap;
@@ -288,7 +280,6 @@
     }
   }
 
-  // ─── Footer ───
   &__footer {
     width: 100%;
     margin-top: $spacing-xxl;

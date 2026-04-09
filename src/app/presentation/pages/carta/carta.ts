@@ -10,6 +10,7 @@ import {
     CONSERVAS_PRICES,
     MENUS_PRICES,
     EMBUTIDO_GROUPS_PRICES,
+    PAN_Y_TOSTADAS_PRICES,
     BIQUINIS_PRICES,
     CALIENTES_PRICES,
     SUPLEMENTOS_PRICES,
@@ -132,6 +133,11 @@ export class CartaComponent {
             medio: p.medio,
             entero: p.entero,
         }));
+    });
+
+    readonly panYTostadas = computed<CartaItem[]>(() => {
+        const t = this.idioma.t().cartaItems.pan_y_tostadas as Record<string, CartaItem>;
+        return PAN_Y_TOSTADAS_PRICES.map(p => ({ ...(t[p.key] ?? { name: p.key }), price: p.price }));
     });
 
     readonly pizzas = computed<CartaItem[]>(() => {

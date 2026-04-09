@@ -9,7 +9,8 @@
   padding: $spacing-xxl $spacing-lg;
 
   &__container {
-    max-width: 860px;
+    max-width: $layout-max-width;
+    min-width: min($layout-min-width, 100%);
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -28,8 +29,6 @@
     color: #3a3a3a;
     line-height: 1.9;
     font-size: $font-size-base;
-    border-left: 3px solid rgba($color-accent, 0.25);
-    padding-left: $spacing-lg;
 
     p {
       margin-bottom: $spacing-md;
@@ -63,7 +62,6 @@
     &__text {
       font-size: $font-size-sm;
       line-height: 1.7;
-      padding-left: $spacing-md;
     }
 
   }

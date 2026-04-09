@@ -1,9 +1,7 @@
-<!-- Overlay -->
 @if (isOpen()) {
   <div class="sidebar-overlay" (click)="close()"></div>
 }
 
-<!-- Sidebar -->
 <aside class="sidebar" [class.sidebar--open]="isOpen()">
   <div class="sidebar__header">
     <div class="sidebar__lang-selector">

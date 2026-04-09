@@ -1,11 +1,19 @@
 @use '../../../../../variables' as *;
 
 .charcuteria {
+  --stage-max-width: #{$layout-max-width};
+  --stage-min-height: 420px;
+  --brand-image-w: 260px;
+  --brand-image-h: 185px;
+  --arrow-size: 44px;
+}
+
+.charcuteria {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: $spacing-xl;
-  animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn $transition-base ease-in-out;
 
   &__description-block {
     display: flex;
@@ -19,7 +27,6 @@
     color: $color-light;
     line-height: 1.7;
     text-align: center;
-    max-width: 700px;
     margin: 0;
 
     &--accent {
@@ -28,100 +35,64 @@
     }
   }
 
-  // ─── Layout contenido: foto + brands en flex ───
-  &__content {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: $spacing-xl;
-    justify-content: center;
-  }
-
-  // ─── Mostrador foto ───
-  &__counter-image {
-    flex: 0 1 auto;
-    max-width: 450px;
-    border-radius: $border-radius-lg;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba($color-accent, 0.2);
-  }
-
-  &__counter-photo {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform $transition-fast;
-
-  }
-
-  // ─── Carrusel de marcas con flechas overlay ───
-  &__brands-carousel {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    justify-content: center;
-  }
-
-  // ─── Flechas de navegación (overlay, 80% del tamaño) ───
-  &__carousel-arrow {
-    position: absolute;
-    background: rgba($color-dark, 0.7);
-    border: 2px solid $color-accent;
-    color: $color-accent;
-    font-size: 14px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: $border-radius-full;
-    cursor: pointer;
-    transition: all $transition-fast;
-    z-index: 10;
-
-    &:hover {
-      background-color: rgba($color-accent, 0.35);
-      color: $color-dark;
-      transform: scale(1.02);
-    }
-
-    &:active {
-      transform: scale(0.98);
-    }
-
-    &--prev {
-      left: 12px;
-      top: 50%;
-      transform: translateY(-5%);
-    }
-
-    &--next {
-      right: 12px;
-      top: 50%;
-      transform: translateY(-5%);
-    }
-  }
-
-  // ─── Marcas ───
   &__brands-section {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: $spacing-md;
+    gap: $spacing-lg;
   }
 
-  // Contenedor fijo que mantiene el tamaño (100% mayor que antes)
+  &__brands-title {
+    font-family: $font-family-heading;
+    font-size: $font-size-lg;
+    font-weight: 600;
+    color: $color-accent;
+    text-align: center;
+    margin: 0 0 $spacing-sm 0;
+    letter-spacing: 0.05em;
+  }
+
   &__brand-stage {
     position: relative;
-    width: 360px;
-    height: 320px;
-    background-color: rgba(white, 0.01);
+    width: 100%;
+    max-width: var(--stage-max-width);
+    min-height: var(--stage-min-height);
     border-radius: $border-radius-md;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  &__carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--arrow-size);
+    height: var(--arrow-size);
+    background: rgba($color-dark, 0.7);
+    border: 2px solid $color-accent;
+    border-radius: $border-radius-full;
+    color: $color-accent;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color $transition-fast, transform $transition-fast;
+    z-index: 10;
+
+    &:hover {
+      background-color: rgba($color-accent, 0.35);
+      transform: translateY(-50%) scale(1.06);
+    }
+
+    &:active {
+      transform: translateY(-50%) scale(0.96);
+    }
+
+    &--prev { left: 12px; }
+    &--next { right: 12px; }
   }
 
   &__brand {
@@ -130,43 +101,34 @@
     align-items: center;
     justify-content: center;
     gap: $spacing-md;
-    width: 130%;
-    height: 130%;
+    width: 100%;
+    min-height: var(--stage-min-height);
     text-decoration: none;
     cursor: pointer;
-    border-radius: $border-radius-md;
     padding: $spacing-xl;
-
-
-    // El fade se controla con opacity; empieza invisible
+    border-radius: $border-radius-md;
     opacity: 0;
     transition:
-      opacity 0.5s ease,
+      opacity $transition-slow,
       background-color $transition-fast,
-      transform $transition-fast,
-      box-shadow $transition-fast;
+      transform $transition-fast;
 
-    &--visible {
-      opacity: 1;
-    }
-
-  
+    &--visible { opacity: 1; }
 
     &-image {
-      width: 180px;
-      height: 130px;
+      width: var(--brand-image-w);
+      height: var(--brand-image-h);
       object-fit: contain;
       transition: transform $transition-fast;
     }
 
     &:hover &-image {
       transform: scale(1.05);
-      opacity: 1;
     }
 
     &-name {
       font-family: $font-family-base;
-      font-size: $font-size-base;
+      font-size: $font-size-md;
       color: $color-light;
       font-weight: 600;
       text-align: center;
@@ -175,171 +137,145 @@
     &-desc {
       font-family: $font-family-base;
       font-size: $font-size-sm;
-      color: $color-light;
+      color: rgba($color-light, 0.6);
       text-align: center;
       line-height: 1.5;
-      opacity: 0.6;
-      max-width: 280px;
-      transition: opacity $transition-fast;
+      max-width: 360px;
+      transition: color $transition-fast;
     }
 
     &:hover &-desc {
-      opacity: 1;
+      color: $color-light;
     }
+  }
+
+  &__promo {
+    width: 100%;
+    background: linear-gradient(135deg, $color-primary 0%, #7a1a17 100%);
+    border-radius: $border-radius-lg;
+    padding: $spacing-lg $spacing-xl;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-md;
+    border: 2px solid rgba($color-accent, 0.45);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 20px,
+        rgba(0, 0, 0, 0.06) 20px,
+        rgba(0, 0, 0, 0.06) 40px
+      );
+      pointer-events: none;
+    }
+  }
+
+  &__promo-body {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+    z-index: 1;
+  }
+
+  &__promo-day {
+    display: inline-block;
+    align-self: flex-start;
+    background-color: $color-accent;
+    color: $color-dark;
+    font-family: $font-family-heading;
+    font-size: $font-size-xs;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 4px 14px;
+    border-radius: $border-radius-full;
+  }
+
+  &__promo-title {
+    font-family: $font-family-heading;
+    font-size: $font-size-xl;
+    font-weight: 700;
+    color: $color-light;
+    margin: 0;
+    line-height: 1.1;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  &__promo-condition {
+    font-size: $font-size-sm;
+    color: rgba($color-light, 0.8);
+    margin: 0;
+    font-style: italic;
+  }
+
+  &__promo-highlight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+
+  &__promo-number {
+    font-family: $font-family-heading;
+    font-size: 80px;
+    font-weight: 900;
+    color: $color-accent;
+    line-height: 1;
+    text-shadow: 0 0 30px rgba($color-accent, 0.35);
+  }
+
+  &__promo-label {
+    font-family: $font-family-heading;
+    font-size: $font-size-md;
+    font-weight: 700;
+    color: $color-accent;
+    letter-spacing: 0.25em;
+    margin-top: -8px;
   }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-// ─── Promo Banner ───
-.charcuteria__promo {
-  width: 100%;
-  background: linear-gradient(135deg, $color-primary 0%, #7a1a17 100%);
-  border-radius: $border-radius-lg;
-  padding: $spacing-lg $spacing-xl;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: $spacing-md;
-  border: 2px solid rgba($color-accent, 0.45);
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 20px,
-      rgba(0, 0, 0, 0.06) 20px,
-      rgba(0, 0, 0, 0.06) 40px
-    );
-    pointer-events: none;
+@media (max-width: $breakpoint-md) {
+  .charcuteria {
+    --brand-image-w: 200px;
+    --brand-image-h: 145px;
+    --stage-min-height: 340px;
   }
 }
 
-.charcuteria__promo-body {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-xs;
-  z-index: 1;
-}
-
-.charcuteria__promo-day {
-  display: inline-block;
-  background-color: $color-accent;
-  color: $color-dark;
-  font-family: $font-family-heading;
-  font-size: $font-size-xs;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 4px 14px;
-  border-radius: $border-radius-full;
-  align-self: flex-start;
-}
-
-.charcuteria__promo-title {
-  font-family: $font-family-heading;
-  font-size: $font-size-xl;
-  font-weight: 700;
-  color: $color-light;
-  margin: 0;
-  line-height: 1.1;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.charcuteria__promo-condition {
-  font-size: $font-size-sm;
-  color: rgba($color-light, 0.8);
-  margin: 0;
-  font-style: italic;
-}
-
-.charcuteria__promo-highlight {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 1;
-  flex-shrink: 0;
-}
-
-.charcuteria__promo-number {
-  font-family: $font-family-heading;
-  font-size: 80px;
-  font-weight: 900;
-  color: $color-accent;
-  line-height: 1;
-  text-shadow: 0 0 30px rgba($color-accent, 0.35);
-}
-
-.charcuteria__promo-label {
-  font-family: $font-family-heading;
-  font-size: $font-size-md;
-  font-weight: 700;
-  color: $color-accent;
-  letter-spacing: 0.25em;
-  margin-top: -8px;
-}
-
-// ─── Responsive móvil ───
 @media (max-width: $breakpoint-sm) {
   .charcuteria {
-    &__content {
-      flex-direction: column;
-      gap: $spacing-lg;
-    }
+    --brand-image-w: 140px;
+    --brand-image-h: 100px;
+    --stage-min-height: 260px;
+    --arrow-size: 36px;
 
-    &__counter-image {
-      max-width: 100%;
-    }
+    &__description { font-size: $font-size-sm; }
 
-    &__description {
-      font-size: $font-size-sm;
-    }
+    &__brands-title { font-size: $font-size-md; }
 
     &__carousel-arrow {
-      width: 36px;
-      height: 36px;
       font-size: 12px;
-
-      &--prev {
-        left: 8px;
-      }
-
-      &--next {
-        right: 8px;
-      }
-    }
-
-    &__brand-stage {
-      width: 240px;
-      height: 210px;
+      &--prev { left: 8px; }
+      &--next { right: 8px; }
     }
 
     &__brand {
       padding: $spacing-lg;
       gap: $spacing-sm;
-
-      &-image {
-        width: 120px;
-        height: 85px;
-      }
-
-      &-name {
-        font-size: $font-size-sm;
-      }
+      &-name { font-size: $font-size-base; }
     }
 
     &__promo {
@@ -348,12 +284,7 @@
       padding: $spacing-md;
     }
 
-    &__promo-day {
-      align-self: center;
-    }
-
-    &__promo-number {
-      font-size: 64px;
-    }
+    &__promo-day    { align-self: center; }
+    &__promo-number { font-size: 64px; }
   }
 }

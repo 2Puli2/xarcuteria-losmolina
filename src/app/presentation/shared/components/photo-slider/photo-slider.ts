@@ -14,12 +14,16 @@ export interface SliderPhoto {
 })
 export class PhotoSliderComponent implements AfterViewInit {
   readonly photos: SliderPhoto[] = [
-    { src: '/images/gallery/IMG_8843.jpg', alt: 'Charcutería Los Molina — Galería 6' },
-    { src: '/images/gallery/IMG_0046.jpg', alt: 'Charcutería Los Molina — Galería 1' },
-    { src: '/images/gallery/IMG_1474.jpg', alt: 'Charcutería Los Molina — Galería 2' },
-    { src: '/images/gallery/IMG_1676.jpg', alt: 'Charcutería Los Molina — Galería 3' },
-    { src: '/images/gallery/IMG_2823.jpg', alt: 'Charcutería Los Molina — Galería 4' },
-    { src: '/images/gallery/IMG_8238.jpg', alt: 'Charcutería Los Molina — Galería 5' },
+    { src: '/images/gallery/IMG_8843.jpg', alt: 'Charcutería Los Molina — Galería' },
+    { src: '/images/gallery/IMG_9169.jpg', alt: 'Charcutería Los Molina — Galería' },
+    { src: '/images/gallery/IMG_8238.jpg', alt: 'Charcutería Los Molina — Galería' },
+    { src: '/images/gallery/IMG_8188.jpg', alt: 'Charcutería Los Molina — Galería' },
+    { src: '/images/gallery/IMG_6074.jpg', alt: 'Charcutería Los Molina — Galería' },
+    { src: '/images/gallery/IMG_3478.jpg', alt: 'Charcutería Los Molina — Galería' },
+    { src: '/images/gallery/IMG_3477.jpg', alt: 'Charcutería Los Molina — Galería' },
+    { src: '/images/gallery/IMG_2824.jpg', alt: 'Charcutería Los Molina — Galería' },
+    { src: '/images/gallery/IMG_1676.jpg', alt: 'Charcutería Los Molina — Galería' },
+    { src: '/images/gallery/IMG_1474.jpg', alt: 'Charcutería Los Molina — Galería' },
   ];
 
   ngAfterViewInit(): void {

@@ -1,31 +1,19 @@
 <div class="core" #mainContent (window:scroll)="onScroll()">
-  <!-- Header fijo (aparece al salir de Home) -->
   @if (showHeader) {
     <app-header (openSidebar)="sidebar.open()" [hiding]="headerHiding" />
   }
 
-  <!-- Sidebar de navegación -->
   <app-sidebar #sidebar (scrollTo)="scrollToSection($event)" />
 
-  <!-- Secciones de la página -->
   <main class="core__main">
-    <!-- Home / Hero -->
     <app-home (scrollTo)="scrollToSection($event)" />
-
-    <!-- Quiénes Somos -->
     <app-quienes-somos />
-
-    <!-- ¿Qué ofrecemos? -->
     <app-que-ofrecemos />
-
-    <!-- Ubicación -->
     <app-ubicacion />
   </main>
 
-  <!-- Footer -->
   <app-footer />
 
-  <!-- Botón volver arriba -->
   <ngx-scrolltop
     backgroundColor="#0d1b1e"
     symbolColor="#ffffff"

@@ -25,7 +25,7 @@ export class IdiomaService {
   ];
 
   readonly currentLang = signal<Lang>('es');
-
+/**Si da error aquí es por que los tres idiomas no estan actualizados */
   readonly t = computed<Translations>(() => {
     switch (this.currentLang()) {
       case 'en':  return EN;

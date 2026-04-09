@@ -1,6 +1,5 @@
 <div class="carta">
   <div class="carta__container">
-    <!-- Cabecera -->
     <div class="carta__header">
       <app-language-selector class="carta__header-lang" />
       <a [routerLink]="idioma.localizeRoute('/')" class="carta__logo-link">
@@ -14,7 +13,6 @@
 
       <p class="carta__header-footer-text">{{ idioma.t().carta.footerText }}</p>
     </div>
-<!-- Nota de suplemento de terraza -->
     <nav class="carta__nav">
       <button class="carta__nav-btn" (click)="scrollTo('carta-bebidas')">{{ idioma.t().carta.navBebidas }}</button>
       <button class="carta__nav-btn" (click)="scrollTo('carta-aperitivos')">{{ idioma.t().carta.navAperitivos }}</button>
@@ -25,15 +23,9 @@
       <button class="carta__nav-btn" (click)="scrollTo('carta-postres')">{{ idioma.t().carta.navPostres }}</button>
     </nav>
 
-    <!-- Leyenda (desactivada de momento) -->
-    <!-- Componente legend oculto: será activado cuando se vuelva a trabajar en los indicadores -->
-    <!-- <app-legend></app-legend> -->
-
-    <!-- ═══════ 1. Bebidas ═══════ -->
     <section class="carta__section" id="carta-bebidas">
       <h2 class="carta__section-title">{{ idioma.t().carta.bebidasTitle }}</h2>
 
-      <!-- Refrescos -->
       <h3 class="carta__subsection-title">{{ idioma.t().carta.refrescosTitle }}</h3>
       <div class="carta__list">
         @for (item of refrescos; track item.name) {
@@ -61,7 +53,6 @@
         }
       </div>
 
-      <!-- Cervezas -->
       <h3 class="carta__subsection-title">{{ idioma.t().carta.cervezasTitle }}</h3>
       <div class="carta__list">
         @for (item of cervezas; track item.name) {
@@ -89,7 +80,6 @@
         }
       </div>
 
-      <!-- Vinos -->
       <h3 class="carta__subsection-title">{{ idioma.t().carta.vinosTitle }}</h3>
       <div class="carta__list">
         @for (item of vinos; track item.name) {
@@ -117,7 +107,6 @@
         }
       </div>
 
-      <!-- Cafés -->
       <h3 class="carta__subsection-title">{{ idioma.t().carta.cafesTitle }}</h3>
       <div class="carta__list">
         @for (item of cafes; track item.name) {
@@ -145,7 +134,6 @@
       <p class="carta__bebidas-note">{{ idioma.t().carta.hieloExtraNote }}</p>
     </section>
 
-    <!-- ═══════ 2. Aperitivos y Conservas ═══════ -->
     <section class="carta__section" id="carta-aperitivos">
       <h2 class="carta__section-title">{{ idioma.t().carta.aperitivosTitle }}</h2>
 
@@ -163,7 +151,6 @@
         }
       </div>
 
-      <!-- Conservas Espinaler sub-sección -->
       <h3 class="carta__subsection-title">{{ idioma.t().carta.conservasTitle }}</h3>
 
       <div class="carta__list">
@@ -181,7 +168,6 @@
       </div>
     </section>
 
-    <!-- ═══════ 3. Menús ═══════ -->
     <section class="carta__section" id="carta-menus">
       <h2 class="carta__section-title">{{ idioma.t().carta.menusTitle }}</h2>
       <p class="carta__section-note">{{ idioma.t().carta.menusNote }}</p>
@@ -201,7 +187,6 @@
       </div>
     </section>
 
-    <!-- ═══════ 4. Nuestros Embutidos ═══════ -->
     <section class="carta__section" id="carta-embutidos">
       <h2 class="carta__section-title">{{ idioma.t().carta.embutidosTitle }}</h2>
       <p class="carta__section-note">{{ idioma.t().carta.embutidosNote }}</p>
@@ -215,7 +200,6 @@
         <div class="carta__embutidos-group">
           <h3 class="carta__subsection-title">{{ group.title }}</h3>
 
-          <!-- Tabla desktop -->
           <div class="carta__table-wrap">
             <table class="carta__table">
               <thead>
@@ -256,13 +240,29 @@
         </div>
       }
 
-      
-      <!-- Bocadillos calientes -->
-      <div class="carta__embutidos-group" id="carta-calientes">
-        <h3 class="carta__subsection-title">{{ idioma.t().carta.calientesTitle }}</h3>
+      <div class="carta__embutidos-group">
+        <h3 class="carta__subsection-title">{{ idioma.t().carta.panTitle }}</h3>
 
+        <div class="carta__list">
+          @for (item of panYTostadas(); track item.name) {
+            <div class="carta__list-item">
+              <div class="carta__list-item-info">
+                <span class="carta__list-item-name">{{ item.name }}</span>
+                @if (item.desc) {
+                  <span class="carta__list-item-desc">{{ item.desc }}</span>
+                }
+              </div>
+              <span class="carta__list-item-price">{{ item.price }}€</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      
+      <h2 class="carta__section-title" id="carta-calientes">{{ idioma.t().carta.calientesTitle }}</h2>
+
+      <div class="carta__embutidos-group">
         <div class="carta__table-wrap carta__table-wrap--double">
-          <!-- Tabla biquinis -->
           <table class="carta__table carta__table--calientes">
             <thead>
               <tr>
@@ -287,7 +287,6 @@
             </tbody>
           </table>
 
-          <!-- Tabla otros calientes -->
           <table class="carta__table carta__table--calientes carta__table--joined">
             <thead>
               <tr>
@@ -314,10 +313,8 @@
         </div>
       </div>
 
-      <!-- Divisor antes de suplementos -->
       <hr class="carta__divider" />
 
-      <!-- Suplementos -->
       <div class="carta__embutidos-group carta__embutidos-group--suplementos" id="carta-suplementos">
         <div class="carta__table-wrap">
           <table class="carta__table">
@@ -347,7 +344,6 @@
       </div>
     </section>
 
-    <!-- ═══════ 5. Pizzas ═══════ -->
     <section class="carta__section" id="carta-pizzas">
       <h2 class="carta__section-title">{{ idioma.t().carta.pizzasTitle }}</h2>
       <p class="carta__section-note">{{ idioma.t().carta.pizzasNote }}</p>
@@ -364,7 +360,6 @@
       </div>
     </section>
 
-    <!-- ═══════ 6. Postres ═══════ -->
     <section class="carta__section" id="carta-postres">
       <h2 class="carta__section-title">{{ idioma.t().carta.postresTitle }}</h2>
 
@@ -379,10 +374,8 @@
         }
       </div>
     </section>
-    <!-- Nota de suplemento de terraza -->
-    <p class="carta__terrace-note">{{ idioma.t().carta.terrazeSupplementNote }}</p> -->
+    <p class="carta__terrace-note">{{ idioma.t().carta.terrazeSupplementNote }}</p>
 
-    <!-- Footer -->
     <div class="carta__footer">
       
       <p class="carta__footer-text">{{ idioma.t().carta.footerText }}</p>

@@ -1,7 +1,3 @@
-// ─── Modular carta stylesheet ───
-// Separamos el código en componentes para reducir tamaño individual
-// del archivo SCSS y cumplir presupuesto de bundle
-
 @use 'carta-base';
 @use 'carta-lists';
 @use 'carta-scroll-hint';

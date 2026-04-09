@@ -2,21 +2,27 @@
 
 .photo-slider {
   width: 100%;
+  max-width: $layout-max-width;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 auto;
+  position: relative;
 
   &__swiper {
     width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
     box-shadow: $shadow-lg;
+    touch-action: pan-y;
 
     --swiper-pagination-color: #{rgba($color-dark, 0.8)};
     --swiper-pagination-bullet-inactive-color: rgba(26, 54, 64, 0.3);
     --swiper-pagination-bullet-inactive-opacity: 1;
     --swiper-pagination-bullet-size: 5px;
     --swiper-pagination-bullet-horizontal-gap: 3px;
+    --swiper-navigation-size: 44px;
+    --swiper-navigation-color: #{$color-accent};
   }
 
   &__slide {
@@ -28,6 +34,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     display: block;
   }
 }
@@ -37,9 +44,34 @@
   border-radius: 3px;
 }
 
+.photo-slider__swiper::part(button-prev),
+.photo-slider__swiper::part(button-next) {
+  width: var(--swiper-navigation-size);
+  height: var(--swiper-navigation-size);
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  transition: opacity $transition-fast;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-slider__swiper::part(button-prev):hover,
+.photo-slider__swiper::part(button-next):hover {
+  opacity: 0.7;
+}
+
+.photo-slider__swiper::part(button-prev):active,
+.photo-slider__swiper::part(button-next):active {
+  opacity: 0.5;
+}
+
 @media (max-width: $breakpoint-md) {
   .photo-slider {
     &__swiper {
+      --swiper-navigation-size: 36px;
       --swiper-pagination-bullet-size: 5px;
     }
   }
@@ -48,7 +80,8 @@
 @media (max-width: $breakpoint-sm) {
   .photo-slider {
     &__swiper {
-      --swiper-pagination-bullet-size: 5px;
+      --swiper-navigation-size: 32px;
+      --swiper-pagination-bullet-size: 4px;
     }
   }
 }

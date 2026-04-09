@@ -1,7 +1,6 @@
 <div class="degustacion">
   <p class="degustacion__description">{{ idioma.t().offer.degustacionDescription }}</p>
 
-  <!-- Categorías del menú -->
   <div class="degustacion__categories">
     @for (category of idioma.t().offer.categories; track category.name) {
       <div class="degustacion__category">
@@ -30,7 +29,6 @@
     }
   </div>
 
-  <!-- Texto promocional -->
   <div class="degustacion__footer">
     <p class="degustacion__footer-text">{{ idioma.t().offer.degustacionFooter }}</p>
   </div>

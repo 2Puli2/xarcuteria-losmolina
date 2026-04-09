@@ -1,15 +1,12 @@
 <section class="ubicacion" id="ubicacion">
   <div class="ubicacion__container">
-    <!-- Título de sección -->
     <app-title
       [text]="idioma.t().location.title"
       [subtitle]="idioma.t().location.subtitle"
       variant="dark"
     />
 
-    <!-- Contenido -->
     <div class="ubicacion__content">
-      <!-- Info de contacto con microformato address -->
       <address class="ubicacion__info" itemscope itemtype="https://schema.org/LocalBusiness">
         <meta itemprop="name" content="Xarcuteria Los Molina">
         <meta itemprop="url" content="https://www.xarcuterialosmolina.com">
@@ -61,7 +58,6 @@
         </div>
       </address>
 
-      <!-- Mapa de Google Maps -->
       <div class="ubicacion__map-wrapper">
         <app-map
           [address]="'Frederic Soler, 17, El Prat de Llobregat'"

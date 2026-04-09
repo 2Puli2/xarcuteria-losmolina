@@ -1,6 +1,5 @@
 <div class="trabaja">
   <div class="trabaja__container">
-    <!-- Cabecera -->
     <div class="trabaja__header">
       <a [routerLink]="idioma.localizeRoute('/')" class="trabaja__logo-link">
         <app-logo size="md" />
@@ -13,7 +12,6 @@
     </div>
 
     @if (enviado()) {
-      <!-- Confirmación -->
       <div class="trabaja__success">
         <span class="trabaja__success-icon">✅</span>
         <h3 class="trabaja__success-title">{{ idioma.t().work.successTitle }}</h3>
@@ -23,7 +21,6 @@
         <a [routerLink]="idioma.localizeRoute('/')" class="trabaja__back-link">{{ idioma.t().work.backLink }}</a>
       </div>
     } @else {
-      <!-- Formulario -->
       @if (error()) {
         <div class="trabaja__error">
           ⚠️ {{ error() }}

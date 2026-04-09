@@ -1,13 +1,11 @@
 <section class="quienes-somos" id="quienes-somos">
   <div class="quienes-somos__container">
-    <!-- Título de sección -->
     <app-title
       [text]="idioma.t().about.title"
       [subtitle]="idioma.t().about.subtitle"
       variant="primary"
     />
 
-    <!-- Contenido -->
     <div class="quienes-somos__content">
       <div class="quienes-somos__text">
         <p [innerHTML]="idioma.t().about.text1"></p>
@@ -16,13 +14,9 @@
       </div>
     </div>
 
-    <!-- Galería de fotos -->
     <app-photo-slider />
 
-    <!-- Separador -->
     <div class="quienes-somos__divider"></div>
 
-    <!-- Reseñas -->
-    <app-reviews-slider />
   </div>
 </section>

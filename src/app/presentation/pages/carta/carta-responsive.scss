@@ -1,6 +1,5 @@
 @use '../../../../variables' as *;
 
-// ─── Responsive tablet ───
 @media (max-width: $breakpoint-md) {
   .carta {
     padding: $spacing-xl $spacing-sm;
@@ -37,7 +36,6 @@
       padding: $spacing-xs 4px;
     }
 
-    // Columna de nombre fija al hacer scroll horizontal
     &__table-th--name {
       position: sticky;
       left: 0;
@@ -53,7 +51,6 @@
   }
 }
 
-// ─── Responsive móvil ───
 @media (max-width: $breakpoint-sm) {
   .carta {
     padding: $spacing-lg $spacing-xs;
