@@ -280,6 +280,7 @@ export const ES = {
       fuet:                    { name: 'Fuet' },
       longaniza_vic:           { name: 'Longaniza de Vic' },
       cecina:                  { name: 'Cecina' },
+      cabeza_de_jabalí:        {name: 'Cabeza de Jabalí'},
       surtido_fiambres:        { name: 'Surtido de Fiambres', desc: 'Bull blanco, bull negro, mortadela y catalana' },
       atun:                    { name: 'Atún' },
       cantabrico:              { name: 'Cantábrico', desc: 'Anchoas, olivas, pimiento rojo y atún' },

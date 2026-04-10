@@ -283,6 +283,7 @@ export const CAT = {
       fuet:                    { name: 'Fuet' },
       longaniza_vic:           { name: 'Llonganissa de Vic' },
       cecina:                  { name: 'Cecina' },
+      cabeza_de_jabalí:        {name: 'Cap de Senglar'},
       surtido_fiambres:        { name: 'Assortiment de Fiambres',  desc: 'Bull blanc, bull negre, mortadel·la i catalana' },
       atun:                    { name: 'Tonyina' },
       cantabrico:              { name: 'Cantàbric', desc: 'Anxoves, olives, pebrot vermell i tonyina' },

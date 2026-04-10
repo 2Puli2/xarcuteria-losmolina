@@ -283,6 +283,7 @@ export const EN = {
       fuet:                    { name: 'Fuet' },
       longaniza_vic:           { name: 'Longaniza de Vic' },
       cecina:                  { name: 'Cecina' },
+      cabeza_de_jabalí:        {name:  'Wild boar head'},
       surtido_fiambres:        { name: 'Cold Cuts Assortment',   desc: 'Bull blanco, bull negro, mortadella and catalana' },
       atun:                    { name: 'Tuna' },
       cantabrico:              { name: 'Cantabrian', desc: 'Anchovies, olives, red pepper and tuna' },
