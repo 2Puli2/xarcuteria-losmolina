@@ -67,9 +67,9 @@ export const CONSERVAS_PRICES: PriceItem[] = [
     { key: 'navajas',               price: '6,90'  },
     { key: 'sardinas',              price: '4,90'  },
     { key: 'chipirones',            price: '6,90'  },
-    { key: 'ria_noia',              price: '16,00' },
-    { key: 'ria_ribadeo',           price: '14,50' },
-    { key: 'ria_muros',             price: '19,90' },
+    { key: 'ria_noia',              price: '18,50' },
+    { key: 'ria_ribadeo',           price: '16,50' },
+    { key: 'ria_muros',             price: '25,90' },
 ];
 
 export const MENUS_PRICES: PriceItem[] = [

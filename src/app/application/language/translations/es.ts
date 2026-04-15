@@ -4,7 +4,7 @@ export const ES = {
     logoTagline: 'Charcutería de barrio · Bocadillos y degustación',
     logoAlt: 'Charcutería Los Molina',
     openMenu: 'Abrir menú',
-    scroll: 'Scroll',
+    scroll: 'Desplazar',
   },
   home: {
     cta: 'Descubre qué ofrecemos',
@@ -30,7 +30,7 @@ export const ES = {
     promoTitle: '10% de descuento',
     promoCondition: 'En compras superiores a 30€ en tienda',
     charcuteriaDescriptionIntro:
-      'En nuestra charcuteria puedes pedir jamón cortado a mano o a maquina, embutido y fiambres de las mejor calidad, mucha variedad de quesos y aperitivos. Te preparamos bandejas por encargo, lotes para regalo, cátering para fiestas y todo el género para que te montes el aperitivo en casa.',
+      'En nuestra charcutería puedes pedir jamón cortado a mano o a máquina, embutido y fiambres de la mejor calidad, mucha variedad de quesos y aperitivos. Te preparamos bandejas por encargo, lotes para regalo, cátering para fiestas y todo el género para que te montes el aperitivo en casa.',
     charcuteriaDescriptionBrands: 'Trabajamos con marcas de primera:',
     brandDescriptions: {
       blazquez: 'Jamón ibérico de Salamanca con larga tradición familiar.',
@@ -189,7 +189,7 @@ export const ES = {
     legendTitle: 'Leyenda',
     legendFavorite: '★ Favorito',
     legendGlutenFree: '🌾 Sin gluten',
-    terrazeSupplementNote: '+0,10€ suplemento en terraza por item',
+    terrazeSupplementNote: '+0,10€ suplemento en terraza por ítem',
     navBebidas: 'Bebidas',
     bebidasTitle: 'Bebidas',
     refrescosTitle: 'Refrescos',
@@ -216,7 +216,7 @@ export const ES = {
       dados_curado:     { name: 'Dados de Queso Curado' },
       surtido_pates:    { name: 'Surtido de Patés', desc: 'Con mermelada y tostadas' },
       bloc_foie:        { name: 'Bloc de Foie', desc: 'Con mermelada y tostadas' },
-      lacon_pimenton:   { name: 'Lacón con Pimentón', desc: 'Pimientón dulce o picante' },
+      lacon_pimenton:   { name: 'Lacón con Pimentón', desc: 'Pimentón dulce o picante' },
       salmon_ahumado:   { name: 'Salmón Ahumado' },
       boquerones:       { name: 'Boquerones' },
       anchoas:          { name: 'Anchoas (5 filetes)' },

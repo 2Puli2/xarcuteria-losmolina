@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Nuestra Carta — Xarcuteria Los Molina</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Reddit+Sans:wght@400;500;600;700&family=Reddit+Sans+Condensed:wght@400;600;700&display=swap');
+:root{--red:#ac2521;--gold:#aba361;--dark:#0d1b1e;--light:#ffffff;--gray:#c8c8c8;--font:'Reddit Sans','Segoe UI',sans-serif;--fontH:'Reddit Sans Condensed','Reddit Sans',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--dark);color:var(--light);font-size:10px;line-height:1.3}
+
+/* — Página — */
+.page{width:297mm;min-height:420mm;margin:0 auto 8mm;background:var(--dark);padding:10mm 12mm 14mm;position:relative;page-break-after:always}
+.page:last-child{page-break-after:avoid}
+
+/* — Cabeceras — */
+.header{text-align:center;padding-bottom:3mm;margin-bottom:3mm}
+.header-logo{font-family:var(--fontH);font-size:28px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.header-tag{font-size:10px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-top:1mm}
+.header-sub{font-size:8.5px;color:var(--gray);margin-top:1.5mm;font-style:italic}
+.header-sm{border-bottom:1px solid rgba(171,163,97,.3);padding-bottom:2.5mm;margin-bottom:3mm;display:flex;align-items:center;justify-content:space-between}
+.header-sm .brand{font-family:var(--fontH);font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.header-sm .ptitle{font-family:var(--fontH);font-size:13px;color:var(--gold);font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.header-note{background:linear-gradient(135deg,rgba(171,163,97,.07),rgba(171,163,97,.03));border:1px solid rgba(171,163,97,.3);border-radius:4px;padding:1.5mm 4mm;font-size:9px;text-align:center;font-weight:500;margin-bottom:3mm}
+
+/* — Títulos — */
+.stitle{font-family:var(--fontH);font-size:14px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--red);padding-bottom:1.2mm;margin-bottom:2.5mm;margin-top:2.5mm}
+.stitle:first-child{margin-top:0}
+.sstitle{font-family:var(--fontH);font-size:10.5px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.7px;margin:2mm 0 1.2mm;border-bottom:1px solid rgba(171,163,97,.25);padding-bottom:.8mm}
+
+/* — Listas — */
+.list{width:100%}
+.li{display:flex;justify-content:space-between;align-items:baseline;padding:.5mm 0;border-bottom:1px dotted rgba(255,255,255,.06)}
+.li:last-child{border-bottom:none}
+.li-info{flex:1}
+.li-n{font-weight:600;font-size:9.5px}
+.li-d{font-size:7.5px;color:var(--gray);display:block;font-style:italic}
+.li-p{font-weight:700;font-size:9.5px;white-space:nowrap;margin-left:2mm}
+
+/* — Grids — */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+
+/* — Tablas — */
+.tw{width:100%;overflow:hidden;margin-bottom:1.5mm}
+table{width:100%;border-collapse:collapse;font-size:8px}
+thead tr{background:rgba(171,163,97,.12)}
+thead th{font-family:var(--fontH);font-size:7.5px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.4px;padding:1mm 1mm;text-align:center;border-bottom:1px solid rgba(171,163,97,.3);white-space:nowrap}
+thead th.cn{text-align:left;min-width:28mm}
+tbody tr{border-bottom:1px dotted rgba(255,255,255,.05)}
+tbody tr:nth-child(even){background:rgba(255,255,255,.02)}
+tbody td{padding:.8mm 1mm;text-align:center;color:var(--light);font-size:8px}
+tbody td.cn{text-align:left;font-weight:600;font-size:8px}
+.cd{font-size:6.5px;color:var(--gray);font-style:italic}
+.gh td{background:rgba(172,37,33,.15);font-family:var(--fontH);font-size:9px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.4px;padding:1mm 1mm;text-align:left!important}
+
+/* — Página 2: Grid embutidos + lado derecho — */
+.p2grid{display:grid;grid-template-columns:3fr 2fr;gap:5mm;align-items:start}
+.p2grid .rcol .stitle{font-size:12px;margin-top:2mm}
+.p2grid .rcol .stitle:first-child{margin-top:0}
+.p2grid .rcol table{font-size:7.5px}
+.p2grid .rcol thead th{font-size:7px;padding:.8mm 1mm}
+.p2grid .rcol tbody td{font-size:7.5px;padding:.7mm 1mm}
+.p2grid .rcol .li{padding:.4mm 0}
+.p2grid .rcol .li-n{font-size:9px}
+.p2grid .rcol .li-p{font-size:9px}
+
+/* — Notas y footer — */
+.note{font-size:7.5px;color:var(--gray);font-style:italic;margin-bottom:1.5mm}
+.ngold{color:rgba(171,163,97,.7)}
+.footer{position:absolute;bottom:5mm;left:12mm;right:12mm;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(171,163,97,.2);padding-top:1.5mm;font-size:7.5px;color:rgba(255,255,255,.35)}
+.footer .fb{font-weight:600;color:rgba(171,163,97,.5)}
+
+@media print{
+  body{background:var(--dark)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{margin:0;width:297mm;min-height:420mm;padding:10mm 12mm 14mm}
+}
+@page{size:A3;margin:0}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ PÁGINA 1 ═══════════════ -->
+<div class="page">
+  <div class="header">
+    <div class="header-logo">Xarcuteria Los Molina</div>
+    <div class="header-tag">Charcutería de barrio · Bocadillos y degustación</div>
+    <div class="header-sub">Frederic Soler, 17 — El Prat de Llobregat · Tel. 937 82 70 85</div>
+  </div>
+  <div class="header-note">¡Recuerda preguntar siempre por nuestras ofertas en bocadillos y sugerencias fuera de carta!</div>
+
+  <!-- BEBIDAS -->
+  <div class="stitle">Bebidas</div>
+  <div class="two-col">
+    <div>
+      <div class="sstitle">Refrescos</div>
+      <div class="list">
+        <div class="li"><div class="li-info"><span class="li-n">Agua Veri 0,33L</span></div><span class="li-p">1,60€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Agua Veri 0,5L</span></div><span class="li-p">1,80€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Agua Veri 1,5L</span></div><span class="li-p">2,50€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Vichy Catalan</span><span class="li-d">Agua con gas</span></div><span class="li-p">2,60€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Zumo Naranja Natural (pequeño)</span></div><span class="li-p">2,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Zumo Naranja Natural (grande)</span></div><span class="li-p">5,00€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Zumo</span><span class="li-d">Piña, melocotón o naranja</span></div><span class="li-p">2,10€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Cacaolat</span></div><span class="li-p">2,50€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Horchata Chufi</span></div><span class="li-p">2,50€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Coca-Cola</span></div><span class="li-p">2,60€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Coca-Cola Zero</span></div><span class="li-p">2,60€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Coca-Cola Zero Zero</span></div><span class="li-p">2,60€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Fanta Limón</span></div><span class="li-p">2,60€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Fanta Naranja</span></div><span class="li-p">2,60€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Aquarius Limón</span></div><span class="li-p">2,60€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Fuze Tea</span></div><span class="li-p">2,60€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Sprite</span></div><span class="li-p">2,60€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Tónica Nordic</span></div><span class="li-p">2,60€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Trina Naranja / Limón</span></div><span class="li-p">2,60€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Bitter Kas</span></div><span class="li-p">2,60€</span></div>
+      </div>
+      <div class="sstitle" style="margin-top:2mm">Cafés</div>
+      <div class="list">
+        <div class="li"><div class="li-info"><span class="li-n">Solo</span></div><span class="li-p">1,50€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Cortado</span></div><span class="li-p">1,60€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Con leche</span></div><span class="li-p">1,80€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Capuccino</span></div><span class="li-p">2,50€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Americano</span></div><span class="li-p">1,80€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Carajillo</span></div><span class="li-p">2,20€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Trifásico</span></div><span class="li-p">2,50€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Infusión</span></div><span class="li-p">1,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Cola Cao</span></div><span class="li-p">2,10€</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="sstitle">Cervezas — Tirador Estrella Damm &amp; Damm Lemon</div>
+      <div class="tw"><table>
+        <thead><tr><th class="cn">Cerveza</th><th>Cerveza</th><th>Clara</th></tr></thead>
+        <tbody>
+          <tr><td class="cn">Caña</td><td>2,00€</td><td>2,20€</td></tr>
+          <tr><td class="cn">Copa</td><td>2,50€</td><td>2,70€</td></tr>
+          <tr><td class="cn">Jarra</td><td>4,00€</td><td>4,50€</td></tr>
+        </tbody>
+      </table></div>
+      <div class="list" style="margin-top:1mm">
+        <div class="li"><div class="li-info"><span class="li-n">Turia</span></div><span class="li-p">2,60€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Volldam</span></div><span class="li-p">2,80€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Complot IPA</span></div><span class="li-p">3,00€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Free Damm</span></div><span class="li-p">2,60€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Free Damm Tostada</span></div><span class="li-p">2,60€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Free Damm Lemon</span></div><span class="li-p">2,60€</span></div>
+      </div>
+      <div class="sstitle" style="margin-top:2mm">Vinos y otras bebidas</div>
+      <div class="list">
+        <div class="li"><div class="li-info"><span class="li-n">Copa de vino de la casa</span><span class="li-d">Tinto o blanco</span></div><span class="li-p">2,20€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Copa de vino Rioja</span></div><span class="li-p">2,70€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Copa de vino Ribera</span></div><span class="li-p">3,00€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Copa de vino Verdejo</span></div><span class="li-p">2,80€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Copa de vino Albariño</span></div><span class="li-p">3,00€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Copa de cava Brut Nature</span></div><span class="li-p">2,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Vermut Espinaler</span><span class="li-d">Blanco o negro</span></div><span class="li-p">2,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Tinto de verano</span></div><span class="li-p">3,50€</span></div>
+      </div>
+          <p class="note ngold" style="margin-top:1.5mm">Hielo extra +0,20€</p>
+      </div>
+    </div>
+
+  <!-- APERITIVOS Y CONSERVAS -->
+  <div class="stitle">Aperitivos y Conservas</div>
+  <div class="two-col">
+    <div>
+      <div class="sstitle">Aperitivos</div>
+      <div class="list">
+        <div class="li"><div class="li-info"><span class="li-n">Surtido de Olivas XXL</span><span class="li-d">Mezcla variada de nuestras olivas</span></div><span class="li-p">3,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Taquitos de Jamón Ibérico</span></div><span class="li-p">6,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Tapa de Fuet o Longaniza</span></div><span class="li-p">5,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Flores de Tête de Moine (1u)</span></div><span class="li-p">2,00€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Flores de Tête de Moine (5u)</span></div><span class="li-p">8,00€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Dados de Queso Semicurado</span></div><span class="li-p">5,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Dados de Queso Curado</span></div><span class="li-p">6,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Surtido de Patés</span><span class="li-d">Con mermelada y tostadas</span></div><span class="li-p">8,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Bloc de Foie</span><span class="li-d">Con mermelada y tostadas</span></div><span class="li-p">12,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Lacón con Pimentón</span><span class="li-d">Dulce o picante</span></div><span class="li-p">8,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Salmón Ahumado</span></div><span class="li-p">9,50€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Boquerones</span></div><span class="li-p">6,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Anchoas (5 filetes)</span></div><span class="li-p">9,90€</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="sstitle">Conservas Espinaler</div>
+      <div class="list">
+        <div class="li"><div class="li-info"><span class="li-n">Patatas Chips</span></div><span class="li-p">2,00€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Patatas Chips Grandes</span></div><span class="li-p">3,00€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Olivas Rellenas</span></div><span class="li-p">2,70€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Berberechos 55/65</span></div><span class="li-p">8,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Berberechos 30/40</span></div><span class="li-p">12,50€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Mejillones</span></div><span class="li-p">4,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Almejas al Natural</span></div><span class="li-p">5,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Navajas</span></div><span class="li-p">6,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Sardinas en Aceite de Oliva</span></div><span class="li-p">4,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Chipirones</span></div><span class="li-p">6,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Ría de Noia</span><span class="li-d">Patatas, aceitunas, berberechos y boquerones</span></div><span class="li-p">18,50€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Ría de Ribadeo</span><span class="li-d">Patatas, aceitunas, berberechos y mejillones</span></div><span class="li-p">16,50€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Ría de Muros</span><span class="li-d">Patatas, aceitunas, berberechos, mejillones y anchoas</span></div><span class="li-p">25,90€</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer"><span class="fb">Xarcuteria Los Molina</span><span>Frederic Soler, 17 — El Prat de Llobregat</span><span>Tel. 937 82 70 85</span></div>
+</div>
+
+<!-- ═══════════════ PÁGINA 2 ═══════════════ -->
+<div class="page">
+  <div class="header-sm">
+    <span class="brand">Xarcuteria Los Molina</span>
+    <span class="ptitle">Embutidos · Bocadillos · Pizzas · Postres</span>
+  </div>
+
+  <div class="p2grid">
+    <!-- ——— COLUMNA IZQUIERDA: EMBUTIDOS + PAN ——— -->
+    <div>
+      <p class="note" style="margin-bottom:1.5mm">Elige cómo lo prefieres: pan de coca, pan de barra o al plato. <span class="ngold">+1€ coca | +1,50€ coca entera</span></p>
+      <div class="tw"><table>
+        <thead><tr><th class="cn">Embutido</th><th>½ Boc.</th><th>Bocadillo</th><th>Torrada</th><th>½ Tabla</th><th>Tabla</th></tr></thead>
+        <tbody>
+          <tr class="gh"><td colspan="6">Jamón</td></tr>
+          <tr><td class="cn">Paleta Ibérica a Máquina</td><td>4,10€</td><td>8,20€</td><td>9,50€</td><td>5,50€</td><td>11,00€</td></tr>
+          <tr><td class="cn">Tabla Mixta <span class="cd">Paleta ibérica y queso semicurado</span></td><td>—</td><td>—</td><td>—</td><td>8,90€</td><td>14,50€</td></tr>
+          <tr><td class="cn">Paleta de Bellota a Máquina</td><td>4,90€</td><td>9,80€</td><td>11,50€</td><td>6,50€</td><td>13,00€</td></tr>
+          <tr><td class="cn">Ibérico de Cebo a Mano</td><td>6,50€</td><td>13,00€</td><td>12,00€</td><td>7,50€</td><td>15,00€</td></tr>
+          <tr><td class="cn">Cinco Jotas a Mano</td><td>9,00€</td><td>18,00€</td><td>18,00€</td><td>13,00€</td><td>25,00€</td></tr>
+          <tr><td class="cn">Joselito a Mano</td><td>9,50€</td><td>19,00€</td><td>18,00€</td><td>15,00€</td><td>28,00€</td></tr>
+          <tr><td class="cn">Jamón Serrano</td><td>3,00€</td><td>6,00€</td><td>8,00€</td><td>—</td><td>—</td></tr>
+
+          <tr class="gh"><td colspan="6">Embutidos Ibéricos</td></tr>
+          <tr><td class="cn">Chorizo Ibérico</td><td>3,40€</td><td>6,80€</td><td>8,50€</td><td>5,00€</td><td>9,00€</td></tr>
+          <tr><td class="cn">Chorizo Bellota</td><td>4,50€</td><td>9,00€</td><td>10,50€</td><td>8,00€</td><td>15,00€</td></tr>
+          <tr><td class="cn">Chorizo Jacinto Blázquez</td><td>5,20€</td><td>10,40€</td><td>12,50€</td><td>10,50€</td><td>19,50€</td></tr>
+          <tr><td class="cn">Salchichón Ibérico</td><td>3,40€</td><td>6,80€</td><td>8,50€</td><td>5,00€</td><td>9,00€</td></tr>
+          <tr><td class="cn">Salchichón Bellota</td><td>4,50€</td><td>9,00€</td><td>10,50€</td><td>8,50€</td><td>15,00€</td></tr>
+          <tr><td class="cn">Lomo Matanza</td><td>3,00€</td><td>6,00€</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td class="cn">Lomo Ibérico</td><td>4,10€</td><td>8,20€</td><td>9,50€</td><td>5,50€</td><td>11,00€</td></tr>
+          <tr><td class="cn">Lomo Bellota</td><td>4,90€</td><td>9,80€</td><td>11,50€</td><td>7,00€</td><td>12,00€</td></tr>
+          <tr><td class="cn">Lomo Joselito</td><td>8,50€</td><td>17,00€</td><td>14,00€</td><td>9,00€</td><td>16,00€</td></tr>
+          <tr><td class="cn">Presa Cinco Jotas</td><td>8,50€</td><td>17,00€</td><td>16,50€</td><td>9,00€</td><td>16,00€</td></tr>
+          <tr><td class="cn">Morcón Bellota</td><td>4,50€</td><td>9,00€</td><td>10,50€</td><td>—</td><td>—</td></tr>
+          <tr><td class="cn">Surtido Ibérico <span class="cd">Lomo, chorizo y salchichón</span></td><td>—</td><td>—</td><td>—</td><td>6,50€</td><td>12,00€</td></tr>
+          <tr><td class="cn">Surtido Bellota <span class="cd">Lomo, chorizo y salchichón de bellota</span></td><td>—</td><td>—</td><td>—</td><td>8,00€</td><td>15,00€</td></tr>
+
+          <tr class="gh"><td colspan="6">Fiambres, Embutidos y Especiales</td></tr>
+          <tr><td class="cn">Jamón Dulce</td><td>2,90€</td><td>5,80€</td><td>7,90€</td><td>5,00€</td><td>9,00€</td></tr>
+          <tr><td class="cn">Bull Blanco</td><td>2,90€</td><td>5,80€</td><td>7,90€</td><td>5,00€</td><td>9,00€</td></tr>
+          <tr><td class="cn">Bull Negro</td><td>2,90€</td><td>5,80€</td><td>7,90€</td><td>5,00€</td><td>9,00€</td></tr>
+          <tr><td class="cn">Mortadela Italiana</td><td>2,90€</td><td>5,80€</td><td>7,90€</td><td>5,00€</td><td>9,00€</td></tr>
+          <tr><td class="cn">Mortadela Trufada</td><td>3,90€</td><td>7,80€</td><td>10,50€</td><td>7,00€</td><td>12,00€</td></tr>
+          <tr><td class="cn">Catalana Can Duran</td><td>2,90€</td><td>5,80€</td><td>7,90€</td><td>5,00€</td><td>9,00€</td></tr>
+          <tr><td class="cn">Catalana Trufada</td><td>3,50€</td><td>7,00€</td><td>9,50€</td><td>6,00€</td><td>11,00€</td></tr>
+          <tr><td class="cn">Cabeza de Jabalí</td><td>2,90€</td><td>5,80€</td><td>7,90€</td><td>5,00€</td><td>9,00€</td></tr>
+          <tr><td class="cn">Pechuga de Pavo Natural</td><td>2,90€</td><td>5,80€</td><td>7,90€</td><td>5,00€</td><td>9,00€</td></tr>
+          <tr><td class="cn">Pechuga de Pavo Braseada</td><td>2,90€</td><td>5,80€</td><td>7,90€</td><td>5,00€</td><td>9,00€</td></tr>
+          <tr><td class="cn">Cecina</td><td>4,50€</td><td>9,00€</td><td>12,00€</td><td>6,00€</td><td>11,00€</td></tr>
+          <tr><td class="cn">Fuet</td><td>2,90€</td><td>5,80€</td><td>7,90€</td><td>—</td><td>—</td></tr>
+          <tr><td class="cn">Longaniza de Vic</td><td>2,90€</td><td>5,80€</td><td>8,90€</td><td>—</td><td>—</td></tr>
+          <tr><td class="cn">Surtido de Fiambres <span class="cd">Bull blanco, negro, mortadela y catalana</span></td><td>—</td><td>—</td><td>—</td><td>5,00€</td><td>9,00€</td></tr>
+          <tr><td class="cn">Atún</td><td>4,00€</td><td>8,00€</td><td>10,00€</td><td>—</td><td>—</td></tr>
+          <tr><td class="cn">Cantábrico <span class="cd">Anchoas, olivas, pimiento rojo y atún</span></td><td>6,50€</td><td>13,00€</td><td>14,00€</td><td>—</td><td>—</td></tr>
+
+          <tr class="gh"><td colspan="6">Quesos</td></tr>
+          <tr><td class="cn">Queso Semicurado</td><td>2,90€</td><td>5,40€</td><td>7,90€</td><td>5,00€</td><td>9,00€</td></tr>
+          <tr><td class="cn">Queso Curado</td><td>3,40€</td><td>5,80€</td><td>9,50€</td><td>5,00€</td><td>9,00€</td></tr>
+          <tr><td class="cn">Queso Fresco de Cabra</td><td>4,00€</td><td>8,00€</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td class="cn">Queso Manchego Peña Nieto</td><td>6,20€</td><td>12,40€</td><td>12,90€</td><td>7,50€</td><td>14,00€</td></tr>
+          <tr><td class="cn">Queso Payoyo</td><td>6,20€</td><td>12,40€</td><td>12,90€</td><td>7,50€</td><td>14,00€</td></tr>
+          <tr><td class="cn">Tabla Queso Gourmet <span class="cd">Señorío de Quevedo, curado al romero, trufado y Tête de Moine</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>24,90€</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="sstitle" style="margin-top:1.5mm">Pan y Tostadas</div>
+      <div class="list" style="display:grid;grid-template-columns:1fr 1fr;gap:0 3mm">
+        <div class="li"><div class="li-info"><span class="li-n">Ración Pan de Coca</span></div><span class="li-p">1,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Ración Pan de Barra</span></div><span class="li-p">1,50€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Ración Picos</span></div><span class="li-p">1,50€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Ración Tostadas</span></div><span class="li-p">1,50€</span></div>
+      </div>
+     <p class="note ngold" style="margin-top:15.5mm">+0,10€ suplemento en terraza por ítem</p>
+
+    </div>
+
+    <!-- ——— COLUMNA DERECHA: MENÚS + BIQUINIS + CALIENTES + SUPLEMENTOS + PIZZAS + POSTRES ——— -->
+    <div class="rcol">
+      <div class="stitle">Menús <span style="font-size:7px;font-weight:400;font-style:italic;color:var(--gray)">(recomendado para 2 personas)</span></div>
+      <div class="list">
+        <div class="li" style="flex-direction:column;align-items:flex-start;padding:.8mm 0">
+          <div style="display:flex;justify-content:space-between;width:100%"><span class="li-n">Menú Ibérico</span><span class="li-p">24,90€</span></div>
+          <span class="li-d">Ración de paletilla ibérica a máquina, queso semicurado, pan de coca con tomate y 2 bebidas</span>
+        </div>
+        <div class="li" style="flex-direction:column;align-items:flex-start;padding:.8mm 0">
+          <div style="display:flex;justify-content:space-between;width:100%"><span class="li-n">Menú Bellota</span><span class="li-p">28,90€</span></div>
+          <span class="li-d">Ración de paletilla de bellota a máquina, queso curado, pan de coca con tomate y 2 bebidas</span>
+        </div>
+        <div class="li" style="flex-direction:column;align-items:flex-start;padding:.8mm 0">
+          <div style="display:flex;justify-content:space-between;width:100%"><span class="li-n">Menú Delicatessen</span><span class="li-p">44,90€</span></div>
+          <span class="li-d">Ración de jamón 100% ibérico de bellota cortado a mano, queso manchego Peña Nieto y queso de cabra Payoyo, pan con tomate y 2 bebidas</span>
+        </div>
+      </div>
+      <div class="stitle">Biquinis</div>
+      <div class="tw"><table>
+        <thead><tr><th class="cn">Biquini</th><th>Normal</th><th>Maxi</th></tr></thead>
+        <tbody>
+          <tr><td class="cn">Biquini</td><td>2,90€</td><td>5,10€</td></tr>
+          <tr><td class="cn">Biquini Ibérico</td><td>4,00€</td><td>6,80€</td></tr>
+          <tr><td class="cn">Biquini Mallorquín</td><td>3,70€</td><td>5,90€</td></tr>
+          <tr><td class="cn">Biquini Dulce Trufado</td><td>3,90€</td><td>6,50€</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="stitle">Bocadillos Calientes</div>
+      <div class="tw"><table>
+        <thead><tr><th class="cn">Producto</th><th>Medio</th><th>Entero</th></tr></thead>
+        <tbody>
+          <tr><td class="cn">Bacon</td><td>3,10€</td><td>6,20€</td></tr>
+          <tr><td class="cn">Bacon Curado</td><td>3,50€</td><td>7,00€</td></tr>
+          <tr><td class="cn">Lacón <span class="cd">con pimentón dulce o picante</span></td><td>3,50€</td><td>7,00€</td></tr>
+          <tr><td class="cn">Sobrasada</td><td>3,00€</td><td>6,00€</td></tr>
+          <tr><td class="cn">Sobrasada Ibérica <span class="cd">dulce o picante</span></td><td>4,20€</td><td>8,40€</td></tr>
+          <tr><td class="cn">Frankfurt</td><td>3,10€</td><td>6,20€</td></tr>
+          <tr><td class="cn">Chistorra</td><td>—</td><td>6,00€</td></tr>
+          <tr><td class="cn">Pikantwurst</td><td>—</td><td>6,20€</td></tr>
+          <tr><td class="cn">Cervela</td><td>—</td><td>6,20€</td></tr>
+          <tr><td class="cn">Bratwurst</td><td>—</td><td>6,20€</td></tr>
+          <tr><td class="cn">Malagueña</td><td>—</td><td>6,20€</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="stitle">Suplementos</div>
+      <div class="tw"><table>
+        <thead><tr><th class="cn">Queso / Extra</th><th>Medio</th><th>Entero</th></tr></thead>
+        <tbody>
+          <tr><td class="cn">Queso Havarti</td><td>1,00€</td><td>2,00€</td></tr>
+          <tr><td class="cn">Queso Semicurado</td><td>1,50€</td><td>3,00€</td></tr>
+          <tr><td class="cn">Queso Curado</td><td>2,00€</td><td>4,00€</td></tr>
+          <tr><td class="cn">Queso Manchego</td><td>3,50€</td><td>7,00€</td></tr>
+          <tr><td class="cn">Queso Brie</td><td>1,50€</td><td>3,00€</td></tr>
+          <tr><td class="cn">Queso Fresco de Cabra</td><td>2,50€</td><td>5,00€</td></tr>
+          <tr><td class="cn">Olivas</td><td>1,00€</td><td>2,00€</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="stitle">Pizzas</div>
+      <p class="note">Hechas con ingredientes de nuestra charcutería, como en casa</p>
+      <div class="list">
+        <div class="li"><div class="li-info"><span class="li-n">Pizza Jamón Dulce</span></div><span class="li-p">12,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Pizza Jamón Dulce Trufado</span></div><span class="li-p">12,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Pizza Jamón Ibérico</span></div><span class="li-p">13,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Pizza Bacon</span></div><span class="li-p">12,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Pizza Sobrasada y Brie</span></div><span class="li-p">13,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Pizza 4 Quesos</span></div><span class="li-p">14,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Pizza Salame Picante</span></div><span class="li-p">13,90€</span></div>
+      </div>
+
+      <div class="stitle">Postres</div>
+      <div class="list">
+        <div class="li"><div class="li-info"><span class="li-n">Trufas con Nata (4 ud)</span></div><span class="li-p">4,50€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Coulant de Chocolate con Nata</span></div><span class="li-p">4,50€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Tarta Santiago</span></div><span class="li-p">2,90€</span></div>
+        <div class="li"><div class="li-info"><span class="li-n">Mel i Mató</span></div><span class="li-p">3,50€</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer"><span class="fb">Xarcuteria Los Molina</span><span>Frederic Soler, 17 — El Prat de Llobregat</span><span>Tel. 937 82 70 85</span></div>
+</div>
+
+</body>
+</html>
