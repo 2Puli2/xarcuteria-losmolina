@@ -28,7 +28,7 @@
 
       <h3 class="carta__subsection-title">{{ idioma.t().carta.refrescosTitle }}</h3>
       <div class="carta__list">
-        @for (item of refrescos; track item.name) {
+        @for (item of refrescos(); track item.name) {
           <div class="carta__list-item">
             <div class="carta__list-item-info">
               <span class="carta__list-item-name">
@@ -55,7 +55,7 @@
 
       <h3 class="carta__subsection-title">{{ idioma.t().carta.cervezasTitle }}</h3>
       <div class="carta__list">
-        @for (item of cervezas; track item.name) {
+        @for (item of cervezas(); track item.name) {
           <div class="carta__list-item">
             <div class="carta__list-item-info">
               <span class="carta__list-item-name">
@@ -82,7 +82,7 @@
 
       <h3 class="carta__subsection-title">{{ idioma.t().carta.vinosTitle }}</h3>
       <div class="carta__list">
-        @for (item of vinos; track item.name) {
+        @for (item of vinos(); track item.name) {
           <div class="carta__list-item">
             <div class="carta__list-item-info">
               <span class="carta__list-item-name">
@@ -109,7 +109,7 @@
 
       <h3 class="carta__subsection-title">{{ idioma.t().carta.cafesTitle }}</h3>
       <div class="carta__list">
-        @for (item of cafes; track item.name) {
+        @for (item of cafes(); track item.name) {
           <div class="carta__list-item">
             <div class="carta__list-item-info">
               <span class="carta__list-item-name">

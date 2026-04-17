@@ -150,10 +150,25 @@ export class CartaComponent {
         return POSTRES_PRICES.map(p => ({ ...(t[p.key] ?? { name: p.key }), price: p.price }));
     });
 
-    readonly refrescos: BebidaItem[] = REFRESCOS_DATA;
-    readonly cervezas: BebidaItem[] = CERVEZAS_DATA;
-    readonly vinos: BebidaItem[] = VINOS_DATA;
-    readonly cafes: BebidaItem[] = CAFES_DATA;
+    readonly refrescos = computed<BebidaItem[]>(() => {
+        const t = this.idioma.t().cartaItems.refrescos as Record<string, { name: string; desc?: string }>;
+        return REFRESCOS_DATA.map(p => ({ ...p, ...(t[p.key] ?? {}) }));
+    });
+
+    readonly cervezas = computed<BebidaItem[]>(() => {
+        const t = this.idioma.t().cartaItems.cervezas as Record<string, { name: string; desc?: string }>;
+        return CERVEZAS_DATA.map(p => ({ ...p, ...(t[p.key] ?? {}) }));
+    });
+
+    readonly vinos = computed<BebidaItem[]>(() => {
+        const t = this.idioma.t().cartaItems.vinos as Record<string, { name: string; desc?: string }>;
+        return VINOS_DATA.map(p => ({ ...p, ...(t[p.key] ?? {}) }));
+    });
+
+    readonly cafes = computed<BebidaItem[]>(() => {
+        const t = this.idioma.t().cartaItems.cafes as Record<string, { name: string; desc?: string }>;
+        return CAFES_DATA.map(p => ({ ...p, ...(t[p.key] ?? {}) }));
+    });
 
     scrollTo(sectionId: string): void {
         document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });

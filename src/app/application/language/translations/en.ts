@@ -390,11 +390,11 @@ export const EN = {
       copa_vino_albarino:     { name: 'Albariño Wine Glass' },
       copa_cava_brut_nature:  { name: 'Brut Nature Cava Glass' },
       vermut_espinaler:       { name: 'Espinaler Vermouth', desc: 'White or red' },
-      tinto_de_verano:        { name: 'Tinto de Verano' },
+      tinto_de_verano:        { name: 'Red Wine & Lemonade' },
     },
     cafes: {
       solo:       { name: 'Espresso' },
-      cortado:    { name: 'Cortado' },
+      cortado:    { name: 'Cortado (espresso with milk)' },
       con_leche:  { name: 'White Coffee' },
       capuccino:  { name: 'Cappuccino' },
       americano:  { name: 'Americano' },
