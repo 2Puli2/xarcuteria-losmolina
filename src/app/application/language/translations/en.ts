@@ -206,6 +206,17 @@ export const EN = {
     colCerveza: 'Beer',
     colClara: 'Shandy',
     hieloExtraNote: 'Extra ice +0.20€',
+    // Print-only literals for the printable menu (/carta/imprimir)
+    printPage2Title: 'Cured Meats · Sandwiches · Pizzas · Desserts',
+    printVinosTitle: 'Wines & Other Drinks',
+    printPanNoteGold: '+1€ coca | +1.50€ full coca',
+    printColProducto: 'Product',
+    printColQuesoExtra: 'Cheese / Extra',
+    printBiquinisTitle: 'Biquinis (Toasted Sandwiches)',
+    printColFormato: 'Size',
+    printCanya: 'Small',
+    printCopa: 'Large',
+    printJarra: 'Jug',
   },
   cartaItems: {
     aperitivos: {

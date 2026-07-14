@@ -206,6 +206,17 @@ export const CAT = {
     colCerveza: 'Cervesa',
     colClara: 'Clara',
     hieloExtraNote: 'Gel extra +0,20€',
+    // Literals exclusius de la carta imprimible (/carta/imprimir)
+    printPage2Title: 'Embotits · Entrepans · Pizzes · Postres',
+    printVinosTitle: 'Vins i altres begudes',
+    printPanNoteGold: '+1€ coca | +1,50€ coca sencera',
+    printColProducto: 'Producte',
+    printColQuesoExtra: 'Formatge / Extra',
+    printBiquinisTitle: 'Biquinis',
+    printColFormato: 'Cervesa',
+    printCanya: 'Canya',
+    printCopa: 'Copa',
+    printJarra: 'Gerra',
   },
   cartaItems: {
     aperitivos: {

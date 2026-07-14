@@ -204,6 +204,17 @@ export const ES = {
     colClara: 'Clara',
     clara: 'Clara',
     hieloExtraNote: 'Hielo extra +0,20€',
+    // Literales exclusivos de la carta imprimible (/carta/imprimir)
+    printPage2Title: 'Embutidos · Bocadillos · Pizzas · Postres',
+    printVinosTitle: 'Vinos y otras bebidas',
+    printPanNoteGold: '+1€ coca | +1,50€ coca entera',
+    printColProducto: 'Producto',
+    printColQuesoExtra: 'Queso / Extra',
+    printBiquinisTitle: 'Biquinis',
+    printColFormato: 'Cerveza',
+    printCanya: 'Caña',
+    printCopa: 'Copa',
+    printJarra: 'Jarra',
   },
   cartaItems: {
     aperitivos: {

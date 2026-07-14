@@ -15,6 +15,13 @@ const BASE_ROUTES: Routes = [
     loadComponent: () =>
       import('./presentation/pages/carta/carta').then(m => m.CartaComponent),
   },
+  {
+    path: 'carta/imprimir',
+    loadComponent: () =>
+      import('./presentation/pages/carta-imprimir/carta-imprimir').then(
+        m => m.CartaImprimirComponent
+      ),
+  },
 ];
 
 const LANG_PREFIXES = ['en', 'cat'];
