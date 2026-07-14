@@ -134,7 +134,7 @@ export const EMBUTIDO_GROUPS_PRICES: EmbutidoPriceGroup[] = [
         groupKey: 'quesos',
         items: [
             { key: 'queso_semicurado',   medioBocadillo: '2,90', bocadilloEntero: '5,40',  torrada: '7,90', mediaTabla: '5,00',  tabla: '9,00'   },
-            { key: 'queso_curado',       medioBocadillo: '3,40', bocadilloEntero: '5,80',  torrada: '9,50', mediaTabla: '5,00',  tabla: '9,00'   },
+            { key: 'queso_curado',       medioBocadillo: '3,40', bocadilloEntero: '5,80',  torrada: '9,50', mediaTabla: '6,00',  tabla: '11,00'   },
             { key: 'queso_fresco_cabra', medioBocadillo: '4,00', bocadilloEntero: '8,00'                                                         },
             { key: 'queso_manchego',     medioBocadillo: '6,20', bocadilloEntero: '12,40', torrada: '12,90', mediaTabla: '7,50',  tabla: '14,00' },
             { key: 'queso_payoyo',       medioBocadillo: '6,20', bocadilloEntero: '12,40', torrada: '12,90', mediaTabla: '7,50',  tabla: '14,00' },
