@@ -37,12 +37,19 @@ export class CartaImprimirComponent {
     private readonly titleService = inject(Title);
     private readonly metaService = inject(Meta);
 
-    /** Mezcla una colección de precios con el nombre/descripción del idioma activo */
-    private traducir<T extends { key: string }>(
+    /**
+     * Mezcla una colección de precios con el nombre/descripción del idioma activo.
+     * Si la traducción no existe (producto añadido vía hoja), usa el nombre que
+     * ya trae el propio item (resuelto por PrecioService); si tampoco, la clave.
+     */
+    private traducir<T extends { key: string; name?: string; desc?: string }>(
         items: T[],
         dic: Record<string, { name: string; desc?: string }>
     ): (T & { name: string; desc?: string })[] {
-        return items.map(p => ({ ...p, ...(dic[p.key] ?? { name: p.key }) }));
+        return items.map(p => ({
+            ...p,
+            ...(dic[p.key] ?? (p.name ? { name: p.name, desc: p.desc } : { name: p.key })),
+        }));
     }
 
     readonly refrescos = computed(() =>

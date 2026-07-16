@@ -1,6 +1,9 @@
 export interface PriceItem {
     key: string;
     price: string;
+    /** Solo lo rellena PrecioService para productos añadidos vía hoja (no existe en el código) */
+    name?: string;
+    desc?: string;
 }
 
 export interface EmbutidoPriceRow {
@@ -38,6 +41,9 @@ export interface SuplementoPriceRow {
 export interface PanPriceRow {
     key: string;
     price: string;
+    /** Solo lo rellena PrecioService para productos añadidos vía hoja */
+    name?: string;
+    desc?: string;
 }
 
 export const APERITIVOS_PRICES: PriceItem[] = [
@@ -268,3 +274,37 @@ export const CAFES_DATA: BebidaItem[] = [
     { key: 'infusion',  name: 'Infusión',  price: '1,90' },
     { key: 'cola_cao',  name: 'Cola Cao',  price: '2,10' },
 ];
+
+/** Nombre y descripción de un producto en un idioma */
+export interface ProductoExtraI18n {
+    name: string;
+    desc?: string;
+}
+
+/**
+ * Producto añadido desde la hoja de Google que NO existe en los arrays de
+ * arriba. Es el respaldo en código de esos productos: si la hoja se cae, estos
+ * siguen apareciendo en la carta con el precio y los nombres del último
+ * `npm run sync:carta`. Lo rellena ese script; a mano se deja vacío.
+ *
+ * Solo cubre categorías de precio único (aperitivos, conservas, menus,
+ * pan_y_tostadas, pizzas, postres, refrescos, cervezas, vinos, cafes).
+ */
+export interface ProductoExtra {
+    /** Una de las 10 categorías admitidas (ver PrecioService.CATEGORIAS_CON_EXTRAS) */
+    categoria: string;
+    key: string;
+    price: string;
+    es: ProductoExtraI18n;
+    cat: ProductoExtraI18n;
+    en: ProductoExtraI18n;
+}
+
+/**
+ * Respaldo en código de los productos añadidos vía hoja.
+ * El bloque entre los marcadores lo REGENERA `npm run sync:carta`: no editar
+ * a mano (se sobrescribe en el próximo sync).
+ */
+// >>> sync:productos-extra
+export const PRODUCTOS_EXTRA: ProductoExtra[] = [];
+// <<< sync:productos-extra

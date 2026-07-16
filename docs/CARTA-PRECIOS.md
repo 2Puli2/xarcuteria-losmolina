@@ -47,13 +47,73 @@ tocar código.
 4. Listo. Al recargar la web ya se ve el precio nuevo.
 
 Reglas:
-- **No cambies** las columnas `categoria` ni `clave`: son las que conectan la
-  hoja con la web.
+- **No cambies** la columna `clave` de un producto que ya existe: es la que
+  conecta la hoja con la web.
 - Las celdas de precio vacías significan "este formato no se vende para este
   producto" (sale — en la carta). Rellenar una celda que estaba vacía no añade
-  el formato: eso requiere tocar código.
-- Añadir o quitar productos también requiere tocar código
-  (`carta-data.ts` + traducciones): la hoja solo manda en los precios.
+  el formato a un producto existente: eso requiere tocar código.
+
+## Añadir un producto nuevo desde la hoja
+
+Se puede **dar de alta un producto nuevo** (con nombre y descripción en los 3
+idiomas) sin tocar código, siempre que sea dentro de una de estas categorías,
+que son las que admiten altas:
+
+`aperitivos`, `conservas`, `menus`, `pan_y_tostadas`, `pizzas`, `postres`,
+`refrescos`, `cervezas`, `vinos`, `cafes`.
+
+**Preparación (solo la primera vez):** crea en la hoja dos pestañas para los
+nombres en catalán e inglés, llamadas exactamente **`nombres_cat`** y
+**`nombres_en`**. Importa en cada una su CSV inicial, que ya viene con **todas
+las traducciones actuales** de la carta:
+[`docs/nombres_cat-inicial.csv`](./nombres_cat-inicial.csv) y
+[`docs/nombres_en-inicial.csv`](./nombres_en-inicial.csv). Compártelas igual que
+`precios` ("Cualquier persona con el enlace → Lector").
+
+> Nota: hoy la web solo consulta estas pestañas para los productos **nuevos**
+> (los que no están en el código). Las traducciones de los productos que ya
+> existen siguen saliendo del código; tenerlas también aquí sirve de
+> referencia y deja las pestañas listas por si en el futuro se pasa toda la
+> carta a la hoja.
+
+Pasos:
+1. En la pestaña **`precios`**, añade una fila nueva al final con:
+   - `categoria`: una de las de arriba (exactamente igual).
+   - `clave`: un identificador único sin espacios ni acentos (ej. `croquetas_casa`).
+   - `producto`: el nombre en **español**.
+   - `precio`: el precio con coma (ej. `4,50`).
+   - `descripcion` (opcional): descripción en español.
+2. Para el nombre en catalán e inglés, añade la misma `clave` en las pestañas
+   **`nombres_cat`** y **`nombres_en`** (columnas `clave`, `producto`,
+   `descripcion`). Si no lo haces, ese idioma mostrará el nombre en español.
+3. Al recargar la web, el producto aparece **al final de su categoría**.
+
+Limitaciones:
+- El producto nuevo sale **al final** de su categoría (no se puede reordenar
+  desde la hoja).
+- **No** se pueden crear categorías nuevas ni añadir productos a `embutidos`,
+  `biquinis`, `calientes` o `suplementos` desde la hoja: eso sigue requiriendo
+  tocar código (`carta-data.ts` + traducciones).
+
+## Respaldo en código (recuperación)
+
+La hoja es la fuente en producción, pero si Google Sheets se cayera del todo,
+los productos **nuevos** (que solo viven en la hoja) desaparecerían de la
+carta. Para evitarlo hay un script que los "congela" en el código:
+
+```
+npm run sync:carta
+```
+
+Descarga la hoja y vuelca los productos nuevos al bloque `PRODUCTOS_EXTRA` de
+`src/app/domain/constants/carta-data.ts` (solo ese bloque; no toca nada más).
+Conviene ejecutarlo **antes de cada `ng build` + deploy**: así el respaldo en
+código siempre incluye las últimas altas. Revisa el cambio con `git diff`
+antes de subir.
+
+(Nota: el script solo captura ALTAS de productos nuevos. Los cambios de precio
+de productos que ya están en el código no se vuelcan al respaldo; ese caso se
+recupera reescribiendo el precio a mano en `carta-data.ts`.)
 
 ## Carta imprimible
 

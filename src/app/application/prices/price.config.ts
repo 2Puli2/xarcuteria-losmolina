@@ -9,10 +9,14 @@
  *  - Compartida como "Cualquier persona con el enlace → Lector".
  *  - Una pestaña llamada exactamente "precios" (ver docs/CARTA-PRECIOS.md).
  */
-export const PRECIOS_SHEET_ID = 'PEGA_AQUI_EL_ID_DE_LA_HOJA';
+export const PRECIOS_SHEET_ID = '1YKM0yG7d4GcT4EChEbfIOOoCxFCYm-n_vYaRoVrRaBg';
 
-/** Nombre de la pestaña dentro de la hoja de cálculo */
+/** Pestaña canónica: qué productos existen, en qué categoría y sus precios */
 export const PRECIOS_SHEET_TAB = 'precios';
+
+/** Pestañas de traducción (solo para productos añadidos vía hoja): nombre/desc por clave */
+export const NOMBRES_SHEET_TAB_CAT = 'nombres_cat';
+export const NOMBRES_SHEET_TAB_EN = 'nombres_en';
 
 /**
  * Endpoint gviz que devuelve la pestaña como CSV.
@@ -25,10 +29,15 @@ export const PRECIOS_SHEET_TAB = 'precios';
  * https://docs.google.com/spreadsheets/d/e/⟨ID_PUBLICACION⟩/pub?output=csv),
  * que también responde con CORS abierto y es igual de gratuita.
  */
-export function preciosCsvUrl(): string {
+export function sheetCsvUrl(tab: string): string {
     // Cache-buster para saltarse la caché intermedia y ver los cambios al momento
     return (
         `https://docs.google.com/spreadsheets/d/${PRECIOS_SHEET_ID}/gviz/tq` +
-        `?tqx=out:csv&sheet=${PRECIOS_SHEET_TAB}&_=${Date.now()}`
+        `?tqx=out:csv&sheet=${encodeURIComponent(tab)}&_=${Date.now()}`
     );
+}
+
+/** URL CSV de la pestaña de precios (atajo de sheetCsvUrl) */
+export function preciosCsvUrl(): string {
+    return sheetCsvUrl(PRECIOS_SHEET_TAB);
 }

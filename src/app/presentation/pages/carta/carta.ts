@@ -65,17 +65,17 @@ export class CartaComponent {
 
     readonly aperitivos = computed<CartaItem[]>(() => {
         const t = this.idioma.t().cartaItems.aperitivos as Record<string, CartaItem>;
-        return this.precios.aperitivos().map(p => ({ ...(t[p.key] ?? { name: p.key }), price: p.price }));
+        return this.precios.aperitivos().map(p => ({ ...(t[p.key] ?? (p.name ? { name: p.name, desc: p.desc } : { name: p.key })), price: p.price }));
     });
 
     readonly conservas = computed<CartaItem[]>(() => {
         const t = this.idioma.t().cartaItems.conservas as Record<string, CartaItem>;
-        return this.precios.conservas().map(p => ({ ...(t[p.key] ?? { name: p.key }), price: p.price }));
+        return this.precios.conservas().map(p => ({ ...(t[p.key] ?? (p.name ? { name: p.name, desc: p.desc } : { name: p.key })), price: p.price }));
     });
 
     readonly menus = computed<CartaItem[]>(() => {
         const t = this.idioma.t().cartaItems.menus as Record<string, CartaItem>;
-        return this.precios.menus().map(p => ({ ...(t[p.key] ?? { name: p.key }), price: p.price }));
+        return this.precios.menus().map(p => ({ ...(t[p.key] ?? (p.name ? { name: p.name, desc: p.desc } : { name: p.key })), price: p.price }));
     });
 
     readonly embutidoGroups = computed<EmbutidoGroup[]>(() => {
@@ -123,17 +123,17 @@ export class CartaComponent {
 
     readonly panYTostadas = computed<CartaItem[]>(() => {
         const t = this.idioma.t().cartaItems.pan_y_tostadas as Record<string, CartaItem>;
-        return this.precios.panYTostadas().map(p => ({ ...(t[p.key] ?? { name: p.key }), price: p.price }));
+        return this.precios.panYTostadas().map(p => ({ ...(t[p.key] ?? (p.name ? { name: p.name, desc: p.desc } : { name: p.key })), price: p.price }));
     });
 
     readonly pizzas = computed<CartaItem[]>(() => {
         const t = this.idioma.t().cartaItems.pizzas as Record<string, CartaItem>;
-        return this.precios.pizzas().map(p => ({ ...(t[p.key] ?? { name: p.key }), price: p.price }));
+        return this.precios.pizzas().map(p => ({ ...(t[p.key] ?? (p.name ? { name: p.name, desc: p.desc } : { name: p.key })), price: p.price }));
     });
 
     readonly postres = computed<CartaItem[]>(() => {
         const t = this.idioma.t().cartaItems.postres as Record<string, CartaItem>;
-        return this.precios.postres().map(p => ({ ...(t[p.key] ?? { name: p.key }), price: p.price }));
+        return this.precios.postres().map(p => ({ ...(t[p.key] ?? (p.name ? { name: p.name, desc: p.desc } : { name: p.key })), price: p.price }));
     });
 
     readonly refrescos = computed<BebidaItem[]>(() => {
