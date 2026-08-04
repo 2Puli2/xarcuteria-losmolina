@@ -49,10 +49,15 @@ export const NOMBRES_SHEET_TAB_EN = 'nombres_en';
  * que también responde con CORS abierto y es igual de gratuita.
  */
 export function sheetCsvUrl(tab: string): string {
+    // headers=1 NO es opcional: sin él, gviz ADIVINA cuántas filas son cabecera
+    // y se equivoca. Basta con que una celda parezca un número "suelto" (p. ej.
+    // escribir 292929 en una columna de precios) para que decida que las 41
+    // primeras filas son cabecera: las absorbe, devuelve nombres de columna
+    // inventados y la carta se queda sin datos. Con headers=1 se lo decimos.
     // Cache-buster para saltarse la caché intermedia y ver los cambios al momento
     return (
         `https://docs.google.com/spreadsheets/d/${PRECIOS_SHEET_ID}/gviz/tq` +
-        `?tqx=out:csv&sheet=${encodeURIComponent(tab)}&_=${Date.now()}`
+        `?tqx=out:csv&sheet=${encodeURIComponent(tab)}&headers=1&_=${Date.now()}`
     );
 }
 
