@@ -125,6 +125,25 @@ Detalles útiles:
 Se puede dar de alta un producto nuevo, con nombre y descripción en los 3
 idiomas, **en cualquier categoría de la carta**, sin tocar código.
 
+### La forma cómoda: el formulario
+
+Con el script de formato instalado (ver «Dar formato a la hoja»), el menú
+**«🎨 Carta» → «➕ Añadir producto…»** abre un formulario que:
+
+- te deja elegir la sección de un desplegable;
+- **solo te pide los precios que esa sección usa** (un biquini pide normal y
+  maxi; un embutido, los cinco formatos), en vez de hacerte buscar entre las
+  14 columnas;
+- se inventa la `clave` por ti a partir del nombre, evitando duplicados;
+- coloca la fila **al final de su sección**, no suelta al final de la hoja;
+- escribe también las traducciones en `nombres_cat` y `nombres_en`;
+- acepta `6,9` o `6.9` y lo guarda como `6,90`.
+
+Es la vía recomendada. Lo de abajo es lo que hace por dentro, por si algún día
+hay que hacerlo a mano.
+
+### A mano
+
 Pasos:
 1. En la pestaña **`precios`**, añade una fila al final con:
    - `categoria`: una de las que ya aparecen en la columna (cópiala tal cual de

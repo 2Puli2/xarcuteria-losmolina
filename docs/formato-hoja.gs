@@ -38,6 +38,54 @@ var CATEGORIAS = [
     'cafes', 'bocadillo_dia',
 ];
 
+/**
+ * Qué formatos de precio admite cada sección. Es la misma tabla que usa la web
+ * (CATEGORIAS en price.service.ts): el formulario solo pide estos campos, para
+ * no tener que adivinar cuál de las 14 columnas toca en cada caso.
+ */
+var FORMATOS_POR_CATEGORIA = {
+    aperitivos: [['precio', 'Precio']],
+    conservas: [['precio', 'Precio']],
+    menus: [['precio', 'Precio']],
+    pan_y_tostadas: [['precio', 'Precio']],
+    pizzas: [['precio', 'Precio']],
+    postres: [['precio', 'Precio']],
+    refrescos: [['precio', 'Precio']],
+    cervezas: [['precio', 'Precio']],
+    vinos: [['precio', 'Precio']],
+    cafes: [['precio', 'Precio']],
+    biquinis: [['normal', 'Normal'], ['maxi', 'Maxi']],
+    calientes: [['medio', 'Medio'], ['entero', 'Entero']],
+    suplementos: [['medio', 'Medio'], ['entero', 'Entero']],
+    bocadillo_dia: [['medioBocadillo', '½ Bocadillo'], ['bocadilloEntero', 'Bocadillo entero']],
+    jamon: EMBUTIDO_FORMATOS(),
+    embutidos_ibericos: EMBUTIDO_FORMATOS(),
+    fiambres: EMBUTIDO_FORMATOS(),
+    quesos: EMBUTIDO_FORMATOS(),
+};
+
+function EMBUTIDO_FORMATOS() {
+    return [
+        ['medioBocadillo', '½ Bocadillo'],
+        ['bocadilloEntero', 'Bocadillo entero'],
+        ['torrada', 'Torrada'],
+        ['mediaTabla', '½ Tabla'],
+        ['tabla', 'Tabla'],
+    ];
+}
+
+/** Nombre bonito de cada sección, para el desplegable del formulario */
+var NOMBRE_SECCION = {
+    aperitivos: 'Aperitivos', conservas: 'Conservas', menus: 'Menús',
+    jamon: 'Embutidos · Jamón', embutidos_ibericos: 'Embutidos · Ibéricos',
+    fiambres: 'Embutidos · Fiambres', quesos: 'Embutidos · Quesos',
+    pan_y_tostadas: 'Pan y tostadas', biquinis: 'Biquinis',
+    calientes: 'Bocadillos calientes', suplementos: 'Suplementos',
+    pizzas: 'Pizzas', postres: 'Postres', refrescos: 'Refrescos',
+    cervezas: 'Cervezas', vinos: 'Vinos', cafes: 'Cafés',
+    bocadillo_dia: '⭐ Bocadillo del día',
+};
+
 /** Qué significa cada columna (sale como nota al pasar el ratón por la cabecera) */
 var AYUDA = {
     categoria: 'Sección de la carta. Elígela del desplegable: si te la inventas, la fila se ignora.',
@@ -73,6 +121,8 @@ var COLOR = {
 function onOpen() {
     SpreadsheetApp.getUi()
         .createMenu('🎨 Carta')
+        .addItem('➕ Añadir producto…', 'mostrarFormulario')
+        .addSeparator()
         .addItem('Aplicar formato', 'aplicarFormato')
         .addToUi();
 }
@@ -295,6 +345,181 @@ function formatearNombres(hoja) {
     if (col.clave) {
         hoja.getRange(2, col.clave, ultimaFila - 1, 1).setBackground(COLOR.claveFondo);
     }
+}
+
+// ═══════════════════ Formulario para añadir productos ═══════════════════
+
+/** Abre el diálogo. Rellenar 4 campos en vez de pelearse con 14 columnas. */
+function mostrarFormulario() {
+    var secciones = CATEGORIAS.map(function (c) {
+        return { id: c, nombre: NOMBRE_SECCION[c] || c, formatos: FORMATOS_POR_CATEGORIA[c] || [] };
+    });
+    var html = HtmlService
+        .createHtmlOutput(plantillaFormulario(secciones))
+        .setWidth(460)
+        .setHeight(560);
+    SpreadsheetApp.getUi().showModalDialog(html, 'Añadir producto a la carta');
+}
+
+/**
+ * Crea el producto: lo inserta al final de su sección en `precios` y añade sus
+ * traducciones en `nombres_cat` y `nombres_en`. La clave se genera del nombre.
+ * Devuelve un resumen para enseñarlo en el diálogo.
+ */
+function guardarProducto(datos) {
+    var libro = SpreadsheetApp.getActiveSpreadsheet();
+    var precios = libro.getSheetByName(PESTANA_PRECIOS);
+    if (!precios) throw new Error('No encuentro la pestaña "' + PESTANA_PRECIOS + '".');
+
+    var cabeceras = precios.getRange(1, 1, 1, precios.getLastColumn()).getValues()[0];
+    var col = indicePorNombre(cabeceras);
+
+    var nombre = String(datos.nombre || '').trim();
+    if (!nombre) throw new Error('El producto necesita un nombre.');
+
+    var clave = claveUnica(precios, col, nombre);
+
+    // Fila nueva con solo las columnas que aplican a esta sección
+    var fila = new Array(cabeceras.length).fill('');
+    fila[col.categoria - 1] = datos.categoria;
+    fila[col.clave - 1] = clave;
+    fila[col.producto - 1] = nombre;
+    if (col.descripcion) fila[col.descripcion - 1] = String(datos.descripcion || '').trim();
+
+    var algunPrecio = false;
+    Object.keys(datos.precios || {}).forEach(function (campo) {
+        var valor = normalizarPrecio(datos.precios[campo]);
+        if (valor && col[campo]) {
+            fila[col[campo] - 1] = valor;
+            algunPrecio = true;
+        }
+    });
+    if (!algunPrecio) throw new Error('Pon al menos un precio: sin ninguno, la web ignora la fila.');
+
+    // Insertar justo detrás del último producto de su misma sección, para que
+    // quede agrupado visualmente (a la web el orden le da igual).
+    var destino = ultimaFilaDeCategoria(precios, col, datos.categoria);
+    precios.insertRowAfter(destino);
+    precios.getRange(destino + 1, 1, 1, fila.length).setValues([fila]);
+
+    // Traducciones (si se dejan vacías, la web muestra el español)
+    anadirTraduccion(libro, 'nombres_cat', clave, datos.nombreCat, datos.descCat);
+    anadirTraduccion(libro, 'nombres_en', clave, datos.nombreEn, datos.descEn);
+
+    aplicarFormato();
+    return { clave: clave, fila: destino + 1 };
+}
+
+/** Última fila ocupada por una categoría; si no existe, el final de la hoja */
+function ultimaFilaDeCategoria(hoja, col, categoria) {
+    var ultima = hoja.getLastRow();
+    if (ultima < 2) return 1;
+    var valores = hoja.getRange(2, col.categoria, ultima - 1, 1).getValues();
+    var destino = 0;
+    for (var i = 0; i < valores.length; i++) {
+        if (String(valores[i][0]).trim() === categoria) destino = i + 2;
+    }
+    return destino || ultima;
+}
+
+/** Clave a partir del nombre: "Bikini de Chorizo" → "bikini_de_chorizo" */
+function claveUnica(hoja, col, nombre) {
+    var base = nombre
+        .toLowerCase()
+        .normalize('NFD').replace(/[̀-ͯ]/g, '') // quita acentos
+        .replace(/[^a-z0-9]+/g, '_')
+        .replace(/^_+|_+$/g, '')
+        .slice(0, 40) || 'producto';
+
+    var usadas = {};
+    if (hoja.getLastRow() > 1) {
+        hoja.getRange(2, col.clave, hoja.getLastRow() - 1, 1).getValues()
+            .forEach(function (f) { usadas[String(f[0]).trim()] = true; });
+    }
+    if (!usadas[base]) return base;
+    for (var n = 2; ; n++) {
+        if (!usadas[base + '_' + n]) return base + '_' + n;
+    }
+}
+
+function anadirTraduccion(libro, pestana, clave, nombre, descripcion) {
+    var hoja = libro.getSheetByName(pestana);
+    if (!hoja || !String(nombre || '').trim()) return;
+    var col = indicePorNombre(hoja.getRange(1, 1, 1, hoja.getLastColumn()).getValues()[0]);
+    var fila = new Array(hoja.getLastColumn()).fill('');
+    fila[col.clave - 1] = clave;
+    fila[col.producto - 1] = String(nombre).trim();
+    if (col.descripcion) fila[col.descripcion - 1] = String(descripcion || '').trim();
+    hoja.appendRow(fila);
+}
+
+/** "6,9" o "6.9" → "6,90"; "7" → "7,00". Igual que hace la web al pintarlo. */
+function normalizarPrecio(valor) {
+    var texto = String(valor == null ? '' : valor).trim().replace(/[€\s]/g, '');
+    if (!texto) return '';
+    var numerico = texto.replace(',', '.');
+    if (!/^\d+(\.\d+)?$/.test(numerico)) return texto;
+    var partes = numerico.split('.');
+    var decimal = (partes[1] || '') + '00';
+    return partes[0] + ',' + decimal.slice(0, 2);
+}
+
+function plantillaFormulario(secciones) {
+    return '' +
+'<!DOCTYPE html><html><head><base target="_top"><style>' +
+'body{font-family:Roboto,Arial,sans-serif;font-size:13px;margin:0;padding:16px;color:#202124}' +
+'label{display:block;margin:12px 0 4px;font-weight:500}' +
+'input,select{width:100%;box-sizing:border-box;padding:7px 8px;border:1px solid #dadce0;border-radius:4px;font-size:13px}' +
+'.precios{display:flex;gap:8px;flex-wrap:wrap}.precios>div{flex:1;min-width:110px}' +
+'fieldset{border:1px solid #e0e0e0;border-radius:4px;margin:16px 0 0;padding:0 12px 12px}' +
+'legend{font-size:12px;color:#5f6368;padding:0 6px}' +
+'.pie{margin-top:18px;display:flex;gap:8px;align-items:center}' +
+'button{background:#0d1b1e;color:#fff;border:0;border-radius:4px;padding:9px 18px;font-size:13px;cursor:pointer}' +
+'button:disabled{opacity:.5;cursor:default}' +
+'.aviso{font-size:12px;color:#5f6368;margin-top:6px}' +
+'.error{color:#c5221f;margin-left:4px}.ok{color:#188038;margin-left:4px}' +
+'</style></head><body>' +
+'<label>Sección</label><select id="cat" onchange="pintarPrecios()"></select>' +
+'<label>Nombre (español) *</label><input id="nombre" autofocus>' +
+'<label>Descripción (español)</label><input id="desc" placeholder="opcional">' +
+'<label>Precios *</label><div class="precios" id="precios"></div>' +
+'<div class="aviso">Puedes escribir 6,9 o 6.9: se guarda como 6,90. Deja vacío el formato que no vendas.</div>' +
+'<fieldset><legend>Traducciones (opcional)</legend>' +
+'<label>Catalán — nombre</label><input id="nombreCat">' +
+'<label>Catalán — descripción</label><input id="descCat">' +
+'<label>Inglés — nombre</label><input id="nombreEn">' +
+'<label>Inglés — descripción</label><input id="descEn">' +
+'<div class="aviso">Si lo dejas vacío, ese idioma mostrará el texto en español.</div>' +
+'</fieldset>' +
+'<div class="pie"><button id="btn" onclick="enviar()">Añadir a la carta</button><span id="msg"></span></div>' +
+'<script>' +
+'var SECCIONES=' + JSON.stringify(secciones) + ';' +
+'var sel=document.getElementById("cat");' +
+'SECCIONES.forEach(function(s){var o=document.createElement("option");o.value=s.id;o.textContent=s.nombre;sel.appendChild(o)});' +
+'function pintarPrecios(){' +
+'  var s=SECCIONES.filter(function(x){return x.id===sel.value})[0];' +
+'  document.getElementById("precios").innerHTML=s.formatos.map(function(f){' +
+'    return "<div><div style=\\"font-size:11px;color:#5f6368\\">"+f[1]+"</div>"+' +
+'           "<input data-campo=\\""+f[0]+"\\" placeholder=\\"0,00\\"></div>"}).join("")}' +
+'pintarPrecios();' +
+'function enviar(){' +
+'  var msg=document.getElementById("msg"), btn=document.getElementById("btn");' +
+'  var nombre=document.getElementById("nombre").value.trim();' +
+'  if(!nombre){msg.className="error";msg.textContent="Falta el nombre";return}' +
+'  var precios={};' +
+'  [].forEach.call(document.querySelectorAll("#precios input"),function(i){precios[i.dataset.campo]=i.value});' +
+'  if(!Object.keys(precios).some(function(k){return precios[k].trim()})){' +
+'    msg.className="error";msg.textContent="Pon al menos un precio";return}' +
+'  btn.disabled=true;msg.className="";msg.textContent="Guardando…";' +
+'  google.script.run.withSuccessHandler(function(r){' +
+'      msg.className="ok";msg.textContent="Añadido como "+r.clave;' +
+'      setTimeout(function(){google.script.host.close()},1200)})' +
+'    .withFailureHandler(function(e){btn.disabled=false;msg.className="error";msg.textContent=e.message})' +
+'    .guardarProducto({categoria:sel.value,nombre:nombre,' +
+'      descripcion:document.getElementById("desc").value,precios:precios,' +
+'      nombreCat:document.getElementById("nombreCat").value,descCat:document.getElementById("descCat").value,' +
+'      nombreEn:document.getElementById("nombreEn").value,descEn:document.getElementById("descEn").value})}' +
+'</script></body></html>';
 }
 
 // ─────────────────────────── Utilidades ───────────────────────────
