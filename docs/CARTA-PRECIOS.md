@@ -195,6 +195,13 @@ Está en [`docs/formato-hoja.gs`](./formato-hoja.gs). Para instalarlo:
 La primera vez Google pedirá permiso; es normal, el script solo toca esta hoja.
 No modifica ningún dato: únicamente colores, anchos, validaciones y avisos.
 
+> ⚠️ Ejecuta **«Aplicar formato» antes que «➕ Añadir producto…»**. Los permisos
+> solo se conceden ejecutando una función desde el menú: un diálogo no puede
+> pedirlos por sí mismo, y el formulario fallaría con *«Authorisation is
+> required to perform that action»*. Si el menú tampoco te ofrece autorizar,
+> abre el editor de Apps Script, elige `aplicarFormato` en el desplegable de
+> funciones y pulsa **Ejecutar**.
+
 Qué hace, además del estilo:
 - **Desplegable en `categoria`**, para que no haya erratas (una categoría
   inventada hace que la fila se ignore sin avisar).

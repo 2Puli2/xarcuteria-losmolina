@@ -14,6 +14,11 @@
  * La primera vez Google pedirá permiso para que el script edite la hoja: es
  * normal, el script es tuyo y solo toca ESTA hoja.
  *
+ * ⚠️ IMPORTANTE: ejecuta «Aplicar formato» ANTES que «➕ Añadir producto…».
+ * Los permisos solo se pueden conceder ejecutando una función directamente
+ * desde el menú; un diálogo no puede pedirlos por sí mismo, y el formulario
+ * fallaría con «Authorisation is required to perform that action».
+ *
  * ⚠️ El script NO cambia ningún dato: solo colores, anchos, validaciones y
  * avisos. Puedes ejecutarlo tantas veces como quieras (por ejemplo, cada vez
  * que añadas productos, para que el rayado por secciones se recalcule).
