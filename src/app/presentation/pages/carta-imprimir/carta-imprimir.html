@@ -1,0 +1,303 @@
+<div class="carta-print">
+
+  @if (precios.estado() === 'cargando') {
+    <div class="page">
+      <div class="error" role="status">
+        <p class="error-title">{{ idioma.t().carta.cargandoText }}</p>
+      </div>
+    </div>
+  } @else if (precios.estado() === 'error') {
+    <div class="page">
+      <div class="error" role="alert">
+        <p class="error-title">{{ idioma.t().carta.errorTitle }}</p>
+        <p class="error-text">{{ idioma.t().carta.errorText }}</p>
+      </div>
+    </div>
+  } @else {
+
+  <!-- ═══════════════ PÁGINA 1 — Bebidas + Aperitivos y Conservas ═══════════════ -->
+  <div class="page">
+    <div class="header">
+      <div class="header-logo">Xarcuteria Los Molina</div>
+      <div class="header-tag">{{ idioma.t().general.logoTagline }}</div>
+      <div class="header-sub">Frederic Soler, 17 — El Prat de Llobregat · Tel. 937 82 70 85</div>
+    </div>
+    <div class="header-note">{{ idioma.t().carta.footerText }}</div>
+
+    <!-- BEBIDAS -->
+    <div class="stitle">{{ idioma.t().carta.bebidasTitle }}</div>
+    <div class="two-col">
+      <div>
+        <div class="sstitle">{{ idioma.t().carta.refrescosTitle }}</div>
+        <div class="list">
+          @for (item of refrescos(); track item.key) {
+            <div class="li">
+              <div class="li-info">
+                <span class="li-n">{{ item.name }}</span>
+                @if (item.desc) { <span class="li-d">{{ item.desc }}</span> }
+              </div>
+              <span class="li-p">{{ item.price }}€</span>
+            </div>
+          }
+        </div>
+        <div class="sstitle sstitle--sep">{{ idioma.t().carta.cafesTitle }}</div>
+        <div class="list">
+          @for (item of cafes(); track item.key) {
+            <div class="li">
+              <div class="li-info"><span class="li-n">{{ item.name }}</span>@if (item.desc) { <span class="li-d">{{ item.desc }}</span> }</div>
+              <span class="li-p">{{ item.price }}€</span>
+            </div>
+          }
+        </div>
+      </div>
+      <div>
+        <div class="sstitle">{{ idioma.t().carta.cervezasTitle }} — {{ idioma.t().carta.tiradorLabel }}</div>
+        <div class="tw"><table>
+          <thead>
+            <tr>
+              <th class="cn">{{ idioma.t().carta.printColFormato }}</th>
+              <th>{{ idioma.t().carta.colCerveza }}</th>
+              <th>{{ idioma.t().carta.colClara }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (fila of cervezasGrifo(); track fila.formato) {
+              <tr><td class="cn">{{ fila.formato }}</td><td>{{ fila.cerveza }}€</td><td>{{ fila.clara }}€</td></tr>
+            }
+          </tbody>
+        </table></div>
+        <div class="list list--sep">
+          @for (item of cervezasBotella(); track item.key) {
+            <div class="li">
+              <div class="li-info"><span class="li-n">{{ item.name }}</span>@if (item.desc) { <span class="li-d">{{ item.desc }}</span> }</div>
+              <span class="li-p">{{ item.price }}€</span>
+            </div>
+          }
+        </div>
+        <div class="sstitle sstitle--sep">{{ idioma.t().carta.printVinosTitle }}</div>
+        <div class="list">
+          @for (item of vinos(); track item.key) {
+            <div class="li">
+              <div class="li-info">
+                <span class="li-n">{{ item.name }}</span>
+                @if (item.desc) { <span class="li-d">{{ item.desc }}</span> }
+              </div>
+              <span class="li-p">{{ item.price }}€</span>
+            </div>
+          }
+        </div>
+        <p class="note ngold note--sep">{{ idioma.t().carta.hieloExtraNote }}</p>
+      </div>
+    </div>
+
+    <!-- APERITIVOS Y CONSERVAS -->
+    <div class="stitle">{{ idioma.t().carta.aperitivosTitle }}</div>
+    <div class="two-col">
+      <div>
+        <div class="sstitle">{{ idioma.t().carta.navAperitivos }}</div>
+        <div class="list">
+          @for (item of aperitivos(); track item.key) {
+            <div class="li">
+              <div class="li-info">
+                <span class="li-n">{{ item.name }}</span>
+                @if (item.desc) { <span class="li-d">{{ item.desc }}</span> }
+              </div>
+              <span class="li-p">{{ item.price }}€</span>
+            </div>
+          }
+        </div>
+      </div>
+      <div>
+        <div class="sstitle">{{ idioma.t().carta.conservasTitle }}</div>
+        <div class="list">
+          @for (item of conservas(); track item.key) {
+            <div class="li">
+              <div class="li-info">
+                <span class="li-n">{{ item.name }}</span>
+                @if (item.desc) { <span class="li-d">{{ item.desc }}</span> }
+              </div>
+              <span class="li-p">{{ item.price }}€</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span class="fb">Xarcuteria Los Molina</span>
+      <span>Frederic Soler, 17 — El Prat de Llobregat</span>
+      <span>Tel. 937 82 70 85</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PÁGINA 2 — Embutidos + Bocadillos + Pizzas + Postres ═══════════════ -->
+  <div class="page">
+    <div class="header-sm">
+      <span class="brand">Xarcuteria Los Molina</span>
+      <span class="ptitle">{{ idioma.t().carta.printPage2Title }}</span>
+    </div>
+
+    <div class="p2grid">
+      <!-- ——— COLUMNA IZQUIERDA: EMBUTIDOS + PAN ——— -->
+      <div>
+        <p class="note note--pan">
+          {{ idioma.t().carta.embutidosNote }}
+          <span class="ngold">{{ idioma.t().carta.printPanNoteGold }}</span>
+        </p>
+        <div class="tw"><table>
+          <thead>
+            <tr>
+              <th class="cn">{{ idioma.t().carta.colEmbutido }}</th>
+              <th>{{ idioma.t().carta.colMedioBoc }}</th>
+              <th>{{ idioma.t().carta.colBocEntero }}</th>
+              <th>{{ idioma.t().carta.colTorrada }}</th>
+              <th>{{ idioma.t().carta.colMediaTabla }}</th>
+              <th>{{ idioma.t().carta.colTabla }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (group of embutidoGroups(); track group.title) {
+              <tr class="gh"><td colspan="6">{{ group.title }}</td></tr>
+              @for (row of group.items; track row.key) {
+                <tr>
+                  <td class="cn">
+                    {{ row.name }}
+                    @if (row.desc) { <span class="cd">{{ row.desc }}</span> }
+                  </td>
+                  <td>{{ row.medioBocadillo ? row.medioBocadillo + '€' : '—' }}</td>
+                  <td>{{ row.bocadilloEntero ? row.bocadilloEntero + '€' : '—' }}</td>
+                  <td>{{ row.torrada ? row.torrada + '€' : '—' }}</td>
+                  <td>{{ row.mediaTabla ? row.mediaTabla + '€' : '—' }}</td>
+                  <td>{{ row.tabla ? row.tabla + '€' : '—' }}</td>
+                </tr>
+              }
+            }
+          </tbody>
+        </table></div>
+
+        <div class="sstitle sstitle--pan">{{ idioma.t().carta.panTitle }}</div>
+        <div class="list list--pan">
+          @for (item of panYTostadas(); track item.key) {
+            <div class="li">
+              <div class="li-info"><span class="li-n">{{ item.name }}</span>@if (item.desc) { <span class="li-d">{{ item.desc }}</span> }</div>
+              <span class="li-p">{{ item.price }}€</span>
+            </div>
+          }
+        </div>
+        <p class="note ngold note--terraza">{{ idioma.t().carta.terrazeSupplementNote }}</p>
+      </div>
+
+      <!-- ——— COLUMNA DERECHA: MENÚS + BIQUINIS + CALIENTES + SUPLEMENTOS + PIZZAS + POSTRES ——— -->
+      <div class="rcol">
+        <div class="stitle">{{ idioma.t().carta.menusTitle }} <span class="stitle-note">({{ idioma.t().carta.menusNote }})</span></div>
+        <div class="list">
+          @for (item of menus(); track item.key) {
+            <div class="li li--menu">
+              <div class="li-menu-row">
+                <span class="li-n">{{ item.name }}</span>
+                <span class="li-p">{{ item.price }}€</span>
+              </div>
+              @if (item.desc) { <span class="li-d">{{ item.desc }}</span> }
+            </div>
+          }
+        </div>
+
+        <div class="stitle">{{ idioma.t().carta.printBiquinisTitle }}</div>
+        <div class="tw"><table>
+          <thead>
+            <tr>
+              <th class="cn">{{ idioma.t().carta.colBiquini }}</th>
+              <th>{{ idioma.t().carta.colNormal }}</th>
+              <th>{{ idioma.t().carta.colMaxi }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of biquinis(); track item.key) {
+              <tr>
+                <td class="cn">
+                  {{ item.name }}
+                  @if (item.desc) { <span class="cd">{{ item.desc }}</span> }
+                </td>
+                <td>{{ item.normal }}€</td>
+                <td>{{ item.maxi ? item.maxi + '€' : '—' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table></div>
+
+        <div class="stitle">{{ idioma.t().carta.calientesTitle }}</div>
+        <div class="tw"><table>
+          <thead>
+            <tr>
+              <th class="cn">{{ idioma.t().carta.printColProducto }}</th>
+              <th>{{ idioma.t().carta.colMedio }}</th>
+              <th>{{ idioma.t().carta.colEntero }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of calientes(); track item.key) {
+              <tr>
+                <td class="cn">
+                  {{ item.name }}
+                  @if (item.desc) { <span class="cd">{{ item.desc }}</span> }
+                </td>
+                <td>{{ item.medio ? item.medio + '€' : '—' }}</td>
+                <td>{{ item.entero ? item.entero + '€' : '—' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table></div>
+
+        <div class="stitle">{{ idioma.t().carta.suplementosTitle }}</div>
+        <div class="tw"><table>
+          <thead>
+            <tr>
+              <th class="cn">{{ idioma.t().carta.printColQuesoExtra }}</th>
+              <th>{{ idioma.t().carta.colMedio }}</th>
+              <th>{{ idioma.t().carta.colEntero }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of suplementos(); track item.key) {
+              <tr>
+                <td class="cn">{{ item.name }}</td>
+                <td>{{ item.medio }}€</td>
+                <td>{{ item.entero }}€</td>
+              </tr>
+            }
+          </tbody>
+        </table></div>
+
+        <div class="stitle">{{ idioma.t().carta.pizzasTitle }}</div>
+        <p class="note">{{ idioma.t().carta.pizzasNote }}</p>
+        <div class="list">
+          @for (item of pizzas(); track item.key) {
+            <div class="li">
+              <div class="li-info"><span class="li-n">{{ item.name }}</span>@if (item.desc) { <span class="li-d">{{ item.desc }}</span> }</div>
+              <span class="li-p">{{ item.price }}€</span>
+            </div>
+          }
+        </div>
+
+        <div class="stitle">{{ idioma.t().carta.postresTitle }}</div>
+        <div class="list">
+          @for (item of postres(); track item.key) {
+            <div class="li">
+              <div class="li-info"><span class="li-n">{{ item.name }}</span>@if (item.desc) { <span class="li-d">{{ item.desc }}</span> }</div>
+              <span class="li-p">{{ item.price }}€</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span class="fb">Xarcuteria Los Molina</span>
+      <span>Frederic Soler, 17 — El Prat de Llobregat</span>
+      <span>Tel. 937 82 70 85</span>
+    </div>
+  </div>
+
+  }
+
+</div>

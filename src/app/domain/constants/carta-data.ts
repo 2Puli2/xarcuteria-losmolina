@@ -1,6 +1,9 @@
 export interface PriceItem {
     key: string;
     price: string;
+    /** Solo lo rellena PrecioService para productos añadidos vía hoja (no existe en el código) */
+    name?: string;
+    desc?: string;
 }
 
 export interface EmbutidoPriceRow {
@@ -38,6 +41,9 @@ export interface SuplementoPriceRow {
 export interface PanPriceRow {
     key: string;
     price: string;
+    /** Solo lo rellena PrecioService para productos añadidos vía hoja */
+    name?: string;
+    desc?: string;
 }
 
 export const APERITIVOS_PRICES: PriceItem[] = [
@@ -134,7 +140,7 @@ export const EMBUTIDO_GROUPS_PRICES: EmbutidoPriceGroup[] = [
         groupKey: 'quesos',
         items: [
             { key: 'queso_semicurado',   medioBocadillo: '2,90', bocadilloEntero: '5,40',  torrada: '7,90', mediaTabla: '5,00',  tabla: '9,00'   },
-            { key: 'queso_curado',       medioBocadillo: '3,40', bocadilloEntero: '5,80',  torrada: '9,50', mediaTabla: '5,00',  tabla: '9,00'   },
+            { key: 'queso_curado',       medioBocadillo: '3,40', bocadilloEntero: '5,80',  torrada: '9,50', mediaTabla: '6,00',  tabla: '11,00'   },
             { key: 'queso_fresco_cabra', medioBocadillo: '4,00', bocadilloEntero: '8,00'                                                         },
             { key: 'queso_manchego',     medioBocadillo: '6,20', bocadilloEntero: '12,40', torrada: '12,90', mediaTabla: '7,50',  tabla: '14,00' },
             { key: 'queso_payoyo',       medioBocadillo: '6,20', bocadilloEntero: '12,40', torrada: '12,90', mediaTabla: '7,50',  tabla: '14,00' },
@@ -268,3 +274,43 @@ export const CAFES_DATA: BebidaItem[] = [
     { key: 'infusion',  name: 'Infusión',  price: '1,90' },
     { key: 'cola_cao',  name: 'Cola Cao',  price: '2,10' },
 ];
+
+/** Nombre y descripción de un producto en un idioma */
+export interface ProductoExtraI18n {
+    name: string;
+    desc?: string;
+}
+
+/**
+ * Producto añadido desde la hoja de Google que NO existe en los arrays de
+ * arriba. Es el respaldo en código de esos productos: si la hoja se cae, estos
+ * siguen apareciendo en la carta con el precio y los nombres del último
+ * `npm run sync:carta`. Lo rellena ese script; a mano se deja vacío.
+ *
+ * Cubre TODAS las categorías de la carta, cada una con sus propios campos de
+ * precio (ver PrecioService.CATEGORIAS).
+ */
+export interface ProductoExtra {
+    /** Categoría de la carta (ver PrecioService.CATEGORIAS) */
+    categoria: string;
+    key: string;
+    /**
+     * Importes por campo, con los nombres de campo del código:
+     * precio único → `{ price: '4,50' }`
+     * biquinis     → `{ normal: '2,90', maxi: '5,10' }`
+     * embutidos    → `{ medioBocadillo: '3,40', tabla: '9,00', ... }`
+     */
+    precios: Record<string, string>;
+    es: ProductoExtraI18n;
+    cat: ProductoExtraI18n;
+    en: ProductoExtraI18n;
+}
+
+/**
+ * Respaldo en código de los productos añadidos vía hoja.
+ * El bloque entre los marcadores lo REGENERA `npm run sync:carta`: no editar
+ * a mano (se sobrescribe en el próximo sync).
+ */
+// >>> sync:productos-extra
+export const PRODUCTOS_EXTRA: ProductoExtra[] = [];
+// <<< sync:productos-extra
