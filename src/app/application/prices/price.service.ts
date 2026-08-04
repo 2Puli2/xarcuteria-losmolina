@@ -217,9 +217,12 @@ export class PrecioService {
             if (!filaHoja) return item;
             const mezclado = { ...item };
             for (const campo of campos) {
-                // Solo se pisan campos que el código define para el producto:
-                // la "forma" de la carta la marca carta-data.ts
-                if (item[campo] !== undefined && filaHoja[campo]) {
+                // `campos` son los formatos que admite la categoría, así que la
+                // hoja puede rellenar cualquiera de ellos —incluido uno que el
+                // código dejaba vacío—: es como se pone a la venta un formato
+                // nuevo (p. ej. empezar a servir en tabla un embutido que solo
+                // se hacía en bocadillo) sin tocar código.
+                if (filaHoja[campo]) {
                     (mezclado as Record<string, unknown>)[campo] = filaHoja[campo];
                 }
             }

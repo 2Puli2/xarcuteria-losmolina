@@ -84,8 +84,13 @@ Reglas:
 - Si una clave falta en `nombres_cat` o `nombres_en`, ese idioma muestra el
   texto en español.
 - Las celdas de precio vacías significan "este formato no se vende para este
-  producto" (sale — en la carta). Rellenar una celda que estaba vacía en un
-  producto **que ya existe** no añade el formato: eso sigue requiriendo código.
+  producto" (sale — en la carta). **Rellenar una celda vacía pone ese formato
+  a la venta**: si el Lomo Matanza solo se hacía en bocadillo y escribes un
+  precio en `tabla`, a partir de ese momento se ofrece en tabla.
+- Lo que todavía **no** se puede hacer desde la hoja es lo contrario: vaciar
+  una celda que tenía precio no retira el formato (se sigue viendo el último
+  precio conocido). Para dejar de ofrecer un formato, avisa a quien lleve la
+  web.
 
 ## Añadir un producto nuevo desde la hoja
 
