@@ -287,14 +287,20 @@ export interface ProductoExtraI18n {
  * siguen apareciendo en la carta con el precio y los nombres del último
  * `npm run sync:carta`. Lo rellena ese script; a mano se deja vacío.
  *
- * Solo cubre categorías de precio único (aperitivos, conservas, menus,
- * pan_y_tostadas, pizzas, postres, refrescos, cervezas, vinos, cafes).
+ * Cubre TODAS las categorías de la carta, cada una con sus propios campos de
+ * precio (ver PrecioService.CATEGORIAS).
  */
 export interface ProductoExtra {
-    /** Una de las 10 categorías admitidas (ver PrecioService.CATEGORIAS_CON_EXTRAS) */
+    /** Categoría de la carta (ver PrecioService.CATEGORIAS) */
     categoria: string;
     key: string;
-    price: string;
+    /**
+     * Importes por campo, con los nombres de campo del código:
+     * precio único → `{ price: '4,50' }`
+     * biquinis     → `{ normal: '2,90', maxi: '5,10' }`
+     * embutidos    → `{ medioBocadillo: '3,40', tabla: '9,00', ... }`
+     */
+    precios: Record<string, string>;
     es: ProductoExtraI18n;
     cat: ProductoExtraI18n;
     en: ProductoExtraI18n;

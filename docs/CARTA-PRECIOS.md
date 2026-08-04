@@ -4,9 +4,16 @@ Los precios de la carta (web y carta imprimible) se leen de una **Google Sheet
 pública** al cargar la página. Para cambiar un precio basta con editar la hoja:
 **no hay que recompilar ni subir nada a Hostinger**.
 
-Si la hoja no responde (sin conexión, Google caído…), la web usa los precios de
-respaldo definidos en `src/app/domain/constants/carta-data.ts`. La carta nunca
-se queda vacía.
+Mientras se lee la hoja, la carta muestra "Cargando la carta…" en vez de
+precios: los del código podrían estar desfasados y se verían un instante
+antes de que llegue la hoja.
+
+Si la hoja no responde (sin conexión, Google caído…), por defecto la web
+**no** enseña precios: muestra un aviso de "No hemos podido cargar la carta"
+en vez de la carta y de la carta imprimible. Es intencional: es preferible
+avisar a enseñar un precio antiguo sin que se note. `carta-data.ts` sigue
+siendo el respaldo, pero solo se activa a mano (ver "Si la hoja se cae" más
+abajo).
 
 ## Crear la hoja (solo la primera vez)
 
@@ -39,81 +46,133 @@ Pégalo en **`src/app/application/prices/price.config.ts`**, en la constante
 `ng build` + despliegue: a partir de ahí los cambios de precio ya no requieren
 tocar código.
 
-## Cómo cambiar un precio (para la dueña)
+## Las tres pestañas
+
+La hoja tiene tres pestañas, con estos nombres **exactos** (en minúsculas):
+
+| Pestaña | Para qué sirve | Columnas |
+|---|---|---|
+| `precios` | Qué productos hay, sus precios y sus textos en **español** | `categoria`, `clave`, `producto`, `descripcion` + columnas de precio |
+| `nombres_cat` | Nombres y descripciones en **catalán** | `clave`, `producto`, `descripcion` |
+| `nombres_en` | Nombres y descripciones en **inglés** | `clave`, `producto`, `descripcion` |
+
+> ⚠️ **El nombre de la pestaña importa mucho.** Si te equivocas al escribirlo,
+> Google **no da error**: devuelve la primera pestaña como si fuera la que se
+> ha pedido. La web detecta ese caso concreto y muestra el aviso de error en
+> vez de precios equivocados, pero conviene revisar los nombres si algo deja
+> de verse.
+
+## Cambiar un precio, un nombre o una descripción (para la dueña)
 
 1. Abre la hoja de Google.
-2. Busca el producto (columna `producto`, en español).
-3. Cambia el precio en la columna que toque (formato con coma: `6,90`).
-4. Listo. Al recargar la web ya se ve el precio nuevo.
+2. Busca el producto por la columna `producto`.
+3. Cambia lo que necesites:
+   - **Precio**: la columna que toque, con coma (`6,90`).
+   - **Nombre**: la columna `producto`.
+   - **Descripción**: la columna `descripcion` (el texto pequeño gris bajo el
+     nombre). Déjala vacía para que el producto no tenga descripción.
+4. Para catalán e inglés, cambia lo mismo en `nombres_cat` y `nombres_en`,
+   buscando la fila por su `clave`.
+5. Listo. Al recargar la web ya se ve el cambio.
 
 Reglas:
 - **No cambies** la columna `clave` de un producto que ya existe: es la que
-  conecta la hoja con la web.
+  conecta la hoja con la web. Es lo único que no debes tocar.
+- La hoja **manda sobre el código**: si un producto está en la hoja, su nombre
+  y su descripción salen de ahí. Por eso vaciar `descripcion` la quita de la
+  carta (no "reaparece" la que hubiera en el código).
+- Si una clave falta en `nombres_cat` o `nombres_en`, ese idioma muestra el
+  texto en español.
 - Las celdas de precio vacías significan "este formato no se vende para este
-  producto" (sale — en la carta). Rellenar una celda que estaba vacía no añade
-  el formato a un producto existente: eso requiere tocar código.
+  producto" (sale — en la carta). Rellenar una celda que estaba vacía en un
+  producto **que ya existe** no añade el formato: eso sigue requiriendo código.
 
 ## Añadir un producto nuevo desde la hoja
 
-Se puede **dar de alta un producto nuevo** (con nombre y descripción en los 3
-idiomas) sin tocar código, siempre que sea dentro de una de estas categorías,
-que son las que admiten altas:
-
-`aperitivos`, `conservas`, `menus`, `pan_y_tostadas`, `pizzas`, `postres`,
-`refrescos`, `cervezas`, `vinos`, `cafes`.
-
-**Preparación (solo la primera vez):** crea en la hoja dos pestañas para los
-nombres en catalán e inglés, llamadas exactamente **`nombres_cat`** y
-**`nombres_en`**. Importa en cada una su CSV inicial, que ya viene con **todas
-las traducciones actuales** de la carta:
-[`docs/nombres_cat-inicial.csv`](./nombres_cat-inicial.csv) y
-[`docs/nombres_en-inicial.csv`](./nombres_en-inicial.csv). Compártelas igual que
-`precios` ("Cualquier persona con el enlace → Lector").
-
-> Nota: hoy la web solo consulta estas pestañas para los productos **nuevos**
-> (los que no están en el código). Las traducciones de los productos que ya
-> existen siguen saliendo del código; tenerlas también aquí sirve de
-> referencia y deja las pestañas listas por si en el futuro se pasa toda la
-> carta a la hoja.
+Se puede dar de alta un producto nuevo, con nombre y descripción en los 3
+idiomas, **en cualquier categoría de la carta**, sin tocar código.
 
 Pasos:
-1. En la pestaña **`precios`**, añade una fila nueva al final con:
-   - `categoria`: una de las de arriba (exactamente igual).
-   - `clave`: un identificador único sin espacios ni acentos (ej. `croquetas_casa`).
+1. En la pestaña **`precios`**, añade una fila al final con:
+   - `categoria`: una de las que ya aparecen en la columna (cópiala tal cual de
+     otra fila de esa misma sección).
+   - `clave`: un identificador único, sin espacios ni acentos (ej. `biquini_chorizo`).
    - `producto`: el nombre en **español**.
-   - `precio`: el precio con coma (ej. `4,50`).
-   - `descripcion` (opcional): descripción en español.
-2. Para el nombre en catalán e inglés, añade la misma `clave` en las pestañas
-   **`nombres_cat`** y **`nombres_en`** (columnas `clave`, `producto`,
-   `descripcion`). Si no lo haces, ese idioma mostrará el nombre en español.
-3. Al recargar la web, el producto aparece **al final de su categoría**.
+   - `descripcion` (opcional): la descripción en español.
+   - **Las columnas de precio de su sección** (ver tabla de abajo).
+2. Añade la misma `clave` en **`nombres_cat`** y **`nombres_en`** con su
+   nombre y descripción. Si no lo haces, esos idiomas mostrarán el español.
+3. Al recargar la web, el producto aparece **al final de su sección**.
+
+Qué columnas de precio rellenar según la categoría:
+
+| Categorías | Columnas de precio |
+|---|---|
+| `aperitivos`, `conservas`, `menus`, `pan_y_tostadas`, `pizzas`, `postres`, `refrescos`, `cervezas`, `vinos`, `cafes` | `precio` |
+| `biquinis` | `normal`, `maxi` |
+| `calientes`, `suplementos` | `medio`, `entero` |
+| `jamon`, `embutidos_ibericos`, `fiambres`, `quesos` | `medioBocadillo`, `bocadilloEntero`, `torrada`, `mediaTabla`, `tabla` |
+
+Ejemplo — un biquini nuevo de chorizo, picante, a 4,50€ el normal y 6,50€ el
+maxi: fila en `precios` con `categoria` = `biquinis`, `clave` = `biquini_chorizo`,
+`producto` = `Biquini de Chorizo`, `descripcion` = `Picante`, `normal` = `4,50`
+y `maxi` = `6,50`. Deja el resto de columnas de precio vacías.
 
 Limitaciones:
-- El producto nuevo sale **al final** de su categoría (no se puede reordenar
+- El producto nuevo sale **al final** de su sección (no se puede reordenar
   desde la hoja).
-- **No** se pueden crear categorías nuevas ni añadir productos a `embutidos`,
-  `biquinis`, `calientes` o `suplementos` desde la hoja: eso sigue requiriendo
-  tocar código (`carta-data.ts` + traducciones).
+- **No** se pueden crear secciones nuevas desde la hoja: una `categoria` que no
+  exista ya se ignora. Eso sigue requiriendo tocar código.
+- Basta con rellenar **al menos una** columna de precio; si las dejas todas
+  vacías, la fila se ignora.
 
-## Respaldo en código (recuperación)
+## Si la hoja se cae (respaldo en código)
 
-La hoja es la fuente en producción, pero si Google Sheets se cayera del todo,
-los productos **nuevos** (que solo viven en la hoja) desaparecerían de la
-carta. Para evitarlo hay un script que los "congela" en el código:
+Por defecto, si la hoja no responde, la carta muestra un aviso de error en
+vez de precios (ver arriba). El respaldo en código existe pero está
+**desactivado a propósito**: hay que activarlo a mano, para asegurarnos de
+que cuando se active tiene precios de verdad al día, no los que había el día
+que se escribió el código.
 
-```
-npm run sync:carta
-```
+Pasos cuando os avisen de que la carta está caída:
 
-Descarga la hoja y vuelca los productos nuevos al bloque `PRODUCTOS_EXTRA` de
-`src/app/domain/constants/carta-data.ts` (solo ese bloque; no toca nada más).
-Conviene ejecutarlo **antes de cada `ng build` + deploy**: así el respaldo en
-código siempre incluye las últimas altas. Revisa el cambio con `git diff`
-antes de subir.
+1. Abre `src/app/domain/constants/carta-data.ts` y actualiza a mano los
+   precios que sepas que están desactualizados (compáralos con la última
+   copia de la hoja que tengas, ver "Copia de seguridad" abajo).
+2. Si hay productos dados de alta desde la hoja recientemente y no capturados
+   aún, ejecuta `npm run sync:carta`: descarga la hoja y los vuelca al bloque
+   `PRODUCTOS_EXTRA` de `carta-data.ts` (solo ese bloque; no toca nada más).
+   Revisa el cambio con `git diff` antes de seguir.
+3. Abre `src/app/application/prices/price.config.ts` y pon
+   `FALLBACK_ACTIVO` en `true`.
+4. `ng build` + deploy.
 
-(Nota: el script solo captura ALTAS de productos nuevos. Los cambios de precio
-de productos que ya están en el código no se vuelcan al respaldo; ese caso se
-recupera reescribiendo el precio a mano en `carta-data.ts`.)
+Cuando la hoja vuelva a funcionar no hace falta hacer nada más: en cuanto
+responde, sus precios vuelven a mandar por encima del respaldo. Puedes dejar
+`FALLBACK_ACTIVO` en `true` (por si vuelve a caerse) o devolverlo a `false`
+para que un futuro fallo avise en vez de enseñar precios silenciosamente
+desactualizados.
+
+(Nota: `npm run sync:carta` solo captura ALTAS de productos nuevos. Los
+cambios de precio de productos que ya están en el código no se vuelcan solos;
+ese caso siempre se recupera reescribiendo el precio a mano en
+`carta-data.ts`, paso 1 de arriba.)
+
+### Copia de seguridad de la hoja
+
+Para poder hacer el paso 1 con precios reales (no los que había hace meses),
+conviene tener una copia reciente de la hoja a mano. La propia Google Sheet ya
+guarda un historial de versiones sin que nadie tenga que hacer nada: **Archivo
+→ Historial de versiones → Ver historial de versiones**, desde ahí se puede
+consultar o restaurar cualquier estado anterior. Lo único que hay que evitar
+es que alguien borre la hoja entera o le quite el acceso de "Lector" al
+enlace público.
+
+Si además queréis una copia manual periódica (por ejemplo, tras cada revisión
+de precios grande), basta con **Archivo → Descargar → Valores separados por
+comas (.csv)** de la pestaña `precios` y guardarla donde la dueña prefiera. No
+hace falta automatizarlo: es una red de seguridad adicional sobre el
+historial de versiones, no un requisito para que el sistema funcione.
 
 ## Carta imprimible
 

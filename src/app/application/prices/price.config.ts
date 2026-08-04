@@ -9,7 +9,26 @@
  *  - Compartida como "Cualquier persona con el enlace → Lector".
  *  - Una pestaña llamada exactamente "precios" (ver docs/CARTA-PRECIOS.md).
  */
-export const PRECIOS_SHEET_ID = '1YKM0yG7d4GcT4EChEbfIOOoCxFCYm-n_vYaRoVrRaBg';
+export const PRECIOS_SHEET_ID = '1OcvM2g8j8g4X0sP3knGN2CG9LAlOThRWcAhX0WXY2PQ';
+
+/**
+ * Interruptor manual del respaldo en código.
+ *
+ * Por defecto en `false`: si la hoja de precios no responde (o responde sin
+ * filas válidas), la carta NO muestra los precios de `carta-data.ts` —
+ * muestra un aviso de error. Así nunca se enseña un precio antiguo sin que
+ * se note.
+ *
+ * Si Google Sheets se cae de verdad y hay que mantener la carta visible con
+ * el respaldo mientras se soluciona:
+ *  1. Actualiza a mano los precios en `carta-data.ts` con los últimos
+ *     conocidos.
+ *  2. Pon esta constante en `true`.
+ *  3. `ng build` + deploy.
+ * Cuando la hoja vuelva a responder, puede quedarse en `true` sin problema
+ * (la hoja manda en cuanto responde) o volver a `false`.
+ */
+export const FALLBACK_ACTIVO = false;
 
 /** Pestaña canónica: qué productos existen, en qué categoría y sus precios */
 export const PRECIOS_SHEET_TAB = 'precios';

@@ -112,6 +112,27 @@
     margin-bottom: 3mm;
   }
 
+  .error {
+    text-align: center;
+    margin-top: 40mm;
+    padding: 8mm;
+    border: 1px solid rgba(172, 37, 33, .4);
+    border-radius: 4px;
+    background: rgba(172, 37, 33, .08);
+  }
+
+  .error-title {
+    font-family: var(--fontH);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 3mm;
+  }
+
+  .error-text {
+    font-size: 12px;
+    color: var(--gray);
+  }
+
   /* — Títulos — */
   .stitle {
     font-family: var(--fontH);

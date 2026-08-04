@@ -64,6 +64,35 @@
     font-style: italic;
   }
 
+  &__cargando {
+    width: 100%;
+    text-align: center;
+    padding: $spacing-xl $spacing-lg;
+    font-size: $font-size-md;
+    color: rgba($color-accent, 0.7);
+  }
+
+  &__error {
+    width: 100%;
+    text-align: center;
+    padding: $spacing-xl $spacing-lg;
+    border: 1px solid rgba($color-primary, 0.4);
+    border-radius: $border-radius-md;
+    background: rgba($color-primary, 0.08);
+  }
+
+  &__error-title {
+    font-size: $font-size-lg;
+    font-weight: 700;
+    color: $color-light;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__error-text {
+    font-size: $font-size-md;
+    color: rgba($color-light, 0.8);
+  }
+
   &__nav {
     width: 100%;
     display: flex;

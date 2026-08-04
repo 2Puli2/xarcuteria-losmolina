@@ -39,16 +39,18 @@ export class CartaImprimirComponent {
 
     /**
      * Mezcla una colección de precios con el nombre/descripción del idioma activo.
-     * Si la traducción no existe (producto añadido vía hoja), usa el nombre que
-     * ya trae el propio item (resuelto por PrecioService); si tampoco, la clave.
+     * Prioridad: la HOJA manda; si no trae la clave, la traducción del código;
+     * si tampoco, el nombre que ya traiga el propio item (altas de la hoja) y,
+     * como último recurso, la clave.
      */
     private traducir<T extends { key: string; name?: string; desc?: string }>(
         items: T[],
         dic: Record<string, { name: string; desc?: string }>
     ): (T & { name: string; desc?: string })[] {
+        const hoja = this.precios.textoHoja();
         return items.map(p => ({
             ...p,
-            ...(dic[p.key] ?? (p.name ? { name: p.name, desc: p.desc } : { name: p.key })),
+            ...(hoja(p.key) ?? dic[p.key] ?? (p.name ? { name: p.name, desc: p.desc } : { name: p.key })),
         }));
     }
 
@@ -95,11 +97,13 @@ export class CartaImprimirComponent {
 
     readonly embutidoGroups = computed<EmbutidoGroup[]>(() => {
         const groupTitles = this.idioma.t().cartaItems.embutidoGroupTitles as Record<string, string>;
-        const items       = this.idioma.t().cartaItems.embutidoItems as Record<string, EmbutidoRow>;
+        const items       = this.idioma.t().cartaItems.embutidoItems as Record<string, { name: string; desc?: string }>;
         return this.precios.embutidoGroups().map(g => ({
             title: groupTitles[g.groupKey] ?? g.groupKey,
-            items: g.items.map(row => ({
-                ...(items[row.key] ?? { name: row.key }),
+            items: this.traducir(g.items, items).map(row => ({
+                key: row.key,
+                name: row.name,
+                desc: row.desc,
                 medioBocadillo: row.medioBocadillo,
                 bocadilloEntero: row.bocadilloEntero,
                 torrada: row.torrada,

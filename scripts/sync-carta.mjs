@@ -29,11 +29,30 @@ const DATA_PATH = resolve(RAIZ, 'src/app/domain/constants/carta-data.ts');
 const MARCA_INI = '// >>> sync:productos-extra';
 const MARCA_FIN = '// <<< sync:productos-extra';
 
-/** Categorías donde la hoja puede añadir productos (deben coincidir con PrecioService) */
-const CATEGORIAS_CON_EXTRAS = new Set([
-    'aperitivos', 'conservas', 'menus', 'pan_y_tostadas', 'pizzas', 'postres',
-    'refrescos', 'cervezas', 'vinos', 'cafes',
-]);
+/**
+ * Campos de precio de cada categoría (deben coincidir con CATEGORIAS de
+ * PrecioService). 'price' se lee de la columna 'precio' de la hoja.
+ */
+const CAMPOS_EMBUTIDO = ['medioBocadillo', 'bocadilloEntero', 'torrada', 'mediaTabla', 'tabla'];
+const CAMPOS_POR_CATEGORIA = {
+    aperitivos: ['price'],
+    conservas: ['price'],
+    menus: ['price'],
+    pan_y_tostadas: ['price'],
+    pizzas: ['price'],
+    postres: ['price'],
+    refrescos: ['price'],
+    cervezas: ['price'],
+    vinos: ['price'],
+    cafes: ['price'],
+    biquinis: ['normal', 'maxi'],
+    calientes: ['medio', 'entero'],
+    suplementos: ['medio', 'entero'],
+    jamon: CAMPOS_EMBUTIDO,
+    embutidos_ibericos: CAMPOS_EMBUTIDO,
+    fiambres: CAMPOS_EMBUTIDO,
+    quesos: CAMPOS_EMBUTIDO,
+};
 
 // ─────────────────────────── utilidades ───────────────────────────
 
@@ -124,12 +143,17 @@ function i18nLiteral(o) {
     return o.desc ? `{ name: ${q(o.name)}, desc: ${q(o.desc)} }` : `{ name: ${q(o.name)} }`;
 }
 
+function preciosLiteral(precios) {
+    const campos = Object.entries(precios).map(([campo, valor]) => `${campo}: ${q(valor)}`);
+    return `{ ${campos.join(', ')} }`;
+}
+
 function entradaLiteral(p) {
     return [
         '    {',
         `        categoria: ${q(p.categoria)},`,
         `        key: ${q(p.key)},`,
-        `        price: ${q(p.price)},`,
+        `        precios: ${preciosLiteral(p.precios)},`,
         `        es: ${i18nLiteral(p.es)},`,
         `        cat: ${i18nLiteral(p.cat)},`,
         `        en: ${i18nLiteral(p.en)},`,
@@ -175,13 +199,20 @@ async function main() {
         const nombreEs = (fila['producto'] || '').trim();
         if (!categoria || !key || !nombreEs) continue;
         if (conocidas.has(key)) continue;
-        if (!CATEGORIAS_CON_EXTRAS.has(categoria)) { ignoradas.add(`${key} (${categoria})`); continue; }
-        const price = normalizarPrecio(fila['precio']);
-        if (!price) { ignoradas.add(`${key} (sin precio)`); continue; }
+        const campos = CAMPOS_POR_CATEGORIA[categoria];
+        if (!campos) { ignoradas.add(`${key} (categoría desconocida: ${categoria})`); continue; }
+
+        // Solo los campos de precio de esta categoría ('precio' en la hoja → 'price')
+        const precios = {};
+        for (const campo of campos) {
+            const valor = normalizarPrecio(fila[campo === 'price' ? 'precio' : campo]);
+            if (valor) precios[campo] = valor;
+        }
+        if (Object.keys(precios).length === 0) { ignoradas.add(`${key} (sin precio)`); continue; }
 
         const descEs = (fila['descripcion'] || '').trim();
         const es = descEs ? { name: nombreEs, desc: descEs } : { name: nombreEs };
-        nuevos.push({ categoria, key, price, es, cat: mapaCat[key] || es, en: mapaEn[key] || es });
+        nuevos.push({ categoria, key, precios, es, cat: mapaCat[key] || es, en: mapaEn[key] || es });
     }
 
     // Regenerar el bloque
@@ -199,7 +230,10 @@ async function main() {
     }
 
     console.log(`\n${nuevos.length} producto(s) nuevo(s) capturado(s) en PRODUCTOS_EXTRA:`);
-    for (const p of nuevos) console.log(`  · ${p.categoria} / ${p.key} — ${p.es.name} (${p.price}€)`);
+    for (const p of nuevos) {
+        const importes = Object.entries(p.precios).map(([c, v]) => `${c} ${v}€`).join(', ');
+        console.log(`  · ${p.categoria} / ${p.key} — ${p.es.name} (${importes})`);
+    }
     if (ignoradas.size) {
         console.log(`\n${ignoradas.size} fila(s) de la hoja ignorada(s) (categoría no admite altas o sin precio):`);
         for (const s of ignoradas) console.log(`  · ${s}`);

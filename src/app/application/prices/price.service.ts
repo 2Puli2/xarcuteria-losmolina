@@ -33,6 +33,7 @@ import {
     PRECIOS_SHEET_TAB,
     NOMBRES_SHEET_TAB_CAT,
     NOMBRES_SHEET_TAB_EN,
+    FALLBACK_ACTIVO,
 } from './price.config';
 import { IdiomaService, Lang } from '../language/language.service';
 
@@ -42,39 +43,62 @@ type Overrides = Record<string, Record<string, string>>;
 /** Diccionario de traducción de una pestaña de nombres: clave → {name, desc?} */
 type MapaNombres = Record<string, ProductoExtraI18n>;
 
+/** Textos de un producto en los 3 idiomas, tal y como los trae la hoja */
+type TextosPorIdioma = Record<Lang, ProductoExtraI18n>;
+
+/** Campos de precio de cada tipo de categoría (nombres del código) */
+const CAMPOS_UNICO = ['price'] as const;
+const CAMPOS_EMBUTIDO = ['medioBocadillo', 'bocadilloEntero', 'torrada', 'mediaTabla', 'tabla'] as const;
+const CAMPOS_BIQUINI = ['normal', 'maxi'] as const;
+const CAMPOS_MEDIO_ENTERO = ['medio', 'entero'] as const;
+
 /**
- * Categorías donde la hoja puede AÑADIR productos nuevos (precio único).
- * El valor es el array del código, que define qué claves ya existen: cualquier
- * clave de la hoja que no esté aquí se trata como producto nuevo.
- * Las demás categorías (embutidos, biquinis, calientes, suplementos) solo
- * admiten cambios de precio, no altas — se siguen añadiendo por código.
+ * Todas las categorías de la carta. Para cada una:
+ *  - `items`: el array del código, que define qué claves YA existen (cualquier
+ *    clave de la hoja que no esté aquí es un producto nuevo).
+ *  - `campos`: qué campos de precio usa la categoría, para saber qué columnas
+ *    de la hoja leer al dar de alta un producto.
+ *
+ * Todas admiten altas desde la hoja, incluidas las de precio múltiple
+ * (embutidos, biquinis, calientes, suplementos).
  */
-const CATEGORIAS_CON_EXTRAS: Record<string, readonly { key: string }[]> = {
-    aperitivos: APERITIVOS_PRICES,
-    conservas: CONSERVAS_PRICES,
-    menus: MENUS_PRICES,
-    pan_y_tostadas: PAN_Y_TOSTADAS_PRICES,
-    pizzas: PIZZAS_PRICES,
-    postres: POSTRES_PRICES,
-    refrescos: REFRESCOS_DATA,
-    cervezas: CERVEZAS_DATA,
-    vinos: VINOS_DATA,
-    cafes: CAFES_DATA,
+const CATEGORIAS: Record<string, { items: readonly { key: string }[]; campos: readonly string[] }> = {
+    aperitivos: { items: APERITIVOS_PRICES, campos: CAMPOS_UNICO },
+    conservas: { items: CONSERVAS_PRICES, campos: CAMPOS_UNICO },
+    menus: { items: MENUS_PRICES, campos: CAMPOS_UNICO },
+    pan_y_tostadas: { items: PAN_Y_TOSTADAS_PRICES, campos: CAMPOS_UNICO },
+    pizzas: { items: PIZZAS_PRICES, campos: CAMPOS_UNICO },
+    postres: { items: POSTRES_PRICES, campos: CAMPOS_UNICO },
+    refrescos: { items: REFRESCOS_DATA, campos: CAMPOS_UNICO },
+    cervezas: { items: CERVEZAS_DATA, campos: CAMPOS_UNICO },
+    vinos: { items: VINOS_DATA, campos: CAMPOS_UNICO },
+    cafes: { items: CAFES_DATA, campos: CAMPOS_UNICO },
+    biquinis: { items: BIQUINIS_PRICES, campos: CAMPOS_BIQUINI },
+    calientes: { items: CALIENTES_PRICES, campos: CAMPOS_MEDIO_ENTERO },
+    suplementos: { items: SUPLEMENTOS_PRICES, campos: CAMPOS_MEDIO_ENTERO },
+    // Cada grupo de embutidos es una categoría propia en la hoja (jamon,
+    // embutidos_ibericos, fiambres, quesos…), con los 5 campos de embutido.
+    ...Object.fromEntries(
+        EMBUTIDO_GROUPS_PRICES.map(g => [g.groupKey, { items: g.items, campos: CAMPOS_EMBUTIDO }])
+    ),
 };
 
 /**
  * Servicio de precios de la carta.
  *
  * Fuente de verdad en producción: la Google Sheet (pestañas "precios",
- * "nombres_cat" y "nombres_en"), leídas como CSV al arrancar. carta-data.ts es
- * el RESPALDO y define la "forma" de la carta: qué productos existen, cómo se
- * agrupan y qué campos de precio aplica cada uno. Si la hoja no responde
- * (offline, CORS, Google caído) o le falta una clave/campo, se usa el precio
- * del código: la carta nunca queda vacía.
+ * "nombres_cat" y "nombres_en"), leídas como CSV al arrancar. carta-data.ts
+ * define la "forma" de la carta (qué productos existen, cómo se agrupan y
+ * qué campos de precio aplica cada uno) y sirve de respaldo de precios SOLO
+ * si FALLBACK_ACTIVO está en `true` (price.config.ts). Por defecto está en
+ * `false`: si la hoja no responde, `estado()` pasa a 'error' y las páginas
+ * de carta deben mostrar un aviso en vez de precios, para no enseñar un
+ * precio antiguo sin que se note.
  *
- * Además, la hoja puede AÑADIR productos nuevos dentro de una categoría ya
- * existente (ver CATEGORIAS_CON_EXTRAS). El respaldo en código de esos
- * productos es PRODUCTOS_EXTRA, que rellena `npm run sync:carta`.
+ * La hoja manda en tres cosas: PRECIOS, TEXTOS (nombre y descripción, en los 3
+ * idiomas) y ALTAS de productos nuevos en cualquier categoría (ver CATEGORIAS).
+ * Las traducciones del código solo se usan para las claves que la hoja no trae.
+ * El respaldo en código de las altas es PRODUCTOS_EXTRA (`npm run sync:carta`).
  */
 @Injectable({ providedIn: 'root' })
 export class PrecioService {
@@ -88,9 +112,34 @@ export class PrecioService {
     /** Productos nuevos leídos de la hoja; null = hoja no cargada (se usa PRODUCTOS_EXTRA) */
     private readonly nuevosHoja = signal<ProductoExtra[] | null>(null);
 
+    /** Nombres y descripciones leídos de la hoja: clave → textos por idioma */
+    private readonly textosHoja = signal<Record<string, TextosPorIdioma>>({});
+
+    /** true si la pestaña "precios" no respondió o no parece la pestaña correcta */
+    private readonly errorHoja = signal(false);
+
+    /** true mientras se está leyendo la hoja por primera vez */
+    private readonly cargando = signal(false);
+
+    /**
+     * Qué deben pintar las páginas de carta:
+     *  - 'cargando': aún no sabemos qué dice la hoja. Con FALLBACK_ACTIVO=false
+     *    NO se pintan precios: los del código podrían estar desfasados y
+     *    saldrían un instante antes de que llegue la hoja.
+     *  - 'error': la hoja ha fallado y no hay respaldo activado → aviso.
+     *  - 'ok': hay precios buenos que pintar (de la hoja, o del código si
+     *    FALLBACK_ACTIVO está en `true`).
+     */
+    readonly estado = computed<'cargando' | 'ok' | 'error'>(() => {
+        if (FALLBACK_ACTIVO) return 'ok'; // el código basta: no hay que esperar a nadie
+        if (this.cargando()) return 'cargando';
+        return this.errorHoja() ? 'error' : 'ok';
+    });
+
     constructor() {
         // Solo en navegador: durante el prerender se emiten los precios de respaldo
         if (isPlatformBrowser(this.platformId)) {
+            this.cargando.set(true);
             this.cargarPreciosDeLaHoja();
         }
     }
@@ -108,13 +157,28 @@ export class PrecioService {
             ]);
 
             const filas = parsearFilas(csvPrecios);
+            if (!esPestanaPrecios(filas)) {
+                // Respondió, pero lo que llegó no es la pestaña de precios: hoja
+                // vacía, ID incorrecto, error de Google en vez de CSV, o —el caso
+                // más habitual— la pestaña "precios" no existe (renombrada o
+                // borrada) y gviz ha devuelto la PRIMERA pestaña en su lugar.
+                this.errorHoja.set(true);
+                return;
+            }
             const overrides = filasAOverrides(filas);
             if (Object.keys(overrides).length > 0) {
                 this.overrides.set(overrides);
             }
+            this.textosHoja.set(construirTextos(filas, mapaCat, mapaEn));
             this.nuevosHoja.set(detectarNuevos(filas, mapaCat, mapaEn));
+            this.errorHoja.set(false);
         } catch {
-            // Sin conexión con la hoja: se mantienen los precios y productos de respaldo del código
+            // Sin conexión con la hoja de precios
+            this.errorHoja.set(true);
+        } finally {
+            // En finally para cubrir también el `return` temprano de arriba:
+            // si no, la carta se quedaría en 'cargando' para siempre.
+            this.cargando.set(false);
         }
     }
 
@@ -124,11 +188,26 @@ export class PrecioService {
             const csv = await firstValueFrom(
                 this.http.get(sheetCsvUrl(tab), { responseType: 'text' })
             );
-            return parsearNombres(csv);
+            const filas = parsearFilas(csv);
+            // Si gviz ha devuelto la pestaña de precios porque esta no existe,
+            // no sirve como pestaña de nombres: mejor {} y caer al español.
+            return esPestanaPrecios(filas) ? {} : parsearNombres(filas);
         } catch {
             return {};
         }
     }
+
+    /**
+     * Nombre y descripción de una clave según la hoja, en el idioma activo.
+     * `undefined` si la hoja no trae esa clave (entonces manda el código).
+     * La hoja es la fuente de verdad del texto: si trae la clave, su
+     * descripción vacía significa "sin descripción", no "usa la del código".
+     */
+    readonly textoHoja = computed<(key: string) => ProductoExtraI18n | undefined>(() => {
+        const textos = this.textosHoja();
+        const lang = this.idioma.currentLang();
+        return (key: string) => textos[key]?.[lang];
+    });
 
     /** Mezcla una colección del código con los precios de la hoja por encima */
     private mezclar<T extends { key: string }>(items: T[], campos: readonly (keyof T & string)[]): T[] {
@@ -157,6 +236,10 @@ export class PrecioService {
      * Como mezclar(), pero además añade AL FINAL los productos nuevos de la
      * categoría (los que existen en la hoja/PRODUCTOS_EXTRA pero no en el
      * código), con el nombre/descripción del idioma activo.
+     *
+     * Cada alta trae sus importes en `precios` con los nombres de campo de su
+     * categoría, así que un biquini nuevo llega con {normal, maxi} y un
+     * embutido nuevo con sus 5 campos, no con un `price` que nadie pintaría.
      */
     private mezclarConNuevos<T extends { key: string }>(
         items: T[],
@@ -169,10 +252,9 @@ export class PrecioService {
             .filter(n => n.categoria === categoria)
             .map(n => {
                 const i18n = n[lang] ?? n.es;
-                // Estructuralmente compatible con PriceItem/PanPriceRow/BebidaItem
-                // (todos aceptan key/price/name/desc). Las 10 categorías con
-                // extras usan uno de esos tipos.
-                return { key: n.key, price: n.price, name: i18n.name, desc: i18n.desc } as unknown as T;
+                // Estructuralmente compatible con la fila que espera cada
+                // plantilla: key + los campos de precio de la categoría + textos.
+                return { key: n.key, ...n.precios, name: i18n.name, desc: i18n.desc } as unknown as T;
             });
         return nuevos.length ? [...base, ...nuevos] : base;
     }
@@ -184,20 +266,16 @@ export class PrecioService {
     readonly embutidoGroups = computed<EmbutidoPriceGroup[]>(() =>
         EMBUTIDO_GROUPS_PRICES.map(grupo => ({
             groupKey: grupo.groupKey,
-            items: this.mezclar(grupo.items, [
-                'medioBocadillo',
-                'bocadilloEntero',
-                'torrada',
-                'mediaTabla',
-                'tabla',
-            ]),
+            // Cada grupo es su propia categoría en la hoja, así que también
+            // admite altas (un embutido nuevo sale al final de su grupo).
+            items: this.mezclarConNuevos(grupo.items, grupo.groupKey, CAMPOS_EMBUTIDO),
         }))
     );
 
     readonly panYTostadas = computed<PanPriceRow[]>(() => this.mezclarConNuevos(PAN_Y_TOSTADAS_PRICES, 'pan_y_tostadas', ['price']));
-    readonly biquinis = computed<BiquiniPriceRow[]>(() => this.mezclar(BIQUINIS_PRICES, ['normal', 'maxi']));
-    readonly calientes = computed<CalientePriceRow[]>(() => this.mezclar(CALIENTES_PRICES, ['medio', 'entero']));
-    readonly suplementos = computed<SuplementoPriceRow[]>(() => this.mezclar(SUPLEMENTOS_PRICES, ['medio', 'entero']));
+    readonly biquinis = computed<BiquiniPriceRow[]>(() => this.mezclarConNuevos(BIQUINIS_PRICES, 'biquinis', CAMPOS_BIQUINI));
+    readonly calientes = computed<CalientePriceRow[]>(() => this.mezclarConNuevos(CALIENTES_PRICES, 'calientes', CAMPOS_MEDIO_ENTERO));
+    readonly suplementos = computed<SuplementoPriceRow[]>(() => this.mezclarConNuevos(SUPLEMENTOS_PRICES, 'suplementos', CAMPOS_MEDIO_ENTERO));
     readonly pizzas = computed<PriceItem[]>(() => this.mezclarConNuevos(PIZZAS_PRICES, 'pizzas', ['price']));
     readonly postres = computed<PriceItem[]>(() => this.mezclarConNuevos(POSTRES_PRICES, 'postres', ['price']));
 
@@ -237,10 +315,20 @@ function filasAOverrides(filas: Record<string, string>[]): Overrides {
     return overrides;
 }
 
+/**
+ * ¿Estas filas son la pestaña "precios"? Solo ella trae la columna `categoria`
+ * con valores reconocidos. Sirve para dos cosas: detectar que la pestaña de
+ * precios falta (gviz devuelve otra en su lugar, con HTTP 200) y descartar esa
+ * misma respuesta cuando llega pidiendo una pestaña de nombres.
+ */
+function esPestanaPrecios(filas: Record<string, string>[]): boolean {
+    return filas.some(f => f['clave']?.trim() && CATEGORIAS[f['categoria']?.trim()]);
+}
+
 /** Parsea una pestaña de nombres (clave, producto, descripcion?) en un mapa por clave */
-function parsearNombres(csv: string): MapaNombres {
+function parsearNombres(filas: Record<string, string>[]): MapaNombres {
     const mapa: MapaNombres = {};
-    for (const fila of parsearFilas(csv)) {
+    for (const fila of filas) {
         const clave = fila['clave']?.trim();
         const name = fila['producto']?.trim();
         if (!clave || !name) continue;
@@ -251,9 +339,33 @@ function parsearNombres(csv: string): MapaNombres {
 }
 
 /**
- * Detecta productos nuevos: filas de "precios" cuya categoría admite altas y
- * cuya clave no existe ya en el código. El nombre en español sale de la propia
- * fila; catalán e inglés de los mapas de nombres (con respaldo al español).
+ * Textos de TODOS los productos de la hoja (existan o no en el código), en los
+ * 3 idiomas. El español sale de la propia pestaña "precios"; catalán e inglés
+ * de las pestañas de nombres, con respaldo al español si les falta la clave.
+ */
+function construirTextos(
+    filas: Record<string, string>[],
+    mapaCat: MapaNombres,
+    mapaEn: MapaNombres,
+): Record<string, TextosPorIdioma> {
+    const textos: Record<string, TextosPorIdioma> = {};
+    for (const fila of filas) {
+        const clave = fila['clave']?.trim();
+        const name = fila['producto']?.trim();
+        if (!clave || !name) continue;
+        const desc = fila['descripcion']?.trim();
+        const es: ProductoExtraI18n = desc ? { name, desc } : { name };
+        textos[clave] = { es, cat: mapaCat[clave] ?? es, en: mapaEn[clave] ?? es };
+    }
+    return textos;
+}
+
+/**
+ * Detecta productos nuevos: filas de "precios" cuya clave no existe ya en el
+ * código. Lee los campos de precio que corresponden a la categoría (precio
+ * único, normal/maxi, medio/entero o los 5 de embutido), así que un alta llega
+ * lista para pintarse en la tabla de su sección. El nombre en español sale de
+ * la propia fila; catalán e inglés de los mapas de nombres (respaldo: español).
  */
 function detectarNuevos(
     filas: Record<string, string>[],
@@ -261,25 +373,34 @@ function detectarNuevos(
     mapaEn: MapaNombres,
 ): ProductoExtra[] {
     const nuevos: ProductoExtra[] = [];
+    const vistas = new Set<string>();
     for (const fila of filas) {
         const categoria = fila['categoria']?.trim();
         const clave = fila['clave']?.trim();
         const nombreEs = fila['producto']?.trim();
         if (!categoria || !clave || !nombreEs) continue;
 
-        const conocidos = CATEGORIAS_CON_EXTRAS[categoria];
-        if (!conocidos) continue; // categoría que no admite altas (o typo)
-        if (conocidos.some(i => i.key === clave)) continue; // ya existe en el código
+        const def = CATEGORIAS[categoria];
+        if (!def) continue; // categoría desconocida (o typo en la hoja)
+        if (def.items.some(i => i.key === clave)) continue; // ya existe en el código
+        if (vistas.has(clave)) continue; // clave repetida en la hoja: nos quedamos con la primera
+        vistas.add(clave);
 
-        const price = normalizarPrecio(fila['precio']);
-        if (!price) continue; // sin precio no se puede pintar
+        // Solo los campos de precio de ESTA categoría, con el nombre que usa el
+        // código ('precio' en la hoja es 'price' en PriceItem/BebidaItem).
+        const precios: Record<string, string> = {};
+        for (const campo of def.campos) {
+            const valor = normalizarPrecio(fila[campo === 'price' ? 'precio' : campo]);
+            if (valor) precios[campo] = valor;
+        }
+        if (Object.keys(precios).length === 0) continue; // sin ningún importe no se puede pintar
 
         const descEs = fila['descripcion']?.trim();
         const es: ProductoExtraI18n = descEs ? { name: nombreEs, desc: descEs } : { name: nombreEs };
         nuevos.push({
             categoria,
             key: clave,
-            price,
+            precios,
             es,
             cat: mapaCat[clave] ?? es,
             en: mapaEn[clave] ?? es,

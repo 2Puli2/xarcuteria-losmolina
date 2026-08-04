@@ -1,5 +1,20 @@
 <div class="carta-print">
 
+  @if (precios.estado() === 'cargando') {
+    <div class="page">
+      <div class="error" role="status">
+        <p class="error-title">{{ idioma.t().carta.cargandoText }}</p>
+      </div>
+    </div>
+  } @else if (precios.estado() === 'error') {
+    <div class="page">
+      <div class="error" role="alert">
+        <p class="error-title">{{ idioma.t().carta.errorTitle }}</p>
+        <p class="error-text">{{ idioma.t().carta.errorText }}</p>
+      </div>
+    </div>
+  } @else {
+
   <!-- ═══════════════ PÁGINA 1 — Bebidas + Aperitivos y Conservas ═══════════════ -->
   <div class="page">
     <div class="header">
@@ -29,7 +44,7 @@
         <div class="list">
           @for (item of cafes(); track item.key) {
             <div class="li">
-              <div class="li-info"><span class="li-n">{{ item.name }}</span></div>
+              <div class="li-info"><span class="li-n">{{ item.name }}</span>@if (item.desc) { <span class="li-d">{{ item.desc }}</span> }</div>
               <span class="li-p">{{ item.price }}€</span>
             </div>
           }
@@ -54,7 +69,7 @@
         <div class="list list--sep">
           @for (item of cervezasBotella(); track item.key) {
             <div class="li">
-              <div class="li-info"><span class="li-n">{{ item.name }}</span></div>
+              <div class="li-info"><span class="li-n">{{ item.name }}</span>@if (item.desc) { <span class="li-d">{{ item.desc }}</span> }</div>
               <span class="li-p">{{ item.price }}€</span>
             </div>
           }
@@ -143,7 +158,7 @@
           <tbody>
             @for (group of embutidoGroups(); track group.title) {
               <tr class="gh"><td colspan="6">{{ group.title }}</td></tr>
-              @for (row of group.items; track row.name) {
+              @for (row of group.items; track row.key) {
                 <tr>
                   <td class="cn">
                     {{ row.name }}
@@ -164,7 +179,7 @@
         <div class="list list--pan">
           @for (item of panYTostadas(); track item.key) {
             <div class="li">
-              <div class="li-info"><span class="li-n">{{ item.name }}</span></div>
+              <div class="li-info"><span class="li-n">{{ item.name }}</span>@if (item.desc) { <span class="li-d">{{ item.desc }}</span> }</div>
               <span class="li-p">{{ item.price }}€</span>
             </div>
           }
@@ -197,7 +212,7 @@
             </tr>
           </thead>
           <tbody>
-            @for (item of biquinis(); track item.name) {
+            @for (item of biquinis(); track item.key) {
               <tr>
                 <td class="cn">
                   {{ item.name }}
@@ -220,7 +235,7 @@
             </tr>
           </thead>
           <tbody>
-            @for (item of calientes(); track item.name) {
+            @for (item of calientes(); track item.key) {
               <tr>
                 <td class="cn">
                   {{ item.name }}
@@ -243,7 +258,7 @@
             </tr>
           </thead>
           <tbody>
-            @for (item of suplementos(); track item.name) {
+            @for (item of suplementos(); track item.key) {
               <tr>
                 <td class="cn">{{ item.name }}</td>
                 <td>{{ item.medio }}€</td>
@@ -258,7 +273,7 @@
         <div class="list">
           @for (item of pizzas(); track item.key) {
             <div class="li">
-              <div class="li-info"><span class="li-n">{{ item.name }}</span></div>
+              <div class="li-info"><span class="li-n">{{ item.name }}</span>@if (item.desc) { <span class="li-d">{{ item.desc }}</span> }</div>
               <span class="li-p">{{ item.price }}€</span>
             </div>
           }
@@ -268,7 +283,7 @@
         <div class="list">
           @for (item of postres(); track item.key) {
             <div class="li">
-              <div class="li-info"><span class="li-n">{{ item.name }}</span></div>
+              <div class="li-info"><span class="li-n">{{ item.name }}</span>@if (item.desc) { <span class="li-d">{{ item.desc }}</span> }</div>
               <span class="li-p">{{ item.price }}€</span>
             </div>
           }
@@ -282,5 +297,7 @@
       <span>Tel. 937 82 70 85</span>
     </div>
   </div>
+
+  }
 
 </div>
