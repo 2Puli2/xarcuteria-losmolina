@@ -56,6 +56,70 @@
     letter-spacing: 0.3px;
   }
 
+  /* Recuadro del bocadillo del día: mismo lenguaje visual que
+     &__header-footer-text (al que sustituye cuando hay bocadillo), pero con
+     jerarquía propia: etiqueta, nombre destacado, descripción y precios. */
+  &__destacado {
+    margin-top: $spacing-md;
+    padding: $spacing-md $spacing-lg;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-xs;
+    text-align: center;
+    border: 1px solid rgba($color-accent, 0.55);
+    border-radius: 6px;
+    background: linear-gradient(135deg, rgba($color-accent, 0.12), rgba($color-accent, 0.04));
+    box-shadow: 0 2px 12px rgba($color-dark, 0.35);
+  }
+
+  &__destacado-label {
+    font-size: $font-size-xs;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $color-accent;
+  }
+
+  &__destacado-name {
+    font-family: $font-family-heading;
+    font-size: $font-size-lg;
+    font-weight: 700;
+    color: $color-light;
+    line-height: 1.2;
+  }
+
+  &__destacado-desc {
+    font-size: $font-size-sm;
+    color: rgba($color-light, 0.75);
+    font-style: italic;
+  }
+
+  &__destacado-precios {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $spacing-sm;
+    margin-top: $spacing-xs;
+  }
+
+  &__destacado-precio {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: $font-size-md;
+    font-weight: 700;
+    color: $color-accent;
+  }
+
+  &__destacado-formato {
+    font-size: $font-size-xs;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba($color-light, 0.65);
+  }
+
   &__terrace-note {
     width: 100%;
     font-size: $font-size-xs;

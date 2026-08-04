@@ -92,6 +92,34 @@ Reglas:
   precio conocido). Para dejar de ofrecer un formato, avisa a quien lleve la
   web.
 
+## Bocadillo del día
+
+El recuadro grande de la cabecera de la carta muestra el **bocadillo del día**,
+y se pone desde la hoja como una fila más. Mientras no haya ninguno, ese
+recuadro enseña el mensaje de siempre ("¡Recuerda preguntar por nuestras
+ofertas…!").
+
+En la pestaña **`precios`**, añade (o edita) una fila con:
+
+| columna | qué poner |
+|---|---|
+| `categoria` | `bocadillo_dia` (exactamente así) |
+| `clave` | `bocadillo_dia` — reutiliza siempre la misma fila |
+| `producto` | el nombre del bocadillo, en español |
+| `descripcion` | opcional: qué lleva |
+| `medioBocadillo` | precio del medio bocadillo |
+| `bocadilloEntero` | precio del bocadillo entero |
+
+Para el catalán y el inglés, la misma `clave` en `nombres_cat` y `nombres_en`.
+
+Detalles útiles:
+- **Para quitarlo**, borra los dos precios de esa fila (o la fila entera). El
+  recuadro vuelve solo al mensaje de siempre; no hace falta avisar a nadie.
+- Puedes poner **solo uno de los dos precios**: se muestra únicamente ese
+  formato.
+- Si por lo que sea hubiera varias filas con categoría `bocadillo_dia`, se usa
+  la primera.
+
 ## Añadir un producto nuevo desde la hoja
 
 Se puede dar de alta un producto nuevo, con nombre y descripción en los 3

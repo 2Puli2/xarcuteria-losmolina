@@ -11,7 +11,31 @@
         variant="light"
       />
 
-      <p class="carta__header-footer-text">{{ idioma.t().carta.footerText }}</p>
+      @if (bocadilloDelDia(); as boc) {
+        <div class="carta__destacado">
+          <span class="carta__destacado-label">{{ idioma.t().carta.bocadilloDiaLabel }}</span>
+          <span class="carta__destacado-name">{{ boc.name }}</span>
+          @if (boc.desc) {
+            <span class="carta__destacado-desc">{{ boc.desc }}</span>
+          }
+          <div class="carta__destacado-precios">
+            @if (boc.medioBocadillo) {
+              <span class="carta__destacado-precio">
+                <span class="carta__destacado-formato">{{ idioma.t().carta.colMedioBoc }}</span>
+                {{ boc.medioBocadillo }}€
+              </span>
+            }
+            @if (boc.bocadilloEntero) {
+              <span class="carta__destacado-precio">
+                <span class="carta__destacado-formato">{{ idioma.t().carta.colBocEntero }}</span>
+                {{ boc.bocadilloEntero }}€
+              </span>
+            }
+          </div>
+        </div>
+      } @else {
+        <p class="carta__header-footer-text">{{ idioma.t().carta.footerText }}</p>
+      }
     </div>
     @if (precios.estado() === 'cargando') {
       <p class="carta__cargando" role="status">{{ idioma.t().carta.cargandoText }}</p>

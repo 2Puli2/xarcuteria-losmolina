@@ -190,6 +190,7 @@ export const ES = {
     legendFavorite: '★ Favorito',
     legendGlutenFree: '🌾 Sin gluten',
     terrazeSupplementNote: '+0,10€ suplemento en terraza por ítem',
+    bocadilloDiaLabel: 'Bocadillo del día',
     cargandoText: 'Cargando la carta…',
     errorTitle: 'No hemos podido cargar la carta',
     errorText: 'Estamos teniendo problemas para mostrar los precios actualizados. Prueba a recargar la página en unos minutos o consulta con el personal del local.',

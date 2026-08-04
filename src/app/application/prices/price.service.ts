@@ -46,11 +46,29 @@ type MapaNombres = Record<string, ProductoExtraI18n>;
 /** Textos de un producto en los 3 idiomas, tal y como los trae la hoja */
 type TextosPorIdioma = Record<Lang, ProductoExtraI18n>;
 
+/** Bocadillo del día resuelto al idioma activo (ver PrecioService.bocadilloDelDia) */
+export interface BocadilloDelDia {
+    name: string;
+    desc?: string;
+    /** Puede faltar uno de los dos: solo se pinta el formato que tenga precio */
+    medioBocadillo?: string;
+    bocadilloEntero?: string;
+}
+
 /** Campos de precio de cada tipo de categoría (nombres del código) */
 const CAMPOS_UNICO = ['price'] as const;
 const CAMPOS_EMBUTIDO = ['medioBocadillo', 'bocadilloEntero', 'torrada', 'mediaTabla', 'tabla'] as const;
 const CAMPOS_BIQUINI = ['normal', 'maxi'] as const;
 const CAMPOS_MEDIO_ENTERO = ['medio', 'entero'] as const;
+const CAMPOS_BOCADILLO = ['medioBocadillo', 'bocadilloEntero'] as const;
+
+/**
+ * Categoría del bocadillo del día. No tiene productos en el código: vive
+ * ENTERA en la hoja, así que su fila siempre se trata como un alta. Vaciar
+ * sus precios en la hoja lo apaga y el recuadro de la carta vuelve al aviso
+ * de siempre ("pregunta por nuestras ofertas").
+ */
+export const CATEGORIA_BOCADILLO_DIA = 'bocadillo_dia';
 
 /**
  * Todas las categorías de la carta. Para cada una:
@@ -76,6 +94,8 @@ const CATEGORIAS: Record<string, { items: readonly { key: string }[]; campos: re
     biquinis: { items: BIQUINIS_PRICES, campos: CAMPOS_BIQUINI },
     calientes: { items: CALIENTES_PRICES, campos: CAMPOS_MEDIO_ENTERO },
     suplementos: { items: SUPLEMENTOS_PRICES, campos: CAMPOS_MEDIO_ENTERO },
+    // Sin items: no existe en el código, solo en la hoja (ver arriba)
+    [CATEGORIA_BOCADILLO_DIA]: { items: [], campos: CAMPOS_BOCADILLO },
     // Cada grupo de embutidos es una categoría propia en la hoja (jamon,
     // embutidos_ibericos, fiambres, quesos…), con los 5 campos de embutido.
     ...Object.fromEntries(
@@ -281,6 +301,25 @@ export class PrecioService {
     readonly suplementos = computed<SuplementoPriceRow[]>(() => this.mezclarConNuevos(SUPLEMENTOS_PRICES, 'suplementos', CAMPOS_MEDIO_ENTERO));
     readonly pizzas = computed<PriceItem[]>(() => this.mezclarConNuevos(PIZZAS_PRICES, 'pizzas', ['price']));
     readonly postres = computed<PriceItem[]>(() => this.mezclarConNuevos(POSTRES_PRICES, 'postres', ['price']));
+
+    /**
+     * Bocadillo del día, o `null` si hoy no hay ninguno puesto en la hoja
+     * (fila ausente, o sin ningún precio: detectarNuevos descarta esas filas).
+     * El recuadro de la carta usa ese null para volver al mensaje de siempre.
+     */
+    readonly bocadilloDelDia = computed<BocadilloDelDia | null>(() => {
+        const lang: Lang = this.idioma.currentLang();
+        // Solo uno: si la hoja trae varias filas, manda la primera
+        const fila = this.nuevosEfectivos().find(n => n.categoria === CATEGORIA_BOCADILLO_DIA);
+        if (!fila) return null;
+        const i18n = fila[lang] ?? fila.es;
+        return {
+            name: i18n.name,
+            desc: i18n.desc,
+            medioBocadillo: fila.precios['medioBocadillo'],
+            bocadilloEntero: fila.precios['bocadilloEntero'],
+        };
+    });
 
     readonly refrescos = computed<BebidaItem[]>(() => this.mezclarConNuevos(REFRESCOS_DATA, 'refrescos', ['price']));
     readonly cervezas = computed<BebidaItem[]>(() => this.mezclarConNuevos(CERVEZAS_DATA, 'cervezas', ['price']));

@@ -101,6 +101,9 @@ export class CartaComponent {
         return items.map(p => ({ key: p.key, ...this.texto(p, dic), price: p.price }));
     }
 
+    /** Bocadillo del día (de la hoja) o null: el recuadro de la cabecera decide con esto */
+    readonly bocadilloDelDia = this.precios.bocadilloDelDia;
+
     readonly aperitivos = computed<CartaItem[]>(() =>
         this.lista(this.precios.aperitivos(), this.idioma.t().cartaItems.aperitivos)
     );

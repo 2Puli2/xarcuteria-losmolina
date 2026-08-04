@@ -192,6 +192,7 @@ export const EN = {
     legendFavorite: '★ Favorite',
     legendGlutenFree: '🌾 Gluten-free',
     terrazeSupplementNote: '+0.10€ terrace surcharge per item',
+    bocadilloDiaLabel: 'Sandwich of the day',
     cargandoText: 'Loading the menu…',
     errorTitle: 'We could not load the menu',
     errorText: 'We are having trouble showing the current prices. Please try reloading the page in a few minutes, or ask our staff.',
