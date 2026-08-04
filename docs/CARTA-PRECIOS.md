@@ -159,6 +159,36 @@ Limitaciones:
 - Basta con rellenar **al menos una** columna de precio; si las dejas todas
   vacías, la fila se ignora.
 
+## Dar formato a la hoja
+
+Hay un script que deja la hoja legible (secciones separadas por color, cabecera
+fija, columnas con su ancho) y, sobre todo, **avisa en color de los errores que
+rompen la carta**: precios mal escritos, claves repetidas o productos sin
+nombre.
+
+Está en [`docs/formato-hoja.gs`](./formato-hoja.gs). Para instalarlo:
+
+1. En la hoja: **Extensiones → Apps Script**.
+2. Borra lo que haya, pega el fichero entero y guarda.
+3. Recarga la hoja: aparece el menú **«🎨 Carta»**.
+4. **«🎨 Carta» → «Aplicar formato»**.
+
+La primera vez Google pedirá permiso; es normal, el script solo toca esta hoja.
+No modifica ningún dato: únicamente colores, anchos, validaciones y avisos.
+
+Qué hace, además del estilo:
+- **Desplegable en `categoria`**, para que no haya erratas (una categoría
+  inventada hace que la fila se ignore sin avisar).
+- **Precios en ámbar** cuando no siguen el formato `0,00` (por ejemplo `9` en
+  vez de `9,00`). No están rotos —la web los normaliza— pero conviene verlos.
+- **Claves duplicadas y productos sin nombre en rojo.**
+- **Cabecera y columna `clave` protegidas** con aviso: siguen editándose, pero
+  Google pregunta antes, que es justo lo que no debe tocarse a la ligera.
+- Notas de ayuda al pasar el ratón por cada cabecera.
+
+Conviene volver a ejecutarlo después de añadir productos, para que el color por
+secciones se recalcule.
+
 ## Si la hoja se cae (respaldo en código)
 
 Por defecto, si la hoja no responde, la carta muestra un aviso de error en
