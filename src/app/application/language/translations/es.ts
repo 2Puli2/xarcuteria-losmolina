@@ -190,6 +190,10 @@ export const ES = {
     legendFavorite: '★ Favorito',
     legendGlutenFree: '🌾 Sin gluten',
     terrazeSupplementNote: '+0,10€ suplemento en terraza por ítem',
+    bocadilloDiaLabel: 'Bocadillo del día',
+    cargandoText: 'Cargando la carta…',
+    errorTitle: 'No hemos podido cargar la carta',
+    errorText: 'Estamos teniendo problemas para mostrar los precios actualizados. Prueba a recargar la página en unos minutos o consulta con el personal del local.',
     navBebidas: 'Bebidas',
     bebidasTitle: 'Bebidas',
     refrescosTitle: 'Refrescos',
@@ -204,6 +208,17 @@ export const ES = {
     colClara: 'Clara',
     clara: 'Clara',
     hieloExtraNote: 'Hielo extra +0,20€',
+    // Literales exclusivos de la carta imprimible (/carta/imprimir)
+    printPage2Title: 'Embutidos · Bocadillos · Pizzas · Postres',
+    printVinosTitle: 'Vinos y otras bebidas',
+    printPanNoteGold: '+1€ coca | +1,50€ coca entera',
+    printColProducto: 'Producto',
+    printColQuesoExtra: 'Queso / Extra',
+    printBiquinisTitle: 'Biquinis',
+    printColFormato: 'Cerveza',
+    printCanya: 'Caña',
+    printCopa: 'Copa',
+    printJarra: 'Jarra',
   },
   cartaItems: {
     aperitivos: {

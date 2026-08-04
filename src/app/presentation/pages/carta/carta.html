@@ -11,8 +11,40 @@
         variant="light"
       />
 
-      <p class="carta__header-footer-text">{{ idioma.t().carta.footerText }}</p>
+      @if (bocadilloDelDia(); as boc) {
+        <div class="carta__destacado">
+          <span class="carta__destacado-label">{{ idioma.t().carta.bocadilloDiaLabel }}</span>
+          <span class="carta__destacado-name">{{ boc.name }}</span>
+          @if (boc.desc) {
+            <span class="carta__destacado-desc">{{ boc.desc }}</span>
+          }
+          <div class="carta__destacado-precios">
+            @if (boc.medioBocadillo) {
+              <span class="carta__destacado-precio">
+                <span class="carta__destacado-formato">{{ idioma.t().carta.colMedioBoc }}</span>
+                {{ boc.medioBocadillo }}€
+              </span>
+            }
+            @if (boc.bocadilloEntero) {
+              <span class="carta__destacado-precio">
+                <span class="carta__destacado-formato">{{ idioma.t().carta.colBocEntero }}</span>
+                {{ boc.bocadilloEntero }}€
+              </span>
+            }
+          </div>
+        </div>
+      } @else {
+        <p class="carta__header-footer-text">{{ idioma.t().carta.footerText }}</p>
+      }
     </div>
+    @if (precios.estado() === 'cargando') {
+      <p class="carta__cargando" role="status">{{ idioma.t().carta.cargandoText }}</p>
+    } @else if (precios.estado() === 'error') {
+      <div class="carta__error" role="alert">
+        <p class="carta__error-title">{{ idioma.t().carta.errorTitle }}</p>
+        <p class="carta__error-text">{{ idioma.t().carta.errorText }}</p>
+      </div>
+    } @else {
     <nav class="carta__nav">
       <button class="carta__nav-btn" (click)="scrollTo('carta-bebidas')">{{ idioma.t().carta.navBebidas }}</button>
       <button class="carta__nav-btn" (click)="scrollTo('carta-aperitivos')">{{ idioma.t().carta.navAperitivos }}</button>
@@ -28,7 +60,7 @@
 
       <h3 class="carta__subsection-title">{{ idioma.t().carta.refrescosTitle }}</h3>
       <div class="carta__list">
-        @for (item of refrescos(); track item.name) {
+        @for (item of refrescos(); track item.key) {
           <div class="carta__list-item">
             <div class="carta__list-item-info">
               <span class="carta__list-item-name">
@@ -55,7 +87,7 @@
 
       <h3 class="carta__subsection-title">{{ idioma.t().carta.cervezasTitle }}</h3>
       <div class="carta__list">
-        @for (item of cervezas(); track item.name) {
+        @for (item of cervezas(); track item.key) {
           <div class="carta__list-item">
             <div class="carta__list-item-info">
               <span class="carta__list-item-name">
@@ -82,7 +114,7 @@
 
       <h3 class="carta__subsection-title">{{ idioma.t().carta.vinosTitle }}</h3>
       <div class="carta__list">
-        @for (item of vinos(); track item.name) {
+        @for (item of vinos(); track item.key) {
           <div class="carta__list-item">
             <div class="carta__list-item-info">
               <span class="carta__list-item-name">
@@ -109,7 +141,7 @@
 
       <h3 class="carta__subsection-title">{{ idioma.t().carta.cafesTitle }}</h3>
       <div class="carta__list">
-        @for (item of cafes(); track item.name) {
+        @for (item of cafes(); track item.key) {
           <div class="carta__list-item">
             <div class="carta__list-item-info">
               <span class="carta__list-item-name">
@@ -125,6 +157,9 @@
                   </span>
                 }
               </span>
+              @if (item.desc) {
+                <span class="carta__list-item-desc">{{ item.desc }}</span>
+              }
             </div>
             <span class="carta__list-item-price">{{ item.price }}€</span>
           </div>
@@ -138,7 +173,7 @@
       <h2 class="carta__section-title">{{ idioma.t().carta.aperitivosTitle }}</h2>
 
       <div class="carta__list">
-        @for (item of aperitivos(); track item.name) {
+        @for (item of aperitivos(); track item.key) {
           <div class="carta__list-item">
             <div class="carta__list-item-info">
               <span class="carta__list-item-name">{{ item.name }}</span>
@@ -154,7 +189,7 @@
       <h3 class="carta__subsection-title">{{ idioma.t().carta.conservasTitle }}</h3>
 
       <div class="carta__list">
-        @for (item of conservas(); track item.name) {
+        @for (item of conservas(); track item.key) {
           <div class="carta__list-item">
             <div class="carta__list-item-info">
               <span class="carta__list-item-name">{{ item.name }}</span>
@@ -173,7 +208,7 @@
       <p class="carta__section-note">{{ idioma.t().carta.menusNote }}</p>
 
       <div class="carta__list">
-        @for (item of menus(); track item.name) {
+        @for (item of menus(); track item.key) {
           <div class="carta__list-item carta__list-item--menu">
             <div class="carta__list-item-info">
               <span class="carta__list-item-name">{{ item.name }}</span>
@@ -219,7 +254,7 @@
                 </tr>
               </thead>
               <tbody>
-                @for (row of group.items; track row.name) {
+                @for (row of group.items; track row.key) {
                   <tr class="carta__table-row">
                     <td class="carta__table-td carta__table-td--name">
                       <span>{{ row.name }}</span>
@@ -244,7 +279,7 @@
         <h3 class="carta__subsection-title">{{ idioma.t().carta.panTitle }}</h3>
 
         <div class="carta__list">
-          @for (item of panYTostadas(); track item.name) {
+          @for (item of panYTostadas(); track item.key) {
             <div class="carta__list-item">
               <div class="carta__list-item-info">
                 <span class="carta__list-item-name">{{ item.name }}</span>
@@ -272,7 +307,7 @@
               </tr>
             </thead>
             <tbody>
-              @for (item of biquinis(); track item.name) {
+              @for (item of biquinis(); track item.key) {
                 <tr class="carta__table-row">
                   <td class="carta__table-td carta__table-td--name">
                     <span>{{ item.name }}</span>
@@ -296,7 +331,7 @@
               </tr>
             </thead>
             <tbody>
-              @for (item of calientesOtros(); track item.name) {
+              @for (item of calientesOtros(); track item.key) {
                 <tr class="carta__table-row">
                   <td class="carta__table-td carta__table-td--name">
                     <span>{{ item.name }}</span>
@@ -326,7 +361,7 @@
               </tr>
             </thead>
             <tbody>
-              @for (item of suplementos(); track item.name) {
+              @for (item of suplementos(); track item.key) {
                 <tr class="carta__table-row">
                   <td class="carta__table-td carta__table-td--name">
                     <span>{{ item.name }}</span>
@@ -349,10 +384,13 @@
       <p class="carta__section-note">{{ idioma.t().carta.pizzasNote }}</p>
 
       <div class="carta__list">
-        @for (item of pizzas(); track item.name) {
+        @for (item of pizzas(); track item.key) {
           <div class="carta__list-item">
             <div class="carta__list-item-info">
               <span class="carta__list-item-name">{{ item.name }}</span>
+              @if (item.desc) {
+                <span class="carta__list-item-desc">{{ item.desc }}</span>
+              }
             </div>
             <span class="carta__list-item-price">{{ item.price }}€</span>
           </div>
@@ -364,10 +402,13 @@
       <h2 class="carta__section-title">{{ idioma.t().carta.postresTitle }}</h2>
 
       <div class="carta__list">
-        @for (item of postres(); track item.name) {
+        @for (item of postres(); track item.key) {
           <div class="carta__list-item">
             <div class="carta__list-item-info">
               <span class="carta__list-item-name">{{ item.name }}</span>
+              @if (item.desc) {
+                <span class="carta__list-item-desc">{{ item.desc }}</span>
+              }
             </div>
             <span class="carta__list-item-price">{{ item.price }}€</span>
           </div>
@@ -375,6 +416,7 @@
       </div>
     </section>
     <p class="carta__terrace-note">{{ idioma.t().carta.terrazeSupplementNote }}</p>
+    }
 
     <div class="carta__footer">
       
