@@ -401,8 +401,9 @@ function guardarProducto(datos) {
     });
     if (!algunPrecio) throw new Error('Pon al menos un precio: sin ninguno, la web ignora la fila.');
 
-    // Insertar justo detrás del último producto de su misma sección, para que
-    // quede agrupado visualmente (a la web el orden le da igual).
+    // Insertar justo detrás del último producto de su misma sección: así queda
+    // agrupado en la hoja y, como el orden de las filas ES el orden de la carta,
+    // el producto sale al final de su sección (se puede mover luego a mano).
     var destino = ultimaFilaDeCategoria(precios, col, datos.categoria);
     precios.insertRowAfter(destino);
     precios.getRange(destino + 1, 1, 1, fila.length).setValues([fila]);

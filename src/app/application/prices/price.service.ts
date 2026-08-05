@@ -40,6 +40,9 @@ import { IdiomaService, Lang } from '../language/language.service';
 /** overrides[clave][campo] = precio leído de la hoja (ej. overrides['fuet']['torrada'] = '7,90') */
 type Overrides = Record<string, Record<string, string>>;
 
+/** orden[clave] = número de fila en la pestaña "precios" (ver PrecioService.ordenar) */
+type Orden = Record<string, number>;
+
 /** Diccionario de traducción de una pestaña de nombres: clave → {name, desc?} */
 type MapaNombres = Record<string, ProductoExtraI18n>;
 
@@ -115,8 +118,9 @@ const CATEGORIAS: Record<string, { items: readonly { key: string }[]; campos: re
  * de carta deben mostrar un aviso en vez de precios, para no enseñar un
  * precio antiguo sin que se note.
  *
- * La hoja manda en tres cosas: PRECIOS, TEXTOS (nombre y descripción, en los 3
- * idiomas) y ALTAS de productos nuevos en cualquier categoría (ver CATEGORIAS).
+ * La hoja manda en cuatro cosas: PRECIOS, TEXTOS (nombre y descripción, en los
+ * 3 idiomas), ALTAS de productos nuevos en cualquier categoría (ver CATEGORIAS)
+ * y el ORDEN de los productos dentro de cada categoría (el de sus filas).
  * Las traducciones del código solo se usan para las claves que la hoja no trae.
  * El respaldo en código de las altas es PRODUCTOS_EXTRA (`npm run sync:carta`).
  */
@@ -131,6 +135,9 @@ export class PrecioService {
 
     /** Productos nuevos leídos de la hoja; null = hoja no cargada (se usa PRODUCTOS_EXTRA) */
     private readonly nuevosHoja = signal<ProductoExtra[] | null>(null);
+
+    /** Posición de cada clave en la hoja; vacío = manda el orden del código */
+    private readonly ordenHoja = signal<Orden>({});
 
     /** Nombres y descripciones leídos de la hoja: clave → textos por idioma */
     private readonly textosHoja = signal<Record<string, TextosPorIdioma>>({});
@@ -191,6 +198,7 @@ export class PrecioService {
             }
             this.textosHoja.set(construirTextos(filas, mapaCat, mapaEn));
             this.nuevosHoja.set(detectarNuevos(filas, mapaCat, mapaEn));
+            this.ordenHoja.set(filasAOrden(filas));
             this.errorHoja.set(false);
         } catch {
             // Sin conexión con la hoja de precios
@@ -256,9 +264,33 @@ export class PrecioService {
     }
 
     /**
-     * Como mezclar(), pero además añade AL FINAL los productos nuevos de la
-     * categoría (los que existen en la hoja/PRODUCTOS_EXTRA pero no en el
-     * código), con el nombre/descripción del idioma activo.
+     * Ordena una categoría como esté ordenada en la hoja: mover una fila arriba
+     * o abajo en la pestaña "precios" mueve el producto en su sección de la
+     * carta. Es el orden FÍSICO de las filas, sin columnas que mantener a mano.
+     *
+     * Las claves que la hoja no trae (un producto del código cuya fila se ha
+     * borrado) se van al final conservando el orden del código, igual que si la
+     * hoja no hubiera cargado: `sort` es estable, así que empatar a
+     * SIN_ORDEN deja el orden de entrada intacto.
+     *
+     * Solo ordena DENTRO de una categoría; el orden de las secciones de la
+     * carta (Aperitivos, Conservas, Embutidos…) y de los grupos de embutidos
+     * sigue estando en el código, porque los títulos y el menú de navegación
+     * de la página están escritos ahí.
+     */
+    private ordenar<T extends { key: string }>(items: T[]): T[] {
+        const orden = this.ordenHoja();
+        if (Object.keys(orden).length === 0) return items; // hoja sin cargar: manda el código
+        const SIN_ORDEN = Number.MAX_SAFE_INTEGER;
+        return [...items].sort((a, b) => (orden[a.key] ?? SIN_ORDEN) - (orden[b.key] ?? SIN_ORDEN));
+    }
+
+    /**
+     * Como mezclar(), pero además añade los productos nuevos de la categoría
+     * (los que existen en la hoja/PRODUCTOS_EXTRA pero no en el código), con el
+     * nombre/descripción del idioma activo, y devuelve la categoría ordenada
+     * como esté en la hoja (ver ordenar()). Un producto nuevo aparece donde
+     * esté su fila, no forzosamente al final.
      *
      * Cada alta trae sus importes en `precios` con los nombres de campo de su
      * categoría, así que un biquini nuevo llega con {normal, maxi} y un
@@ -279,7 +311,7 @@ export class PrecioService {
                 // plantilla: key + los campos de precio de la categoría + textos.
                 return { key: n.key, ...n.precios, name: i18n.name, desc: i18n.desc } as unknown as T;
             });
-        return nuevos.length ? [...base, ...nuevos] : base;
+        return this.ordenar(nuevos.length ? [...base, ...nuevos] : base);
     }
 
     readonly aperitivos = computed<PriceItem[]>(() => this.mezclarConNuevos(APERITIVOS_PRICES, 'aperitivos', ['price']));
@@ -355,6 +387,28 @@ function filasAOverrides(filas: Record<string, string>[]): Overrides {
         }
     }
     return overrides;
+}
+
+/**
+ * Posición de cada clave en la hoja, para que el orden de las filas sea el
+ * orden de la carta (ver PrecioService.ordenar).
+ *
+ * Se usa el índice de la fila tal cual, sin reiniciar por categoría: como la
+ * ordenación es siempre dentro de una misma categoría, basta con que los
+ * números crezcan hacia abajo. Así, además, la hoja puede tener las filas de
+ * una categoría en varios bloques separados y el resultado sigue siendo el
+ * orden en que se leen.
+ *
+ * Si una clave está repetida manda su primera fila, igual que en
+ * detectarNuevos().
+ */
+function filasAOrden(filas: Record<string, string>[]): Orden {
+    const orden: Orden = {};
+    filas.forEach((fila, i) => {
+        const clave = fila['clave']?.trim();
+        if (clave && !(clave in orden)) orden[clave] = i;
+    });
+    return orden;
 }
 
 /**

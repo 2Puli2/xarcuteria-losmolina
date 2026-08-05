@@ -92,6 +92,31 @@ Reglas:
   precio conocido). Para dejar de ofrecer un formato, avisa a quien lleve la
   web.
 
+## Cambiar el orden de los productos
+
+**El orden de las filas de la pestaña `precios` es el orden de la carta.** Para
+subir un producto dentro de su sección, mueve su fila hacia arriba: clic en el
+número de fila (a la izquierda), y arrastrarla al sitio que quieras. Al recargar
+la web ya sale ahí. No hay ninguna columna de números que mantener.
+
+Se ordena **dentro de cada sección**. Lo que la hoja no decide:
+
+- **El orden de las secciones** (Aperitivos, Conservas, Embutidos, Calientes,
+  Pizzas, Postres…) ni el de los grupos de embutidos (Jamón, Ibéricos,
+  Fiambres, Quesos). Están fijos en la web, junto con sus títulos y los botones
+  de navegación de arriba. Mover todas las filas de `quesos` por encima de las
+  de `jamon` **no** cambia nada. Para eso hay que avisar a quien lleve la web.
+- **Cambiar de sección un producto**: la columna `categoria` de un producto que
+  ya existe no lo mueve de sitio. También hay que avisar.
+
+Detalles:
+- Las filas de una categoría no tienen que estar seguidas para que funcione,
+  pero conviene mantenerlas agrupadas: así la hoja se lee igual que la carta (y
+  es lo que hace el script de formato).
+- Si borras la fila de un producto que ya existía en la web, no desaparece de la
+  carta: se va al final de su sección con su último precio conocido. Para
+  retirar un producto de verdad, avisa a quien lleve la web.
+
 ## Bocadillo del día
 
 El recuadro grande de la cabecera de la carta muestra el **bocadillo del día**,
@@ -154,7 +179,9 @@ Pasos:
    - **Las columnas de precio de su sección** (ver tabla de abajo).
 2. Añade la misma `clave` en **`nombres_cat`** y **`nombres_en`** con su
    nombre y descripción. Si no lo haces, esos idiomas mostrarán el español.
-3. Al recargar la web, el producto aparece **al final de su sección**.
+3. Al recargar la web, el producto aparece **donde esté su fila** dentro de su
+   sección (ver "Cambiar el orden de los productos"). Si la añades al final de
+   las filas de esa categoría, sale al final de la sección.
 
 Qué columnas de precio rellenar según la categoría:
 
@@ -171,8 +198,6 @@ maxi: fila en `precios` con `categoria` = `biquinis`, `clave` = `biquini_chorizo
 y `maxi` = `6,50`. Deja el resto de columnas de precio vacías.
 
 Limitaciones:
-- El producto nuevo sale **al final** de su sección (no se puede reordenar
-  desde la hoja).
 - **No** se pueden crear secciones nuevas desde la hoja: una `categoria` que no
   exista ya se ignora. Eso sigue requiriendo tocar código.
 - Basta con rellenar **al menos una** columna de precio; si las dejas todas
