@@ -45,19 +45,36 @@
         <p class="carta__error-text">{{ idioma.t().carta.errorText }}</p>
       </div>
     } @else {
+    <!-- Cada botón solo si su sección tiene algo: la hoja puede haberla vaciado -->
     <nav class="carta__nav">
-      <button class="carta__nav-btn" (click)="scrollTo('carta-bebidas')">{{ idioma.t().carta.navBebidas }}</button>
-      <button class="carta__nav-btn" (click)="scrollTo('carta-aperitivos')">{{ idioma.t().carta.navAperitivos }}</button>
-      <button class="carta__nav-btn" (click)="scrollTo('carta-menus')">{{ idioma.t().carta.navMenus }}</button>
-      <button class="carta__nav-btn" (click)="scrollTo('carta-embutidos')">{{ idioma.t().carta.navEmbutidos }}</button>
-      <button class="carta__nav-btn" (click)="scrollTo('carta-calientes')">{{ idioma.t().carta.navCalientes }}</button>
-      <button class="carta__nav-btn" (click)="scrollTo('carta-pizzas')">{{ idioma.t().carta.navPizzas }}</button>
-      <button class="carta__nav-btn" (click)="scrollTo('carta-postres')">{{ idioma.t().carta.navPostres }}</button>
+      @if (hayBebidas()) {
+        <button class="carta__nav-btn" (click)="scrollTo('carta-bebidas')">{{ idioma.t().carta.navBebidas }}</button>
+      }
+      @if (hayAperitivos()) {
+        <button class="carta__nav-btn" (click)="scrollTo('carta-aperitivos')">{{ idioma.t().carta.navAperitivos }}</button>
+      }
+      @if (menus().length) {
+        <button class="carta__nav-btn" (click)="scrollTo('carta-menus')">{{ idioma.t().carta.navMenus }}</button>
+      }
+      @if (hayEmbutidos()) {
+        <button class="carta__nav-btn" (click)="scrollTo('carta-embutidos')">{{ idioma.t().carta.navEmbutidos }}</button>
+      }
+      @if (hayCalientes()) {
+        <button class="carta__nav-btn" (click)="scrollTo('carta-calientes')">{{ idioma.t().carta.navCalientes }}</button>
+      }
+      @if (pizzas().length) {
+        <button class="carta__nav-btn" (click)="scrollTo('carta-pizzas')">{{ idioma.t().carta.navPizzas }}</button>
+      }
+      @if (postres().length) {
+        <button class="carta__nav-btn" (click)="scrollTo('carta-postres')">{{ idioma.t().carta.navPostres }}</button>
+      }
     </nav>
 
+    @if (hayBebidas()) {
     <section class="carta__section" id="carta-bebidas">
       <h2 class="carta__section-title">{{ idioma.t().carta.bebidasTitle }}</h2>
 
+      @if (refrescos().length) {
       <h3 class="carta__subsection-title">{{ idioma.t().carta.refrescosTitle }}</h3>
       <div class="carta__list">
         @for (item of refrescos(); track item.key) {
@@ -84,7 +101,9 @@
           </div>
         }
       </div>
+      }
 
+      @if (cervezas().length) {
       <h3 class="carta__subsection-title">{{ idioma.t().carta.cervezasTitle }}</h3>
       <div class="carta__list">
         @for (item of cervezas(); track item.key) {
@@ -111,7 +130,9 @@
           </div>
         }
       </div>
+      }
 
+      @if (vinos().length) {
       <h3 class="carta__subsection-title">{{ idioma.t().carta.vinosTitle }}</h3>
       <div class="carta__list">
         @for (item of vinos(); track item.key) {
@@ -138,7 +159,9 @@
           </div>
         }
       </div>
+      }
 
+      @if (cafes().length) {
       <h3 class="carta__subsection-title">{{ idioma.t().carta.cafesTitle }}</h3>
       <div class="carta__list">
         @for (item of cafes(); track item.key) {
@@ -165,13 +188,17 @@
           </div>
         }
       </div>
+      }
 
       <p class="carta__bebidas-note">{{ idioma.t().carta.hieloExtraNote }}</p>
     </section>
+    }
 
+    @if (hayAperitivos()) {
     <section class="carta__section" id="carta-aperitivos">
       <h2 class="carta__section-title">{{ idioma.t().carta.aperitivosTitle }}</h2>
 
+      @if (aperitivos().length) {
       <div class="carta__list">
         @for (item of aperitivos(); track item.key) {
           <div class="carta__list-item">
@@ -185,7 +212,9 @@
           </div>
         }
       </div>
+      }
 
+      @if (conservas().length) {
       <h3 class="carta__subsection-title">{{ idioma.t().carta.conservasTitle }}</h3>
 
       <div class="carta__list">
@@ -201,8 +230,11 @@
           </div>
         }
       </div>
+      }
     </section>
+    }
 
+    @if (menus().length) {
     <section class="carta__section" id="carta-menus">
       <h2 class="carta__section-title">{{ idioma.t().carta.menusTitle }}</h2>
       <p class="carta__section-note">{{ idioma.t().carta.menusNote }}</p>
@@ -221,15 +253,22 @@
         }
       </div>
     </section>
+    }
 
+    <!-- "Embutidos" y "Calientes" comparten section: cada bloque va por su cuenta -->
+    @if (hayEmbutidos() || hayCalientes()) {
     <section class="carta__section" id="carta-embutidos">
+      @if (hayEmbutidos()) {
       <h2 class="carta__section-title">{{ idioma.t().carta.embutidosTitle }}</h2>
       <p class="carta__section-note">{{ idioma.t().carta.embutidosNote }}</p>
+      }
+      @if (embutidoGroups().length) {
       <p class="carta__scroll-hint">
         <span class="carta__scroll-hint-icon">⇄</span>
         {{ idioma.t().carta.scrollHint }}
         <span class="carta__scroll-hint-arrow">››</span>
       </p>
+      }
 
       @for (group of embutidoGroups(); track group.title) {
         <div class="carta__embutidos-group">
@@ -275,6 +314,7 @@
         </div>
       }
 
+      @if (panYTostadas().length) {
       <div class="carta__embutidos-group">
         <h3 class="carta__subsection-title">{{ idioma.t().carta.panTitle }}</h3>
 
@@ -292,12 +332,16 @@
           }
         </div>
       </div>
+      }
 
-      
+      @if (hayCalientes()) {
       <h2 class="carta__section-title" id="carta-calientes">{{ idioma.t().carta.calientesTitle }}</h2>
+      }
 
+      @if (biquinis().length || calientesOtros().length) {
       <div class="carta__embutidos-group">
         <div class="carta__table-wrap carta__table-wrap--double">
+          @if (biquinis().length) {
           <table class="carta__table carta__table--calientes">
             <thead>
               <tr>
@@ -321,8 +365,15 @@
               }
             </tbody>
           </table>
+          }
 
-          <table class="carta__table carta__table--calientes carta__table--joined">
+          @if (calientesOtros().length) {
+          <!-- --joined solo si va pegada a la de biquinis: si no, cuadraría sus
+               esquinas superiores y le pondría un borde de unión que sobra -->
+          <table
+            class="carta__table carta__table--calientes"
+            [class.carta__table--joined]="biquinis().length > 0"
+          >
             <thead>
               <tr>
                 <th class="carta__table-th carta__table-th--name">{{ idioma.t().carta.colCaliente }}</th>
@@ -345,10 +396,15 @@
               }
             </tbody>
           </table>
+          }
         </div>
       </div>
+      }
 
+      @if (suplementos().length) {
+      @if (biquinis().length || calientesOtros().length) {
       <hr class="carta__divider" />
+      }
 
       <div class="carta__embutidos-group carta__embutidos-group--suplementos" id="carta-suplementos">
         <div class="carta__table-wrap">
@@ -377,8 +433,11 @@
           </table>
         </div>
       </div>
+      }
     </section>
+    }
 
+    @if (pizzas().length) {
     <section class="carta__section" id="carta-pizzas">
       <h2 class="carta__section-title">{{ idioma.t().carta.pizzasTitle }}</h2>
       <p class="carta__section-note">{{ idioma.t().carta.pizzasNote }}</p>
@@ -397,7 +456,9 @@
         }
       </div>
     </section>
+    }
 
+    @if (postres().length) {
     <section class="carta__section" id="carta-postres">
       <h2 class="carta__section-title">{{ idioma.t().carta.postresTitle }}</h2>
 
@@ -415,6 +476,7 @@
         }
       </div>
     </section>
+    }
     <p class="carta__terrace-note">{{ idioma.t().carta.terrazeSupplementNote }}</p>
     }
 

@@ -195,6 +195,24 @@ export class CartaComponent {
         return this.precios.cafes().map(p => ({ ...p, ...this.texto(p, t) }));
     });
 
+    /**
+     * ¿Tiene algo que pintar cada sección de la carta? Si la dueña borra de la
+     * hoja todas las filas de una sección, la sección entera (y su botón del
+     * menú de navegación) desaparece: sin esto quedaría un título suelto sobre
+     * una lista o una tabla sin filas.
+     *
+     * "Embutidos" y "Calientes" comparten <section> en la plantilla, de ahí que
+     * cada uno lleve su propia bandera.
+     */
+    readonly hayBebidas = computed(() =>
+        this.refrescos().length + this.cervezas().length + this.vinos().length + this.cafes().length > 0
+    );
+    readonly hayAperitivos = computed(() => this.aperitivos().length + this.conservas().length > 0);
+    readonly hayEmbutidos = computed(() => this.embutidoGroups().length + this.panYTostadas().length > 0);
+    readonly hayCalientes = computed(() =>
+        this.biquinis().length + this.calientesOtros().length + this.suplementos().length > 0
+    );
+
     scrollTo(sectionId: string): void {
         document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }

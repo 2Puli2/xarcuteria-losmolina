@@ -113,9 +113,32 @@ Detalles:
 - Las filas de una categoría no tienen que estar seguidas para que funcione,
   pero conviene mantenerlas agrupadas: así la hoja se lee igual que la carta (y
   es lo que hace el script de formato).
-- Si borras la fila de un producto que ya existía en la web, no desaparece de la
-  carta: se va al final de su sección con su último precio conocido. Para
-  retirar un producto de verdad, avisa a quien lleve la web.
+- Para **retirar** un producto de la carta, borra su fila (ver "Quitar un
+  producto de la carta").
+
+## Quitar un producto de la carta
+
+**Borra su fila de la pestaña `precios`** (clic derecho en el número de fila →
+"Eliminar fila") y al recargar la web ya no está. La hoja no dice solo cuánto
+cuesta cada cosa: dice **qué hay** en la carta.
+
+Vale para cualquier producto, tanto los que se dieron de alta desde la hoja
+como los que venían de fábrica en la web.
+
+Detalles:
+- Si borras **todas** las filas de un bloque, el bloque entero desaparece de la
+  carta: su título, su tabla y su botón del menú de arriba. Con volver a poner
+  las filas reaparece; no hay que avisar a nadie.
+- No hace falta borrar también la fila de `nombres_cat` / `nombres_en`: sin la
+  fila de `precios` ese producto ya no sale. Aun así, conviene borrarlas para
+  no acumular traducciones de productos que ya no existen.
+- Solo cuenta la fila entera. **Vaciar los precios** de una fila que se queda
+  ahí no retira el producto (sigue con su último precio conocido); es la
+  excepción el bocadillo del día, que se apaga así a propósito (ver abajo).
+- Si la hoja no responde, la web enseña el aviso de error; y si se activa el
+  respaldo en código (ver "Si la hoja se cae"), vuelven a salir los productos
+  que traía la web de fábrica, borrados o no. Es lo correcto en una caída:
+  mejor la carta antigua completa que una carta a medias.
 
 ## Bocadillo del día
 

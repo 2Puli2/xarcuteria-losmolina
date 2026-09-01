@@ -191,9 +191,10 @@ async function main() {
     const conocidas = new Set([...fueraDelBloque.matchAll(/\bkey:\s*'([^']+)'/g)].map(m => m[1]));
 
     // Detectar productos nuevos
+    const filas = parsearFilas(csvPrecios);
     const nuevos = [];
     const ignoradas = new Set();
-    for (const fila of parsearFilas(csvPrecios)) {
+    for (const fila of filas) {
         const categoria = (fila['categoria'] || '').trim();
         const key = (fila['clave'] || '').trim();
         const nombreEs = (fila['producto'] || '').trim();
@@ -238,6 +239,20 @@ async function main() {
         console.log(`\n${ignoradas.size} fila(s) de la hoja ignorada(s) (categoría no admite altas o sin precio):`);
         for (const s of ignoradas) console.log(`  · ${s}`);
     }
+
+    // Bajas: claves del código sin fila en la hoja. La web ya no las pinta (la
+    // hoja manda), pero siguen escritas en carta-data.ts, así que volverían a
+    // salir si algún día se activa FALLBACK_ACTIVO. Solo se avisa: quitarlas del
+    // código es una decisión a mano, no algo que deba hacer este script.
+    const clavesHoja = new Set(filas.map(f => (f['clave'] || '').trim()).filter(Boolean));
+    const bajas = [...conocidas].filter(clave => !clavesHoja.has(clave));
+    if (bajas.length) {
+        console.log(`\n${bajas.length} producto(s) del código sin fila en la hoja (dados de baja en la carta):`);
+        for (const clave of bajas) console.log(`  · ${clave}`);
+        console.log('  Ya no se pintan. Siguen en carta-data.ts como respaldo: quítalos de ahí');
+        console.log('  cuando la baja sea definitiva.');
+    }
+
     console.log('\nRevisa el cambio con `git diff` y recuerda `ng build` + deploy para congelar el respaldo.');
 }
 

@@ -118,8 +118,9 @@ const CATEGORIAS: Record<string, { items: readonly { key: string }[]; campos: re
  * de carta deben mostrar un aviso en vez de precios, para no enseñar un
  * precio antiguo sin que se note.
  *
- * La hoja manda en cuatro cosas: PRECIOS, TEXTOS (nombre y descripción, en los
- * 3 idiomas), ALTAS de productos nuevos en cualquier categoría (ver CATEGORIAS)
+ * La hoja manda en cinco cosas: PRECIOS, TEXTOS (nombre y descripción, en los
+ * 3 idiomas), ALTAS de productos nuevos en cualquier categoría (ver CATEGORIAS),
+ * BAJAS (borrar la fila quita el producto de la carta, aunque siga en el código)
  * y el ORDEN de los productos dentro de cada categoría (el de sus filas).
  * Las traducciones del código solo se usan para las claves que la hoja no trae.
  * El respaldo en código de las altas es PRODUCTOS_EXTRA (`npm run sync:carta`).
@@ -136,7 +137,11 @@ export class PrecioService {
     /** Productos nuevos leídos de la hoja; null = hoja no cargada (se usa PRODUCTOS_EXTRA) */
     private readonly nuevosHoja = signal<ProductoExtra[] | null>(null);
 
-    /** Posición de cada clave en la hoja; vacío = manda el orden del código */
+    /**
+     * Posición de cada clave en la hoja; vacío = la hoja no ha cargado, manda el
+     * código. Sus CLAVES son además el censo de la carta: lo que no está aquí
+     * (habiendo cargado la hoja) no se pinta (ver quitarBajas()).
+     */
     private readonly ordenHoja = signal<Orden>({});
 
     /** Nombres y descripciones leídos de la hoja: clave → textos por idioma */
@@ -264,14 +269,32 @@ export class PrecioService {
     }
 
     /**
+     * Quita los productos del código cuya fila ya no está en la hoja: borrar una
+     * fila en la pestaña "precios" es dar de baja el producto en la carta.
+     *
+     * Es la contrapartida de las altas: la hoja no dice solo cuánto cuesta cada
+     * cosa, dice QUÉ hay en la carta. Sin esto, un producto borrado seguía
+     * saliendo con el precio del código y —al quedarse sin fila y por tanto sin
+     * posición— caía al final de su sección, que es justo el síntoma que se veía.
+     *
+     * Solo aplica si la hoja ha cargado: con `ordenHoja` vacío (hoja caída, o
+     * prerender en el servidor) manda el código y se pinta la carta completa,
+     * que es preferible a una carta vacía.
+     */
+    private quitarBajas<T extends { key: string }>(items: T[]): T[] {
+        const censo = this.ordenHoja();
+        if (Object.keys(censo).length === 0) return items; // hoja sin cargar: manda el código
+        return items.filter(item => item.key in censo);
+    }
+
+    /**
      * Ordena una categoría como esté ordenada en la hoja: mover una fila arriba
      * o abajo en la pestaña "precios" mueve el producto en su sección de la
      * carta. Es el orden FÍSICO de las filas, sin columnas que mantener a mano.
      *
-     * Las claves que la hoja no trae (un producto del código cuya fila se ha
-     * borrado) se van al final conservando el orden del código, igual que si la
-     * hoja no hubiera cargado: `sort` es estable, así que empatar a
-     * SIN_ORDEN deja el orden de entrada intacto.
+     * SIN_ORDEN es una red de seguridad: si la hoja ha cargado, quitarBajas() ya
+     * ha dejado fuera a las claves sin fila, así que en la práctica todas tienen
+     * posición. `sort` es estable, así que un empate deja el orden del código.
      *
      * Solo ordena DENTRO de una categoría; el orden de las secciones de la
      * carta (Aperitivos, Conservas, Embutidos…) y de los grupos de embutidos
@@ -286,8 +309,9 @@ export class PrecioService {
     }
 
     /**
-     * Como mezclar(), pero además añade los productos nuevos de la categoría
-     * (los que existen en la hoja/PRODUCTOS_EXTRA pero no en el código), con el
+     * Como mezclar(), pero además quita los productos dados de baja en la hoja
+     * (ver quitarBajas()), añade los productos nuevos de la categoría (los que
+     * existen en la hoja/PRODUCTOS_EXTRA pero no en el código) con el
      * nombre/descripción del idioma activo, y devuelve la categoría ordenada
      * como esté en la hoja (ver ordenar()). Un producto nuevo aparece donde
      * esté su fila, no forzosamente al final.
@@ -301,7 +325,7 @@ export class PrecioService {
         categoria: string,
         campos: readonly (keyof T & string)[],
     ): T[] {
-        const base = this.mezclar(items, campos);
+        const base = this.quitarBajas(this.mezclar(items, campos));
         const lang: Lang = this.idioma.currentLang();
         const nuevos = this.nuevosEfectivos()
             .filter(n => n.categoria === categoria)
@@ -325,6 +349,9 @@ export class PrecioService {
             // admite altas (un embutido nuevo sale al final de su grupo).
             items: this.mezclarConNuevos(grupo.items, grupo.groupKey, CAMPOS_EMBUTIDO),
         }))
+        // Borrar en la hoja todas las filas de un grupo lo hace desaparecer:
+        // si no, quedaría su título con una tabla sin filas debajo.
+        .filter(grupo => grupo.items.length > 0)
     );
 
     readonly panYTostadas = computed<PanPriceRow[]>(() => this.mezclarConNuevos(PAN_Y_TOSTADAS_PRICES, 'pan_y_tostadas', ['price']));
